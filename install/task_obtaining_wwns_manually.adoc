@@ -1,0 +1,35 @@
+---
+permalink: install/task_obtaining_wwns_manually.html 
+sidebar: sidebar 
+keywords: obtain, wwpns, manually 
+summary: '如果ONTAP系统未连接到SAN交换机、则需要获取系统的FC启动程序端口的全球通用端口名称(World Wide Port Name、WWPN)、这些端口将用于将系统连接到交换机。' 
+---
+= 手动获取WWPN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果ONTAP系统未连接到SAN交换机、则需要获取系统的FC启动程序端口的全球通用端口名称(World Wide Port Name、WWPN)、这些端口将用于将系统连接到交换机。
+
+让交换机自动发现WWPN是获取WWPN的首选方法、因为您可以避免在交换机配置中键入WWPN可能导致的错误。
+
+.步骤
+. 将系统的控制台连接连接至笔记本电脑。
+. 打开系统电源。
++
+在控制台上看到以下消息时、按Ctrl-c中断启动过程：
+
++
+[listing]
+----
+Press CTRL-C for boot menu
+----
+. 在启动选项菜单上选择维护模式选项。
+. 输入以下命令以列出系统的FC启动程序端口的WWPN： `storage show adapter`
++
+要列出特定适配器WWPN、请添加适配器名称、例如storage show adapter 0a。
+
+. 记录要使用的WWPN、然后退出维护模式。
+

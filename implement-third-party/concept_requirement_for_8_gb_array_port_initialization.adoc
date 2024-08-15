@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/concept_requirement_for_8_gb_array_port_initialization.html 
+sidebar: sidebar 
+keywords: requirement, 8-Gb array, port, initialization 
+summary: '在典型的光纤通道(Fibre Channel、FC)网络结构中、存储阵列端口会初始化为N端口(节点端口)、其对应的交换机端口会初始化为F端口(光纤端口)。在某些情况下、这些F端口可能会脱机并恢复为L端口(环路端口)的操作、从而导致网络结构错误。' 
+---
+= 8-GB阵列端口初始化的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在典型的光纤通道(Fibre Channel、FC)网络结构中、存储阵列端口会初始化为N端口(节点端口)、其对应的交换机端口会初始化为F端口(光纤端口)。在某些情况下、这些F端口可能会脱机并恢复为L端口(环路端口)的操作、从而导致网络结构错误。
+
+此行为是由Brocade交换机中的拓扑自动协商问题导致的。
+
+要确保交换机端口始终初始化为F端口、您必须对连接到存储阵列的Brocade交换机端口运行 `portcfggport` ``<portnumber> 1` 命令。您必须在开始配置系统时运行此命令以避免此问题、如果出现此问题、您必须予以修复。
+
+要从整体上提高网络结构的效率、您还可以在连接到ONTAP启动程序端口的任何Brocade端口上使用此变通办法。

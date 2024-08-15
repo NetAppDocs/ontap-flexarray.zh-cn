@@ -1,0 +1,28 @@
+---
+permalink: install/reference_reasons_storage_arrays_are_missing_from_command_output.html 
+sidebar: sidebar 
+keywords: reasons, storage, arrays, miss, command, output 
+summary: 未连接到ONTAP系统的存储阵列不会显示在storage array config show输出中。布线、分区和主机组配置方面的问题可能会导致两个设备之间无法建立连接。 
+---
+= 命令输出中缺少存储阵列的原因
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+未连接到ONTAP系统的存储阵列不会显示在输出中 `storage array config show` 。布线、分区和主机组配置方面的问题可能会导致两个设备之间无法建立连接。
+
+
+
+== 解决问题
+
+. 请按如下所示检查布线、主机组配置和分区：
++
+** 检查电缆是否已连接。
+** 检查ONTAP系统上FC启动程序的WWPN是否位于主机组中。
+** 检查存储阵列和FC启动程序是否位于同一分区中。
+
+
+. 修复问题后、在ONTAP中运行 `storage array config show` 以确认问题已修复。
+

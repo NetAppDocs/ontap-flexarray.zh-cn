@@ -1,0 +1,62 @@
+---
+permalink: install/concept_example_configuration_shared_target_ports.html 
+sidebar: sidebar 
+keywords: example, configuration, shared, target, ports, multiple, initiator 
+summary: 最多可以将两个ONTAP FC启动程序端口连接到存储阵列上的一个目标端口。 
+---
+= 配置示例：共享目标端口
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+最多可以将两个ONTAP FC启动程序端口连接到存储阵列上的一个目标端口。
+
+分区的最佳实践是、将每个FC启动程序-目标端口对置于一个单独的分区中(1：1)。
+
+
+
+== 连接到多个启动程序端口的共享目标端口
+
+下图显示了用于与不同ONTAP系统上的多个FC启动程序端口共享目标端口的连接和分区。
+
+下图中的实线显示了从系统VS1上的FC启动程序端口进行的连接、虚线显示了从系统VS2上的FC启动程序端口进行的连接。
+
+image::../media/shared_target_ports.gif[有关共享目标端口配置的连接和分区、请参见周围的文本。]
+
+下表显示了一个目标端口共享HA对中控制器的两个FC启动程序端口示例中的1：1分区定义：
+
+|===
+| 分区 | ONTAP系统和FC启动程序端口 | 存储阵列 
+
+
+ a| 
+* 交换机 1*
+
+
+
+ a| 
+z1
+| VS1：0A | 控制器1：端口1A 
+
+
+ a| 
+z3
+| VS2：0A |  
+
+
+ a| 
+* 交换机 2*
+
+
+
+ a| 
+z2
+| VS1：0c | 控制器2：端口2A 
+
+
+ a| 
+z4
+| VS2：0c |  
+|===

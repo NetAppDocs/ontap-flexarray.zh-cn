@@ -1,0 +1,83 @@
+---
+permalink: implement-e-series/concept_where_to_find_information_about_support_for_storage_arrays.html 
+sidebar: sidebar 
+keywords: non-ontap storage, third-party storage, e-series, arrays, storage 
+summary: 并非所有ONTAP版本都支持相同的功能、配置、系统型号和存储阵列型号。在部署规划期间、您必须检查ONTAP支持信息、以验证您的部署是否符合部署中所有系统的ONTAP硬件和软件要求。 
+---
+= 从何处查找有关ONTAP对存储阵列的支持的信息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+并非所有ONTAP版本都支持相同的功能、配置、系统型号和存储阵列型号。在部署规划期间、您必须检查ONTAP支持信息、以验证您的部署是否符合部署中所有系统的ONTAP硬件和软件要求。
+
+下表列出了包含与ONTAP系统相关的硬件和软件要求详细信息的信息源：
+
+[cols="2*"]
+|===
+| 有关的信息 | 您应查看此处... 
+
+
+ a| 
+使用存储阵列实施ONTAP的任务、包括以下任务：
+
+* 规划实施
+* 连接ONTAP系统和阵列
+* 验证安装
+
+ a| 
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]
+
+
+
+ a| 
+ONTAP可与以下设备配合使用：
+
+* 支持的存储阵列和存储阵列固件
+* 支持的交换机和交换机固件
+* 存储阵列是否支持存储阵列固件的无中断(实时)升级
+* 存储阵列是否支持MetroCluster配置
+
+ a| 
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+您可以参阅互操作性表中适用于后端存储的V系列和FlexArray虚拟化解决方案页面上的相应注释来查看有关支持采用FlexArray虚拟化的E-Series存储阵列的高级功能的信息
+
+
+
+ a| 
+版本和平台的ONTAP限制、包括以下内容：
+
+* 最小和最大阵列LUN大小、包括根卷和备用核心阵列LUN的最小阵列LUN大小
+* 包含阵列LUN的聚合的最小聚合大小
+* 支持的块大小
+* 最小和最大容量
+* 邻居限制
+
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+
+
+ a| 
+设置E-Series存储阵列、包括以下内容：
+
+* 站点准备要求
+* 布线说明
+* SANtricity软件安装和配置说明
+
+ a| 
+以下E-Series文档：
+
+* _ E-Series存储系统站点准备指南_
+* _ E-Series存储系统硬件布线指南_
+* _Storage ES SANtricity文档_
+
+
+您可以从NetApp支持站点访问这些文档。
+
+https://mysupport.netapp.com/site/global/dashboard["NetApp 支持"]
+
+|===

@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/concept_restriction_on_using_a_gatekeeper_lun.html 
+sidebar: sidebar 
+keywords: restriction, using, gatekeeper, luns 
+summary: '如果提供了网关守逻辑设备(LUN)、则不得将其映射到ONTAP系统。ONTAP系统不能使用gatekeeper LUN。关守LUN是Symmetrix逻辑设备、SYMAPI或ControlCenter代理通过此设备与存储阵列进行通信。' 
+---
+= 使用关守LUN的限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果提供了网关守逻辑设备(LUN)、则不得将其映射到ONTAP系统。ONTAP系统不能使用gatekeeper LUN。关守LUN是Symmetrix逻辑设备、SYMAPI或ControlCenter代理通过此设备与存储阵列进行通信。

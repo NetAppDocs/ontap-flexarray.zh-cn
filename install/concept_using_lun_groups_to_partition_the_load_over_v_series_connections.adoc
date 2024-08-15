@@ -1,0 +1,34 @@
+---
+permalink: install/concept_using_lun_groups_to_partition_the_load_over_v_series_connections.html 
+sidebar: sidebar 
+keywords: benefits, use, multiple, lun, groups 
+summary: 您可以在存储配置中使用多个LUN组、以便通过将工作负载分布到更多目标端口来增加容量并提高系统性能。 
+---
+= 使用多个LUN组的优势
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在存储配置中使用多个LUN组、以便通过将工作负载分布到更多目标端口来增加容量并提高系统性能。
+
+lun group_是存储阵列上ONTAP系统通过相同路径访问的一组逻辑设备。存储阵列管理员将一组逻辑设备配置为一个组、以定义哪个主机WWPN可以访问这些设备。ONTAP将这组设备称为_LUN group_。
+
+使用多个LUN组的优势如下：
+
+* 给定FC启动程序端口对可支持的LUN数量存在限制。
++
+尤其是对于大型存储阵列、所需容量可能会超过单个LUN组可以提供的容量。因此、使用多个LUN组可能会很有用。
+
+* 您可以对FC启动程序端口对上的阵列LUN负载进行分区。
+
+
+[NOTE]
+====
+并非所有存储阵列都支持使用多个LUN组。请参见_互操作性表_以确定您的存储阵列是否支持使用多个LUN组的配置。
+
+====
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

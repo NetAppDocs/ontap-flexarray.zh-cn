@@ -1,0 +1,22 @@
+---
+permalink: implement-third-party/concept_requirements_for_volume_groups_on_ds8xxx_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, volume, groups, ds8xxx, storage, arrays 
+summary: 您必须了解配置DS8xxx阵列时可用于LUN组的卷组数量限制。 
+---
+= DS8xxx存储阵列上的卷组要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须了解配置DS8xxx阵列时可用于LUN组的卷组数量限制。
+
+您必须为DS8xxx存储阵列上的每个LUN组使用一个卷组、以确保DS8xxx阵列LUN始终提供给访问它们的所有FC启动程序(位于ONTAP系统上)。
+
+[NOTE]
+====
+如果阵列LUN的显示不一致、则可能会导致数据损坏。
+
+====

@@ -1,0 +1,58 @@
+---
+permalink: install/reference_reasons_for_no_luns_in_the_array_lun_group.html 
+sidebar: sidebar 
+keywords: reasons, luns, array, group, host, ontap, operation, empty 
+summary: 验证后端配置时、您应检查storage array config show输出以确定LUN是否显示在LUN组中。如果storage array config show输出显示阵列LUN组中没有LUN、则ONTAP可以看到网络结构上的目标端口、但目标端口未向ONTAP提供阵列LUN。 
+---
+= 阵列LUN组中没有LUN的原因
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+验证后端配置时、您应检查 `storage array config show` 输出以确定LUN是否显示在LUN组中。如果 `storage array config show` 输出显示阵列LUN组中没有LUN、则ONTAP可以看到网络结构上的目标端口、但目标端口未向ONTAP提供阵列LUN。
+
+目标端口可能无法向ONTAP (_open target port_)提供阵列LUN的原因有很多。不同存储阵列之间开放目标端口的原因可能不同。此外、处理开放目标端口问题的方法因存储阵列而异。对于所有存储阵列、对目标端口打开的原因进行故障排除时、应检查存储阵列配置、包括主机组配置。
+
+例如、原因可能是_空 主机组_、它将自己作为开放目标端口呈现给ONTAP。如果主机组为空、主机组将定义FC启动程序和目标端口、但不会列出任何阵列LUN (即、主机组为空)。
+
+[NOTE]
+====
+空主机组不会影响ONTAP系统的运行。
+
+====
+下图显示了一个开放端口目标端口情形和一个空主机组情形。(为了简单起见、图中使用了独立的ONTAP系统。)
+
+打开的目标端口是由于存储控制器1A的主机组定义中缺少LUN ID而导致的。在存储控制器1A的主机组定义中、FC启动程序0b已分区到目标端口、并且已为FC启动程序端口0b定义了一个主机组、但主机组中没有LUN ID。如图所示、存储控制器2A的主机组定义既包括启动程序、也包括LUN。
+
+空主机组是由于存储控制器1B和2B的主机组定义中未列出阵列LUN而导致的。FC启动程序0a和0d已分区到目标端口、但未显示任何LUN。
+
+image::../media/ldevs_missing_from_host_group.gif[主机组中缺少LEVs]
+
+以下示例显示了 `storage array config show` 所示情形的输出、其中ONTAP系统已分区到存储阵列、但存储控制器1A的主机组定义中没有LUN、从而导致目标端口打开。控制器1B和2B在各自的主机组定义中没有LUN、从而导致主机组为空。
+
+在图示情形的输出中、FC启动程序0a、0b和0d的LUN计数字段中未显示任何LUN。对于FC启动程序0c、LUN组1中显示了两个LUN。
+
+[listing]
+----
+cluster-1::> storage array config show
+          LUN   LUN
+Node      Group Count  Array Name       Array Target Port   Initiator
+--------- ----- -----  ------------     ------------------- ---------
+vs1
+           0     2     EMC_SYMMETRIX_1  50060480000001b0       0c
+
+           1     0     EMC_SYMMETRIX_1  50060480000001a0       0b
+
+           2     0     EMC_SYMMETRIX_1  50060480000001b1       0a
+
+                 0     EMC_SYMMETRIX_1  50060480000001a1       0d
+
+4 entries were displayed.
+----
+[NOTE]
+====
+通过输出、您可以确定问题不是由主机组中缺少FC启动程序引起的。如果主机组中缺少FC启动程序、则ONTAP将无法识别没有LUN的LUN组。
+
+====

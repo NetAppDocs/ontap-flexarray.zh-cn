@@ -1,0 +1,27 @@
+---
+permalink: install/reference_requirements_for_zoning_in_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, zone, configuration, storage, arrays 
+summary: 您必须遵循使用存储阵列的ONTAP配置中的分区要求、以确保ONTAP系统可以访问一组正确的LUN。 
+---
+= 使用存储阵列的配置中的分区要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须遵循使用存储阵列的ONTAP配置中的分区要求、以确保ONTAP系统可以访问一组正确的LUN。
+
+* 互操作性表必须确定ONTAP配置支持的交换机和交换机固件。
+* 必须配置分区、以便将每个启动程序端口限制为每个存储阵列上的一个目标端口。
+* 在交换机上、必须将ONTAP系统上的端口和存储阵列上的端口分配给同一分区。
++
+这样、ONTAP系统便可访问存储阵列上的LUN。
+
+* 如果存储阵列端口在异构系统之间共享、则ONTAP系统中的阵列LUN不能公开给其他系统。
++
+必须使用LUN安全性或阵列LUN屏蔽来确保ONTAP存储的阵列LUN仅对ONTAP系统可见。
+
+* 主机配置端口不能与目标端口包含在同一分区中。
+

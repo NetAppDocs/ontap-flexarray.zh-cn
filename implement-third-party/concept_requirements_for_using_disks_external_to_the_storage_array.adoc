@@ -1,0 +1,30 @@
+---
+permalink: implement-third-party/concept_requirements_for_using_disks_external_to_the_storage_array.html 
+sidebar: sidebar 
+keywords: requirements, using, disks, external, storage, array 
+summary: 'ONTAP支持在供应商支持的存储阵列后面使用相同的磁盘(即存储阵列外部的磁盘)。在部署使用外部磁盘的存储阵列时、ONTAP会接受存储阵列与外部磁盘之间的配置。' 
+---
+= 使用存储阵列外部磁盘的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP支持在供应商支持的存储阵列后面使用相同的磁盘(即存储阵列外部的磁盘)。在部署使用外部磁盘的存储阵列时、ONTAP会接受存储阵列与外部磁盘之间的配置。
+
+以下是部署使用外部磁盘的存储阵列的限制和最佳实践建议：
+
+* 外部磁盘支持根卷和备用核心LUN。
+* 外部磁盘和内部磁盘中的阵列LUN不应位于同一个ONTAP聚合中。
+* SATA驱动器中的阵列LUN和FC驱动器中的阵列LUN不应位于同一聚合中。
+* 外部磁盘上阵列LUN的路径数规则与存储阵列上磁盘上的阵列LUN的规则相同。
++
+对于外部磁盘、路径从ONTAP系统通过存储阵列传输到外部磁盘。
+
+* 外部磁盘上的阵列LUN仅支持块校验和。
+
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]

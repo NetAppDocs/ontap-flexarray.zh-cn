@@ -1,0 +1,14 @@
+---
+permalink: install/reference_relationship_between_zoning_and_host_group_configuration.html 
+sidebar: sidebar 
+keywords: relationship, between, zone, host, group, configuration 
+summary: 修复分区配置错误时、有时还必须更改主机组配置、反之亦然。 
+---
+= 分区和主机组配置之间的关系
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+修复分区配置错误时、有时还必须更改主机组配置、反之亦然。

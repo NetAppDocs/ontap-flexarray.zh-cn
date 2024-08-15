@@ -1,0 +1,28 @@
+---
+permalink: install/concept_how_the_checksum_type_is_determined_for_aggregates_with_array_luns.html 
+sidebar: sidebar 
+keywords: how, checksum, type, determined, array, lun, aggregates 
+summary: 每个ONTAP聚合都有一个关联的校验和类型。聚合校验和类型由添加到聚合中的阵列LUN的校验和类型决定。 
+---
+= 如何确定阵列LUN聚合的校验和类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+每个ONTAP聚合都有一个关联的校验和类型。聚合校验和类型由添加到聚合中的阵列LUN的校验和类型决定。
+
+聚合的校验和类型由添加到聚合中的第一个阵列LUN的校验和类型决定。校验和类型适用于整个聚合(即聚合中的所有卷)。不支持在聚合中混用不同校验和类型的阵列LUN。
+
+* 类型为_block_的阵列LUN必须与块校验和类型的聚合一起使用。
+* 类型为_zoned_的阵列LUN必须与高级分区校验和(先分区校验和、再分区)类型的聚合结合使用。
+
+
+在将阵列LUN添加到聚合之前、您必须知道要添加的LUN的校验和类型、原因如下：
+
+* 不能将不同校验和类型的阵列LUN添加到同一聚合。
+* 您不能将聚合从一种校验和类型转换为另一种校验和类型。
+
+
+创建聚合时、您可以指定要添加的阵列LUN的数量、也可以指定要添加的LUN的名称。如果要指定要添加到聚合的阵列LUN的数量、则必须具有相同数量或更多的此校验和类型的阵列LUN。

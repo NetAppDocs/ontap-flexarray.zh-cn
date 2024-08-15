@@ -1,0 +1,20 @@
+---
+permalink: install/concept_zoning_recommendation_for_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: zone, recommendation, configuration, storage, arrays 
+summary: 对于使用存储阵列的配置、建议的分区类型为1：1分区。对于1：1分区、每个分区包含一个FC启动程序端口和一个存储阵列目标端口。 
+---
+= 使用存储阵列的配置的分区建议
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于使用存储阵列的配置、建议的分区类型为1：1分区。对于1：1分区、每个分区包含一个FC启动程序端口和一个存储阵列目标端口。
+
+创建1：1分区的优势如下：
+
+* 您可以限制可用于访问特定阵列LUN的端口数量。
+* 由于FC启动程序ONTAP系统不会尝试彼此发现、因此发现和启动时间有所缩短。
+

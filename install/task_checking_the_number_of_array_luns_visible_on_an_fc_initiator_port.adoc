@@ -1,0 +1,41 @@
+---
+permalink: install/task_checking_the_number_of_array_luns_visible_on_an_fc_initiator_port.html 
+sidebar: sidebar 
+keywords: check, number, array, luns, visible, fc initiator, port 
+summary: 您可以检查FC启动程序端口上可见阵列LUN的数量。在FC启动程序端口上可以看到的受支持阵列LUN数量因ONTAP版本而异。 
+---
+= 检查FC启动程序端口上可见的阵列LUN数量
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以检查FC启动程序端口上可见阵列LUN的数量。在FC启动程序端口上可以看到的受支持阵列LUN数量因ONTAP版本而异。
+
+.步骤
+. 检查FC启动程序端口上的可见编号： `storage array config show -initiator initiator_number`
++
+`storage array config show -initiator 0a`
+
+. 如果一个节点有多个阵列LUN组、请添加该节点所有LUN组的阵列LUN数量、以确定可供该节点的指定FC启动程序查看的阵列LUN总数。
++
+以下示例显示了所有节点的FC启动程序0A的输出。要确定_Specific _节点可通过特定FC启动程序查看的阵列LUN数量、必须从为该节点显示的所有目标端口查看该节点的条目。例如、要查找在vgv3070f51-01：0a上看到的阵列LUN数量、您可以将LUN组1 (HP)的LUN计数24添加到LUN组2 (DGC_RAID5_1)的LUN计数1中、这样、在vgv3070f51-01：0a上总共可以看到25个阵列LUN。
+
++
+您可以按照相同的过程来确定在vgv3070f51-02：0a上可以看到的LUN组0和LUN组2 (也是25)的阵列LUN数量。
+
++
+[listing]
+----
+
+vgv3070f51::> storage array config show -initiator 0a
+             LUN   LUN
+Node         Group Count    Array Name     Array Target Port Initiator
+------------ ----- -----    -----------  ------------------  -------
+vgv3070f51-01    1    24             HP    50014380025d1508     0a
+                 2     1    DGC_RAID5_1    200600a0b819e16f     0a
+vgv3070f51-02    0    24             HP    50014380025d1508     0a
+                 2     1    DGC_RAID5_1    200600a0b819e16f     0a
+----
+

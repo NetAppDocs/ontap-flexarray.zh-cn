@@ -1,0 +1,20 @@
+---
+permalink: install/concept_minimum_array_lun_size_for_the_root_volume.html 
+sidebar: sidebar 
+keywords: array, lun, size, required, root, volume 
+summary: 您必须将根卷的大小设置为大于支持的最小阵列LUN大小、以确保根卷中有足够的空间用于存储系统文件、日志文件和核心文件。如果发生系统问题、您必须将这些文件提供给技术支持。 
+---
+= 根卷所需的阵列LUN大小
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须将根卷的大小设置为大于支持的最小阵列LUN大小、以确保根卷中有足够的空间用于存储系统文件、日志文件和核心文件。如果发生系统问题、您必须将这些文件提供给技术支持。
+
+_LUN _列出了根卷的最小阵列Hardware Universe大小。
+
+* 相关信息 *
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

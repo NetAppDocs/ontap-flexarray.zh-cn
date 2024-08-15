@@ -1,0 +1,88 @@
+---
+permalink: install/concept_example_of_zoning_in_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: example, zone, configuration, storage, arrays, single, 4-port, lun, group 
+summary: 在为交换机配置分区时使用LUN安全性可确保不同主机不会看到映射到其他主机的LUN。 
+---
+= 使用存储阵列的配置中的分区示例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在为交换机配置分区时使用LUN安全性可确保不同主机不会看到映射到其他主机的LUN。
+
+
+
+== 在一个4端口LUN组配置中进行分区
+
+image::../media/one_4_port_array_lun_gp.gif[本图通过周围的文字进行了说明。]
+
+下表显示了HA对中ONTAP系统的此示例配置的分区。建议使用单启动程序分区策略。
+
+|===
+| 分区 | ONTAP 系统 |  | 存储阵列 |  
+
+
+ a| 
+交换机 1
+
+
+
+ a| 
+z1
+ a| 
+vs1
+ a| 
+端口0A
+ a| 
+控制器 1
+ a| 
+端口 1A
+
+
+
+ a| 
+z2
+ a| 
+vs2
+ a| 
+端口0A
+ a| 
+控制器 1
+ a| 
+端口1B
+
+
+
+ a| 
+交换机 2
+
+
+
+ a| 
+z3
+ a| 
+vs1
+ a| 
+端口0c
+ a| 
+控制器 2
+ a| 
+端口 2A
+
+
+
+ a| 
+z4
+ a| 
+vs2
+ a| 
+端口0c
+ a| 
+控制器 2
+ a| 
+端口2B
+
+|===

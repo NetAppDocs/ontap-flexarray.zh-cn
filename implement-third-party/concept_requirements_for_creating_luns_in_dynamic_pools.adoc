@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/concept_requirements_for_creating_luns_in_dynamic_pools.html 
+sidebar: sidebar 
+keywords: requirements, creating, luns, dynamic pools 
+summary: 在动态池中创建LUN时、请勿过度配置池容量。 
+---
+= 在动态池中创建LUN的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在动态池中创建LUN时、请勿过度配置池容量。

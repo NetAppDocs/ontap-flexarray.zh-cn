@@ -1,0 +1,48 @@
+---
+permalink: install/task_changing_the_checksum_type_of_an_array_lun.html 
+sidebar: sidebar 
+keywords: change, checksum, type, array, lun 
+summary: 如果要将阵列LUN添加到校验和类型与该LUN校验和类型不同的聚合、则必须更改该LUN的校验和类型。 
+---
+= 更改阵列LUN的校验和类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果要将阵列LUN添加到校验和类型与该LUN校验和类型不同的聚合、则必须更改该LUN的校验和类型。
+
+* 您需要的内容 *
+
+您必须已在某些类型的工作负载的性能与每种校验和类型的存储容量利用率之间进行权衡。
+
+您也可以联系销售工程师、了解有关使用校验和的详细信息。
+
+* 您必须为计划添加到高级分区校验和(Advanced zoned Checksum、AZCS)聚合的阵列LUN分配*分区*校验和类型。将分区校验和阵列LUN添加到一个AZCS聚合后、它将成为高级分区校验和阵列LUN。同样、将分区校验和阵列LUN添加到分区聚合时、该LUN也是分区校验和类型。
+* 在分配所有权时、不能修改阵列LUN的校验和。您只能修改已分配的阵列LUN上的校验和。
+
+
+.步骤
+. 输入以下命令以更改校验和类型： `storage disk assign -disk disk name -owner owner -c new_checksum_type`
++
+_disk name_是要更改校验和类型的阵列LUN。
+
++
+_owner_是将阵列LUN分配到的节点。
+
++
+_new_校 验和_type_可以 是块或分区。
+
++
+`storage disk assign -disk EMC-1.1 -owner system147b -c block`
+
++
+阵列LUN的校验和类型将更改为您指定的新校验和类型。
+
+. 输入以下命令以访问noshell： `system node run -node node_name`
++
+_NODE_NAME_是此系统的名称。
+
+. 输入以下命令以退出nokeshell： `exit`
+

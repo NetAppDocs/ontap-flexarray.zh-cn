@@ -1,0 +1,16 @@
+---
+permalink: implement-third-party/concept_alua_support_for_hp_eva_storage_arrays.html 
+sidebar: sidebar 
+keywords: alua, support, hp eva, storage, arrays 
+summary: '增加了对HP EVA阵列的非对称逻辑单元访问(AUA)的支持。' 
+---
+= AUA支持HP EVA存储阵列
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+增加了对HP EVA阵列的非对称逻辑单元访问(AUA)的支持。
+
+默认情况下、ONTAP以及所有HP EVA存储阵列均会启用ALOA支持。

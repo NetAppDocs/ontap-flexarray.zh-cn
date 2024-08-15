@@ -1,0 +1,36 @@
+---
+permalink: install/concept_how_array_luns_are_made_available_for_host_use.html 
+sidebar: sidebar 
+keywords: how, array, luns, available, host, use 
+summary: 存储阵列管理员必须创建阵列LUN、并使其可供ONTAP系统的指定FC启动程序端口使用。 
+---
+= 如何使阵列LUN可供主机使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+存储阵列管理员必须创建阵列LUN、并使其可供ONTAP系统的指定FC启动程序端口使用。
+
+使LUN可供主机使用的过程以及用于描述LUN的术语因存储阵列供应商而异。存储阵列管理员要使LUN可供主机使用、需遵循以下基本过程：
+
+. 创建逻辑设备(LEVs)。
++
+[NOTE]
+====
+_Ldev_是一些供应商使用的一个术语、此内容用于描述从磁盘配置的一个逻辑RAID存储。
+
+====
+. 创建主机组(或与供应商等效的主机组)。
++
+主机组包含允许查看LDEV的主机的启动程序端口的WWPN。
+
++
+[NOTE]
+====
+为了简化管理、大多数存储阵列都允许您定义一个或多个主机组。您可以将特定WWPN (端口)和WWN (主机)定义为同一组的成员。然后、将特定阵列LUN与主机组相关联。主机组中的主机可以访问与该主机组关联的LUN；不属于该主机组的主机无法访问这些LUN。不同的供应商使用不同的术语来描述此概念。创建主机组的过程因供应商而异。
+
+====
+. 将LDE作为LUN映射到主机组。
+

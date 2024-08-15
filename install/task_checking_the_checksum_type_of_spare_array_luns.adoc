@@ -1,0 +1,33 @@
+---
+permalink: install/task_checking_the_checksum_type_of_spare_array_luns.html 
+sidebar: sidebar 
+keywords: check, checksum, type, spare, array, luns 
+summary: 如果您计划通过指定备用阵列LUN的名称将其添加到聚合中、则需要确保要添加的阵列LUN的校验和类型与聚合校验和类型相同。 
+---
+= 正在检查备用阵列LUN的校验和类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您计划通过指定备用阵列LUN的名称将其添加到聚合中、则需要确保要添加的阵列LUN的校验和类型与聚合校验和类型相同。
+
+不能在一个阵列LUN聚合中混用不同校验和类型的阵列LUN。聚合的校验和类型与添加到聚合中的阵列LUN的校验和类型必须相同。
+
+如果您指定了要添加到聚合中的多个备用阵列LUN、则默认情况下、ONTAP会选择与聚合具有相同校验和类型的阵列LUN。
+
+[NOTE]
+====
+使用分区校验和阵列LUN的所有新创建聚合的校验和类型均为_advanced zoned Checksum _(ZCS)。现有分区聚合仍支持分区校验和类型。添加到现有分区校验和聚合的分区校验和备用阵列LUN仍为分区校验和阵列LUN。添加到AZCS校验和类型聚合的分区校验和备用阵列LUN使用AZCS校验和方案管理校验和。
+
+====
+.步骤
+. 输入以下命令、检查备用阵列LUN的校验和类型：
++
+`storage disk show -fields checksum-compatibility -container-type spare`
+
++
+您可以将块校验和阵列LUN添加到块校验和聚合、并将分区阵列LUN添加到_advanced zoned zoned Checksum _(AZCS)聚合。
+
+

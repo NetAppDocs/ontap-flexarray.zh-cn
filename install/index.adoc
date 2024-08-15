@@ -1,0 +1,12 @@
+---
+permalink: install/index.html 
+sidebar: sidebar 
+keywords: flexarray, virtualization, installation, requirements, reference 
+summary: 欢迎使用ONTAP FlexArray信息库。您可以在此处找到有关如何设置集群以使用存储阵列的信息。 
+---
+= 《FlexArray®虚拟化安装要求和参考》
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

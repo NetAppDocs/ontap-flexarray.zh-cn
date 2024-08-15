@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/reference_supported_fabric_attached_configurations_for_storage_arrays.html 
+sidebar: sidebar 
+keywords: support, fabric-attached, configurations 
+summary: 除非另有说明、否则所有存储阵列供应商都支持各种光纤连接配置。 
+---
+= 支持的光纤连接配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+除非另有说明、否则所有存储阵列供应商都支持各种光纤连接配置。
+
+互操作性表提供了有关特定阵列型号的其他信息。
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

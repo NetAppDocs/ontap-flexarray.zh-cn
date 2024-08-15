@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/concept_general_configuration_guidelines_for_all_storage_arrays.html 
+sidebar: sidebar 
+keywords: configuration, guidelines, storage, arrays 
+summary: 对于ONTAP支持的任何存储阵列、必须遵循特定的配置准则。 
+---
+= 适用于所有存储阵列的常规配置准则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于ONTAP支持的任何存储阵列、必须遵循特定的配置准则。

@@ -1,0 +1,78 @@
+---
+permalink: install/task_setting_up_the_switches.html 
+sidebar: sidebar 
+keywords: set, up, switches 
+summary: 交换机配置通常由存储或SAN管理员完成。必须对交换机进行分区、以便ONTAP系统和存储阵列可以相互识别。您必须使用单启动程序分区作为分区策略。 
+---
+= 设置交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+交换机配置通常由存储或SAN管理员完成。必须对交换机进行分区、以便ONTAP系统和存储阵列可以相互识别。您必须使用单启动程序分区作为分区策略。
+
+.步骤
+. 登录到存储阵列并获取存储阵列的FC适配器的WWPN。
+. 使用光纤通道交换机命令对每个交换机进行分区、以便存储阵列和ONTAP系统可以看到彼此的WWPN。
++
+请考虑以下HA对中的ONTAP系统示例：
+
++
+image::../media/one_4_port_array_lun_gp.gif[本图通过周围的文字进行了说明。]
+
++
+在示例配置中、分区如下所示：
+
++
+|===
+| 分区 | ONTAP系统和端口 | 存储阵列控制器和端口 
+
+
+ a| 
+交换机 1
+
+
+
+ a| 
+z1
+ a| 
+VS1、0A
+ a| 
+控制器1、1A
+
+
+
+ a| 
+z2
+ a| 
+VS2、0A
+ a| 
+控制器1、1B
+
+
+
+ a| 
+交换机 2
+
+
+
+ a| 
+z3
+ a| 
+vs1、0c
+ a| 
+控制器2、2A
+
+
+
+ a| 
+z4
+ a| 
+vs2、0c
+ a| 
+控制器2、2B
+
+|===
+

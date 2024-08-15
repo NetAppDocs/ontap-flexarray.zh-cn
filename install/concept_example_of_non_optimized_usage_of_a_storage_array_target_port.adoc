@@ -1,0 +1,40 @@
+---
+permalink: install/concept_example_of_non_optimized_usage_of_a_storage_array_target_port.html 
+sidebar: sidebar 
+keywords: example, non-optimized, usage, storage, array, target, port, errors, detect, output 
+summary: 如果在给定存储阵列目标端口上排队的I/O请求数超过该端口可处理的请求数、则会导致目标端口利用率未优化。 
+---
+= 存储阵列目标端口的非优化使用示例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果在给定存储阵列目标端口上排队的I/O请求数超过该端口可处理的请求数、则会导致目标端口利用率未优化。
+
+您可以在命令的输出显示中检测给定目标端口的此类非优化使用情况 `storage array show` 。
+
+
+
+== 在检测目标端口的非优化使用情况时显示错误的输出示例
+
+以下示例显示了命令在检测给定目标端口的非优化使用情况时返回的错误 `storage array show` ：
+
+[listing]
+----
+vgv3070f50ab::> storage array show -name HP_HSV450_2
+
+                Name: HP_HSV450_2
+              Prefix:
+              Vendor: HP
+               Model: HSV450
+             options:
+       Serial Number: 50014380025d1500
+ Optimization Policy: iALUA
+            Affinity: AAA
+
+
+Errors:
+Warning: HP_HSV450_2 Detected non optimized usage of a target port. WWPN: 2703750270235, average service time: 215ms, average latency: 30ms
+----

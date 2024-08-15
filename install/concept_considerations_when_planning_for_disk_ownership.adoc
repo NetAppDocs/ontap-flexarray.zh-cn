@@ -1,0 +1,30 @@
+---
+permalink: install/concept_considerations_when_planning_for_disk_ownership.html 
+sidebar: sidebar 
+keywords: considerations, plan, disk, ownership 
+summary: 如果要部署多个ONTAP系统以使用阵列LUN、则必须确定哪个系统拥有哪些阵列LUN。磁盘所有权可确保只有拥有特定阵列LUN的ONTAP系统才能从此阵列LUN读取数据或向其写入数据。 
+---
+= 规划磁盘所有权时的注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果要部署多个ONTAP系统以使用阵列LUN、则必须确定哪个系统_owns_哪个阵列LUN。磁盘所有权可确保只有拥有特定阵列LUN的ONTAP系统才能从此阵列LUN读取数据或向其写入数据。
+
+在规划哪个系统将拥有哪些阵列LUN时、应考虑以下事项：
+
+* 您的平台支持的最大已分配设备限制
++
+Hardware Universe _显示了不同平台支持的最大已分配设备限制。这是一个硬编码限制。如果您的系统同时使用阵列LUN和磁盘、则此最大限制为磁盘和阵列LUN的总和上限。在确定可分配给系统的阵列LUN和磁盘数量时、必须同时考虑这两种类型的存储。
+
+* 环境中使用的不同应用程序预计生成的负载量
++
+某些类型的应用程序可能生成大量请求、而其他应用程序(例如归档应用程序)生成的请求较少。您可能需要考虑根据特定应用程序的预期负载来权衡所有权分配。
+
+
+
+* 相关信息 *
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

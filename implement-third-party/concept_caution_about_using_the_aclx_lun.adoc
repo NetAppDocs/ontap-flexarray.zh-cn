@@ -1,0 +1,18 @@
+---
+permalink: implement-third-party/concept_caution_about_using_the_aclx_lun.html 
+sidebar: sidebar 
+keywords: caution, aclx, lun 
+summary: '在VMAX阵列上、如果客户请求使用ACLX、则会在初始化期间创建ACLX (Access Control Logix) LUN。ACLX LUN不是存储LUN、因此不应映射到ONTAP。' 
+---
+= 有关使用ACLX LUN的注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在VMAX阵列上、如果客户请求使用ACLX、则会在初始化期间创建ACLX (Access Control Logix) LUN。ACLX LUN不是存储LUN、因此不应映射到ONTAP。
+
+如果ACLX LUN映射到ONTAP系统、则ONTAP会记录一条消息、指出ACLX LUN小于所需的最小大小、并将LUN标记为故障。记录此错误消息后、ONTAP系统仍可正常运行、但无法使用LUN。
+
+应取消ACLX LUN与ONTAP系统上的前端控制器端口的映射。

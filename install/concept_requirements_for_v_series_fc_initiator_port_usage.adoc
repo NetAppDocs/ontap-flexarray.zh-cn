@@ -1,0 +1,62 @@
+---
+permalink: install/concept_requirements_for_v_series_fc_initiator_port_usage.html 
+sidebar: sidebar 
+keywords: requirements, use, fc initiator, ports 
+summary: 如果要在使用阵列LUN的ONTAP配置中使用FC启动程序端口、则必须遵循以下特定要求：端口对冗余、HBA的端口设置、连接到目标端口、阵列LUN限制以及连接到不同的存储和设备。 
+---
+= 使用FC启动程序端口的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果要在使用阵列LUN的ONTAP配置中使用FC启动程序端口、则必须遵循以下特定要求：端口对冗余、HBA的端口设置、连接到目标端口、阵列LUN限制以及连接到不同的存储和设备。
+
+|===
+| 功能 | 要求 
+
+
+ a| 
+端口对冗余
+ a| 
+将ONTAP系统连接到阵列LUN时、必须使用冗余FC启动程序端口对。
+
+
+
+ a| 
+HBA的端口设置
+ a| 
+您必须将用于访问磁盘或阵列LUN的所有HBA设置为_启动 程序_端口。
+
+
+
+ a| 
+正在连接到存储阵列目标端口
+ a| 
+您可以将同一个FC启动程序端口连接到存储阵列上的多个目标端口。
+
+最多可以将两个FC启动程序端口连接到一个目标端口。
+
+
+
+ a| 
+阵列LUN限制
+ a| 
+可通过FC启动程序端口查看的阵列LUN数量存在限制。这些限制因ONTAP版本而异。
+
+
+
+ a| 
+连接到不同的存储和设备
+ a| 
+必须使用单独的FC启动程序端口将ONTAP系统连接到以下各项：
+
+* 磁盘架
+* 阵列 LUN
+* 磁带设备
+
+
+如果ONTAP系统没有足够的内部端口来满足您的要求、您必须订购额外的HBA。
+
+|===

@@ -1,0 +1,37 @@
+---
+permalink: implement-e-series/concept_attaching_fc_initiator_port_to_multiple_targets_ports.html 
+sidebar: sidebar 
+keywords: attach, fc initiator, port, multiple, targets, ports, ontap, storage, arrays 
+summary: 您可以将ONTAP系统上的一个FC启动程序端口连接到同一系列中不同存储阵列上的多个目标端口。ONTAP中的MetroCluster配置支持此配置。 
+---
+= 将FC启动程序端口连接到多个目标端口
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将ONTAP系统上的一个FC启动程序端口连接到同一系列中不同存储阵列上的多个目标端口。ONTAP中的MetroCluster配置支持此配置。
+
+ONTAP支持与HA对和独立系统中的多个目标端口共享一个FC启动程序端口。此配置支持与互操作性表中列出的所有存储阵列一起使用、就像在系统上运行的ONTAP版本支持的那样。
+
+[NOTE]
+====
+有关与多个目标端口共享FC启动程序端口和分区的详细信息、请参见_ FlexArray虚拟化安装要求和参考_中的信息
+
+====
+
+
+== 连接到不同存储阵列上的目标端口的单个ONTAP FC启动程序端口
+
+以下示例显示了一个HA对、其中一个ONTAP FC启动程序端口连接到不同存储阵列上的多个目标端口：
+
+image::../media/shared_initiator_ports_different_arrays.gif[连接和分区在周围的文本中进行了介绍。]
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["光纤连接的 MetroCluster 安装和配置"]

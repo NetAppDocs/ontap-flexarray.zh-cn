@@ -1,0 +1,57 @@
+---
+permalink: install/reference_volume_set_addressing_is_inconsistent.html 
+sidebar: sidebar 
+keywords: volume, set, address, inconsistent, show, message, troubleshoot, problem, resolution 
+summary: ONTAP可以检测到存储阵列路径集之间的LUN ID不一致。对于设置了卷集寻址的存储阵列、LUN映射到的端口上的设置不匹配是导致LUN ID不匹配的一个问题。 
+---
+= 卷集寻址不一致
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP可以检测到存储阵列路径集之间的LUN ID不一致。对于设置了卷集寻址的存储阵列、LUN映射到的端口上的设置不匹配是导致LUN ID不匹配的一个问题。
+
+例如、在EMC Symmetrix存储阵列上、如果LUN映射到的通道控制器端口上的卷集寻址参数设置不一致、则会触发LUN不匹配错误。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+
+EMC-1.128 (4849544143484920443630303035323430303132): This Array LUN is using multiple LUN IDs.  Only one LUN ID per serial number is supported.
+----
+
+
+== 说明
+
+有许多配置错误可能会导致出现错误消息。本说明介绍了当卷集寻址设置不一致时显示的消息。
+
+ONTAP会明确检查LUN所映射到的端口上的卷集寻址参数设置是否不一致。如果设置不同、则ONTAP会在输出和EMS消息中报告LUN ID不匹配的情况 `storage errors show` 。
+
+[NOTE]
+====
+如果未按预期配置卷集寻址、则ONTAP不会向您发出警报；只有当LUN所映射到的通道控制器端口的配置不一致时、它才会向您发出警报。
+
+====
+
+
+== 故障排除和问题解决
+
+如果 `storage errors show` 命令显示特定错误消息、并且您的存储阵列是EMC Symmetrix、则执行以下操作之一有助于确定问题是否由卷集寻址不一致引起：
+
+* 在ONTAP中、对标识的阵列LUN运行 `storage disk show -disk` 。
++
+此命令将显示阵列LUN的所有路径以及分配给每个路径的LUN ID。
+
+* 在存储阵列上、检查已标识的LUN所映射到的通道控制器端口的卷集寻址设置。
+
+
+如果您确定这些设置不一致、请修复存储阵列上的配置问题、确保将两个通道控制器端口上的参数设置为ONTAP所需的设置。
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]

@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/concept_guidelines_for_enabling_alua_on_emc_vnx_storrage_arrays.html 
+sidebar: sidebar 
+keywords: guidelines, enabling, alua, emc, vnx, storage arrays 
+summary: 'CLARIION和VNX阵列增加了对非对称逻辑单元访问(ALUA)的支持。' 
+---
+= 在EMC VNX存储阵列上启用ALOA的准则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+CLARIION和VNX阵列增加了对非对称逻辑单元访问(ALUA)的支持。
+
+默认情况下、ONTAP中启用了对AUA的支持。但是、要使用它、必须在存储阵列上启用ALOA。
+
+您应仅在新配置上启用AUA。您不应在现有配置中启用AUA。
+
+如果要在存储阵列上设置ALUA、则必须确保存储组中的所有主机都处于相同的故障转移模式、即故障转移模式4 (ALUA)。

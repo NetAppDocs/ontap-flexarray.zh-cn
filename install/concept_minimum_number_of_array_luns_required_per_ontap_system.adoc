@@ -1,0 +1,18 @@
+---
+permalink: install/concept_minimum_number_of_array_luns_required_per_ontap_system.html 
+sidebar: sidebar 
+keywords: minimum, number, array, luns, required, ontap, system 
+summary: 每个ONTAP系统所需的阵列LUN数量取决于根卷的位置。 
+---
+= 每个ONTAP系统所需的最小阵列LUN数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+每个ONTAP系统所需的阵列LUN数量取决于根卷的位置。
+
+根卷可以位于磁盘上、也可以位于阵列LUN上。然后、根卷的位置将确定所需的最小阵列LUN数量。如果根卷位于存储阵列上、则每个独立ONTAP系统和HA对中的每个节点必须至少拥有一个阵列LUN。如果根卷位于本机磁盘上、则只需要用于数据存储的阵列LUN即可。
+
+对于使用阵列LUN的MetroCluster配置、如果根卷位于存储阵列上、则需要两个阵列LUN (每个站点一个LUN)。要镜像根卷、必须使用这两个LUN。

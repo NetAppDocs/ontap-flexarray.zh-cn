@@ -1,0 +1,36 @@
+---
+permalink: install/task_modifying_assignment_of_spare_array_luns.html 
+sidebar: sidebar 
+keywords: modify, assignment, spare, array, luns 
+summary: 您可以将备用阵列LUN的所有权更改为其他节点。您可能需要执行此操作来平衡节点上的负载。 
+---
+= 修改备用阵列LUN的分配
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将_spare_阵列LUN的所有权更改为其他节点。您可能需要执行此操作来平衡节点上的负载。
+
+.步骤
+. 在拥有要重新分配的阵列LUN的节点的控制台上、输入以下命令以查看节点上的备用阵列LUN列表： `storage disk show -owner local`
++
+此时将列出节点拥有的阵列LUN、包括备用磁盘和聚合中的LUN。
+
+. 确认要重新分配给其他节点的LUN是备用LUN。
+. 输入以下命令将阵列LUN的所有权分配给其他节点： `storage disk assign arrayLUNname -owner new_owner_name -force`
++
+[NOTE]
+====
+如果未使用-force选项或阵列LUN已添加到聚合中、则阵列LUN所有权不会更改。
+
+====
+. 输入以下命令、验证备用阵列LUN的所有权是否已更改为另一节点： `storage disk show -owner local`
++
+已更改为新所有者的备用阵列LUN应不再显示在备用磁盘列表中。如果阵列LUN仍显示、请重复此命令以更改所有权。
+
+. 在目标节点上、输入以下命令、验证您更改了所有权的备用阵列LUN是否列为目标节点拥有的备用阵列LUN： `storage disk show -owner local`
+
+
+您必须先将阵列LUN添加到聚合中、然后才能将其用于存储。

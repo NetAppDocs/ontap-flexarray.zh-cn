@@ -1,0 +1,32 @@
+---
+permalink: install/concept_prerequisites_to_reconfiguring_an_array_lun_on_the_storage_array.html 
+sidebar: sidebar 
+keywords: prerequisites, reconfigure, array. lun, storage, array 
+summary: '如果阵列LUN已(通过ONTAP)分配给特定ONTAP系统、则在存储管理员尝试重新配置存储阵列上的阵列LUN之前、必须删除ONTAP写入该阵列LUN的信息。' 
+---
+= 在存储阵列上重新配置阵列LUN的前提条件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果阵列LUN已(通过ONTAP)分配给特定ONTAP系统、则在存储管理员尝试重新配置存储阵列上的阵列LUN之前、必须删除ONTAP写入该阵列LUN的信息。
+
+当存储阵列向ONTAP提供阵列LUN时、ONTAP会收集有关该阵列LUN的信息(例如其大小)、并将该信息写入阵列LUN。ONTAP无法动态更新写入阵列LUN的信息。因此、在存储阵列管理员重新配置阵列LUN之前、您必须使用ONTAP将阵列LUN的状态更改为_unused _。从ONTAP的角度来看、此阵列LUN未使用。
+
+将阵列LUN的状态更改为未使用时、ONTAP会执行以下操作：
+
+* 终止阵列LUN的I/O操作
+* 从阵列LUN中删除RAID配置信息标签和永久性预留、从而使该阵列LUN不属于任何ONTAP系统
+
+
+此过程完成后、阵列LUN中不会保留任何ONTAP信息。
+
+阵列LUN的状态更改为未使用后、您可以执行以下操作：
+
+* 删除阵列LUN到ONTAP的映射、并使该阵列LUN可供其他主机使用。
+* 调整阵列LUN的大小或更改其构成。
+
+
+如果您希望ONTAP在阵列LUN的大小或构成发生更改后继续使用该阵列LUN、则必须再次将该阵列LUN提供给ONTAP、然后将该阵列LUN重新分配给ONTAP系统。ONTAP可识别新的阵列LUN大小或构成。

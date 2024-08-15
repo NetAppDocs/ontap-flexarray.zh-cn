@@ -1,0 +1,93 @@
+---
+permalink: install/task_verifying_if_the_back_end_configuration_matches_the_expected_output.html 
+sidebar: sidebar 
+keywords: verify, back-end, configuration, matches, intended, configuration 
+summary: 解决storage errors, show检测到的后端配置错误后，您必须检查现有的后端配置是否与您的预期配置匹配，并修复因任何不匹配而引起的问题。 
+---
+= 验证后端配置是否与预期配置匹配
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+解决检测到的后端配置错误后 `storage errors show`，您必须检查现有的后端配置是否与预期配置匹配，并修复因任何不匹配而引起的问题。
+
+.步骤
+. 输入以下命令： `storage array config show`
++
+ `storage array config show`输出按存储阵列对有关LUN组、LUN计数和路径的信息进行了分组、如下HA对示例所示：
+
++
+[listing]
+----
+
+mysystem1::> storage array config show
+             LUN   LUN
+Node         Group Count  Array Name      Array Target Port   Initiator
+------------ ----- ----- ---------------  ------------------  ---------
+mysystem1a    0    10     DGC_RAID5_1      5005076303030124       1a
+                                           5005076303088124       1b
+                                           5005076303130124       1c
+                                           5005076303188124       1d
+mysystem1b    0    10     DGC_RAID5_1      5005076303030124       1a
+                                           5005076303088124       1b
+                                           5005076303130124       1c
+                                           5005076303188124       1d
+8 entries were displayed.
+----
+. 检查 `storage array config show` 下表中每个问题陈述的输出、并参考相应的解决信息。
++
+|===
+| 如果您发现此问题... | 查看此信息... 
+
+
+ a| 
+空LUN组
+ a| 
+xref:reference_reasons_for_no_luns_in_the_array_lun_group.adoc[阵列LUN组中没有LUN的原因]
+
+
+
+ a| 
+缺少预期的存储阵列
+ a| 
+xref:reference_reasons_storage_arrays_are_missing_from_command_output.adoc[您可能无法看到所需的所有存储阵列的原因]
+
+
+
+ a| 
+阵列LUN组多于预期
+ a| 
+xref:reference_reasons_for_more_array_lun_groups_than_expected.adoc[阵列LUN组比预期多的原因]
+
+
+
+ a| 
+阵列LUN组数少于预期
+ a| 
+xref:reference_reasons_for_fewer_array_lun_groups_than_expected.adoc[阵列LUN组数少于预期的原因]
+
+
+
+ a| 
+阵列LUN组不会显示预期的LUN数量
+ a| 
+xref:reference_reasons_for_the_incorrect_number_of_luns_in_array_lun_groups.adoc[阵列LUN组中LUN数量不正确的原因]
+
+
+
+ a| 
+路径数少于预期
+ a| 
+xref:reference_fewer_than_two_paths_to_an_array_lun.adoc[一个阵列LUN的路径少于两个]
+
+
+
+ a| 
+路径数超出预期
+ a| 
+xref:reference_reasons_for_more_paths_to_an_array_lun_than_expected.adoc[指向阵列LUN的路径比预期多的原因]
+
+|===
+

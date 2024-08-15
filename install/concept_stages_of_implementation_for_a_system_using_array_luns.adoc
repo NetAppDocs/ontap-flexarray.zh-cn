@@ -1,0 +1,47 @@
+---
+permalink: install/concept_stages_of_implementation_for_a_system_using_array_luns.html 
+sidebar: sidebar 
+keywords: stages, implementation, system, use, array, luns, back end, front end 
+summary: 实施系统使用存储阵列中LUN的配置分为两个阶段：后端实施和前端实施。在规划配置时、了解每个阶段的高级任务非常有用。 
+---
+= 使用阵列LUN的系统的实施阶段
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+实施系统使用存储阵列中LUN的配置分为两个阶段：后端实施和前端实施。在规划配置时、了解每个阶段的高级任务非常有用。
+
+
+
+== 第1阶段：后端实施
+
+设置后端实施包括设置带有存储阵列的ONTAP系统(直到可以安装ONTAP软件为止)所需的所有任务。
+
+设置后端实施的任务包括：
+
+. 创建和格式化阵列LUN
+. 正在分配端口
+. 布线
+. 分区交换机(如果适用)
+. 在ONTAP中、将特定阵列LUN分配给ONTAP系统
+. 在ONTAP中、提供在网络上设置ONTAP系统的信息
+. 安装ONTAP软件
+
+
+如果订购的ONTAP系统附带有磁盘架、则ONTAP软件会在出厂时安装。在这种配置中、您无需创建根卷并安装许可证和ONTAP软件。
+
+如果订购的ONTAP系统没有磁盘架、则需要先配置ONTAP、然后再设置集群。
+
+
+
+== 第2阶段：前端实施
+
+设置前端实施的任务与使用磁盘的系统的任务相同、包括以下内容：
+
+* 为所有协议(NAS、FC或两者)配置ONTAP系统
+* 配置ONTAP功能、例如SnapVault、SnapMirror、SnapValidator和Snapshot副本
+* 创建卷和聚合
+* 设置数据保护、包括NDMP转储到磁带
+

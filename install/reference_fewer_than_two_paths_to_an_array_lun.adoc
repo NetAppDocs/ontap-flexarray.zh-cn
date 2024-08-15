@@ -1,0 +1,112 @@
+---
+permalink: install/reference_fewer_than_two_paths_to_an_array_lun.html 
+sidebar: sidebar 
+keywords: fewer, two, paths, array, lun 
+summary: 一个阵列LUN的路径数少于两个的常见原因是映射错误、分区错误或缆线掉线。storage errors. show输出用于标识只有一个路径的阵列LUN。 
+---
+= 一个阵列LUN的路径少于两个
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+一个阵列LUN的路径数少于两个的常见原因是映射错误、分区错误或缆线掉线。 `storage errors show`输出将标识只有一个路径的阵列LUN。
+
+ONTAP需要使用冗余路径连接到阵列LUN、以便在设备发生故障时仍可访问此LUN。每个阵列LUN必须具有两个路径。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+
+NAME (UID):  This Array LUN is only available on one path.  Proper configuration requires two paths.
+----
+
+
+== 说明
+
+您发现一个阵列LUN的路径少于两个的原因如下：
+
+* LEV仅映射到一个存储阵列端口。
+* 阵列LUN的第二条路径未进行分区。
+* 主机组映射出现问题。
+* 交换机连接出现问题。
+* 电缆掉线。
+* SFP在适配器上出现故障。
+
+
+[NOTE]
+====
+如果某个路径在正在运行的系统上掉线、则会生成EMS消息。
+
+====
+
+
+== 问题场景
+
+在此映射错误示例中、假设存储管理员创建了一个新的LDE V Z。管理员将LDE Z作为LUN ID 3映射到目标端口1A。但是、管理员未将LEV映射到目标端口2A、如下图所示。结果是、只有一条路径指向阵列LUN。
+
+image::../media/ldev_mapped_on_only_one_array_port.gif[本图在周围的文字中进行了说明。]
+
+发生此错误时、 `storage array config show` 输出仅显示LUN的一个路径、如以下示例所示。
+
+[listing]
+----
+
+mysystem1::> storage array config show
+           LUN     LUN
+Node       Group   Count  Array Name    Array Target Ports      Switch Port   Initiator
+-------   -------  -----  ----------   -------------------      -----------    ---------
+mysystem1a    0      1    DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr20es25:5   0a
+
+Warning: Configuration errors were detected.  Use 'storage errors show' for detailed information.
+----
+ `storage errors show`命令提供了确定路径少于两个的LUN所需的详细信息。
+
+[listing]
+----
+
+mysystem1a::> storage errors show
+Disk: EMC-1.2
+UID: 600508B4:000B6314:00008000:00200000:00000000:00000000:00000000:...
+--------------------
+EMC-1.2 (600508b4000b63140000800000200000): This array LUN is only available on one path. Proper configuration requires two paths.
+----
+[NOTE]
+====
+此示例的UID为600508B4：000B6314：00008000：00200000：00000000：00000000：00000000：00000000：00000000：00000000：00000000：00000000：00000000：00000000。由于空间原因、此名称将被截断。
+
+====
+
+
+== 故障排除和问题解决
+
+如果要对一个阵列LUN的路径数少于两个的情况进行故障排除、则查看 `storage array config show` 输出和storage errors show输出会很有帮助。
+
+. 查看 `storage errors show` 输出以获取仅在一个路径上可用的阵列LUN的序列号。
+. 查看 `storage array config show` 输出以尝试找出问题的原因。
++
+|===
+|  `storage array config show`输出显示的内容 | 原因很可能是... 
+
+
+ a| 
+其他阵列LUN
+ a| 
+映射错误
+
+
+
+ a| 
+无其他阵列LUN
+ a| 
+布线错误、分区错误或硬件问题
+
+|===
+. 如果原因是映射错误、请让存储阵列管理员将识别的阵列LUN映射到两个冗余存储阵列端口。
+. 如果原因似乎不是映射问题、请检查分区、主机组映射、布线和连接。
+. 修复问题后、请再次运行 `storage array config show` 以确认错误已修复。
+

@@ -1,0 +1,79 @@
+---
+permalink: install/concept_back_end_configuration_errors_detected_by_ontap_commands.html 
+sidebar: sidebar 
+keywords: back-end, configuration, errors, detected, ontap, commands, output, examples 
+summary: storage errors-show命令可在阵列LUN级别提供有关常见后端配置错误的详细信息。您还可以使用storage disk error show和storage disk show -errors命令查看错误。 
+---
+= ONTAP命令检测到后端配置错误
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ `storage errors show`命令可在阵列LUN级别提供有关常见后端配置错误的详细信息。您也可以使用 `storage disk error show` 和 `storage disk show -errors` 命令查看错误。
+
+您必须先修复这些命令确定的后端配置错误、然后才能将ONTAP配置为使用阵列LUN。
+
+[NOTE]
+====
+命令仅提供与阵列LUN相关的错误详细信息、而 `storage errors show` 和命令则 `storage disk error show` `storage disk show -errors` 可提供与阵列LUN以及磁盘相关的错误详细信息。
+
+====
+如果出现后端配置错误、导致配置中的设备无法协同工作、则此命令会 `storage array config show` 指示您运行storage errors-show以获取此错误的详细信息。
+
+
+
+== 后端配置错误列表
+
+ `storage errors show` `storage disk error show`和 `storage disk show -errors` 命令有助于识别后端配置错误，例如：
+
+* 一个阵列LUN的路径少于两个。
+* 一个阵列LUN的所有路径都指向同一个存储阵列控制器。
+* 两个阵列LUN会显示相同的LUN ID。
+* 同一LEV的LUN ID在可显示LEV的所有目标端口上不匹配。
+* 阵列LUN超过ONTAP最大LUN大小。
+* 阵列LUN不满足ONTAP最小LUN大小要求。
+* 阵列LUN的块大小无效。
+* 访问LUN将提供给ONTAP。
+
+
+
+
+== 显示后端配置错误的输出示例
+
+ `storage errors show`输出将按存储阵列进行分组(如果ONTAP系统支持多个存储阵列)。如果适用、将显示阵列LUN的名称和唯一标识符(UID)。
+
+以下输出示例显示了一种类型的错误，即只有一个指向阵列LUN的路径。这是一个错误、因为ONTAP需要两个指向一个阵列LUN的路径。
+
+[NOTE]
+====
+集群模式配置支持使用四个路径访问一个阵列LUN。
+
+====
+以下示例显示了命令因仅为阵列LUN配置了一个路径而返回的错误 `storage errors show` ：
+
+[listing]
+----
+
+systemf47ab::*> storage errors show
+DGC-1.51         onepath           DGC-1.51 (6006016044d03500ae553e55b09fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.54         onepath           DGC-1.54 (6006016044d03500b4553e55b09fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.55         onepath           DGC-1.55 (6006016044d03500b6553e55b09fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.56         onepath           DGC-1.56 (6006016044d03500b8553e55b09fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.57         onepath           DGC-1.57 (6006016044d03500ba553e55b09fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.58         onepath           DGC-1.58 (6006016044d03500bc553e55b09fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+----
+以下示例显示了命令返回的类似错误 `storage disk show -errors` ：
+
+[listing]
+----
+
+systemf47ab::*> storage disk show -errors
+DGC-1.2          onepath           DGC-1.2 (6006016044d03500e0720e22b59fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.3          onepath           DGC-1.3 (6006016044d03500e2720e22b59fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.4          onepath           DGC-1.4 (6006016044d03500e3720e22b59fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.5          onepath           DGC-1.5 (6006016044d03500e4720e22b59fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.6          onepath           DGC-1.6 (6006016044d03500e5720e22b59fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+DGC-1.7          onepath           DGC-1.7 (6006016044d03500e6720e22b59fe311): This array LUN is only available on one path. Proper configuration requires two paths.
+----

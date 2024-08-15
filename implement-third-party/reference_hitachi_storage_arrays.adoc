@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/reference_hitachi_storage_arrays.html 
+sidebar: sidebar 
+keywords: hitachi, storage, arrays 
+summary: 在将Hitachi存储阵列配置为与使用阵列LUN的ONTAP系统配合使用时、您必须满足特定要求。这些要求包括在存储阵列上设置配置参数以及仅部署受支持的配置。 
+---
+= Hitachi存储阵列
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将Hitachi存储阵列配置为与使用阵列LUN的ONTAP系统配合使用时、您必须满足特定要求。这些要求包括在存储阵列上设置配置参数以及仅部署受支持的配置。

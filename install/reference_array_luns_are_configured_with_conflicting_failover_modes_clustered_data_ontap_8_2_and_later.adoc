@@ -1,0 +1,130 @@
+---
+permalink: install/reference_array_luns_are_configured_with_conflicting_failover_modes_clustered_data_ontap_8_2_and_later.html 
+sidebar: sidebar 
+keywords: array, luns, configured, conflict, failover, modes 
+summary: ONTAP要求为特定ONTAP系统可见的阵列LUN配置相同的故障转移模式。在某些存储阵列上、可以在阵列LUN的不同路径上配置不一致的故障转移模式。 
+---
+= 阵列LUN配置有冲突的故障转移模式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP要求为特定ONTAP系统可见的阵列LUN配置相同的故障转移模式。在某些存储阵列上、可以在阵列LUN的不同路径上配置不一致的故障转移模式。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+NAME(UID): This array LUN is configured with conflicting failover modes. Each path to this LUN must use the same mode.
+----
+
+
+== 说明
+
+在某些存储阵列(例如EMC CLARiON存储阵列)上、可以通过FC启动程序端口设置故障转移模式。在此类存储阵列上、可以为同一ONTAP系统上的FC启动程序可见的阵列LUN设置不一致的故障转移模式。对于从特定ONTAP系统到阵列LUN的路径、ONTAP不支持不一致的故障转移模式。
+
+如果存储阵列允许通过FC启动程序为阵列LUN设置故障转移模式、则安装验证过程的一部分应包括检查、以确保ONTAP系统可见的阵列LUN的故障转移模式设置没有问题。此 `storage errors show` 命令会就阵列LUN的故障转移模式设置不一致向您发出警报、并生成EMS消息。
+
+尽管您的系统可能会在阵列LUN故障转移模式设置不一致的情况下运行、但您需要尽快修复此问题。否则、如果路径发生故障、ONTAP系统可能无法正常运行、可能无法进行故障转移或系统可能发生崩溃。
+
+[NOTE]
+====
+ONTAP支持在运行ONTAP的节点之间设置不同的故障转移模式。例如、节点A可以对阵列LUN的路径使用主动/被动模式、而节点B可以对同一阵列LUN的路径使用AUA。
+
+====
+
+
+== 故障排除和问题解决
+
+ONTAP在LUN初始化期间发现的第一个路径的故障转移模式是ONTAP对特定ONTAP系统中LUN的所有路径所预期的故障转移模式。如果后续发现路径的故障转移模式与第一个路径的故障转移模式不匹配、则ONTAP会发出错误消息。
+
+在以下示例中 `storage errors show` 、ONTAP会告知您LUN emc-1.128的故障转移模式(可通过mysystem1 FC启动程序0A查看)为_priety_、并且故障转移模式与ONTAP在该阵列LUN的第一条路径上发现的故障转移模式不同。
+
+[listing]
+----
+
+mysystem1::> storage errors show
+EMC-1.128 (60060160e1b0220008071baf6046e211): hba 0a port 500601603ce014de mode Proprietary: This array LUN is configured with conflicting failover modes. Each path to this LUN must use the same mode.
+
+Disk: EMC-1.128
+UID: 60060160:E1B02200:1C65EB20:BFF7E111:00000000:00000000:00000000:...
+----
+您需要修复存储阵列上的故障转移不匹配问题。但是、修复不匹配问题的整个过程取决于ONTAP在第一个路径上检测到的故障转移模式是否为您希望用于该ONTAP系统上指向阵列LUN的所有路径的故障转移模式。
+
+. 如果在安装验证过程中尚未输入、请输入 `storage errors show` 。
++
+[NOTE]
+====
+ `storage array config`如果出现需要修复的问题、命令会指示您运行 `storage error show` 。
+
+====
+. 查看 `storage errors show` 输出以确定阵列LUN的故障转移模式设置与ONTAP预期的故障转移模式不一致。
++
+|===
+| 如果系统在第一个路径上检测到的故障转移模式为... | 示例 | 您需要... 
+
+
+ a| 
+所需
+ a| 
+您希望使用ALOA的故障转移模式、而ALOA是ONTAP为第一个路径检测到的故障转移模式。
+ a| 
+在存储阵列上更改ONTAP错误消息中标识的启动程序的故障转移模式。转至步骤3。
+
+
+
+ a| 
+不是你想要的
+ a| 
+您希望使用主动/被动故障转移模式、但ALOA是ONTAP为第一个路径检测到的故障转移模式。
+ a| 
+从ONTAP系统视图中删除阵列LUN。转至步骤4。
+
+|===
+. 如果需要更改启动程序的故障转移模式、请按以下步骤进行操作以修复不匹配的问题。
++
+如果您希望使用系统在第一个路径_is _上检测到的故障转移模式、则应使用此步骤。
+
++
+.. 在ONTAP中、使第二个路径脱机。
+.. 在存储阵列上、更改错误消息中ONTAP标识的启动程序的故障转移模式。
+.. 在ONTAP中、将第二个路径恢复联机。
+
+
+. 如果需要从ONTAP系统视图中删除阵列LUN以修复不匹配问题、请根据阵列LUN是备用阵列LUN还是聚合中的阵列LUN、选择以下方法之一。
++
+如果系统在第一个路径上检测到的故障转移模式不是您需要的、则可以使用以下方法之一。
+
++
+|===
+| 方法1：受影响的阵列LUN为备用阵列LUN (不属于聚合) | 方法2：受影响的LUN位于聚合中 
+
+
+ a| 
+使用此方法、无需重新启动ONTAP系统。
+
+.. 在ONTAP中、对每个受影响的备用LUN运行以下命令： `disk remove_ownership LUNfullname`
+.. 在存储阵列上、屏蔽ONTAP系统的所有路径上的每个受影响阵列LUN。
+.. 等待大约一分钟、然后确认阵列LUN不再对ONTAP系统可见。
+.. 为ONTAP系统上的每个FC启动程序设置相同的故障转移模式。
+.. 再次向ONTAP系统提供所有受影响的阵列LUN。
++
+ONTAP应在下次运行LUN发现时发现LUN
+
+.. 运行 `storage errors show` 以确认不再出现故障转移模式错误。
+
+ a| 
+使用此方法时、必须重新启动ONTAP系统。
+
+.. 重新启动ONTAP系统、并在Loader提示符处按住它。
+.. 在存储阵列上、查看此系统的FC启动程序上的故障转移模式设置、并根据需要将其更新为所需的故障转移模式。
+.. 重新启动ONTAP系统。
+.. 运行 `storage errors show` 以确认不再出现故障转移模式错误。
+
+
+|===
+

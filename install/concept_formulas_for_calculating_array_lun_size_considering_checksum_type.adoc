@@ -1,0 +1,192 @@
+---
+permalink: install/concept_formulas_for_calculating_array_lun_size_considering_checksum_type.html 
+sidebar: sidebar 
+keywords: formulas, calculate, array, lun, size, checksum, type, usable, capacity, snapshot, reserve, maximum 
+summary: 包括校验和类型在内的许多元素都会影响阵列LUN的可用容量。您可以使用公式计算给定大小的阵列LUN中的可用容量、或者计算要提供所需的存储量、阵列LUN必须有多大。 
+---
+= 基于校验和类型计算阵列LUN大小的公式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+包括校验和类型在内的许多元素都会影响阵列LUN的可用容量。您可以使用公式计算给定大小的阵列LUN中的可用容量、或者计算要提供所需的存储量、阵列LUN必须有多大。
+
+许多元素(包括校验和类型)都会影响所需的阵列LUN大小、即_usable Capacity _。可用容量是指可用于存储的空间量。
+
+下表显示了计算所需阵列LUN大小的方法：
+
+[cols="2*"]
+|===
+| 如果您知道... | 您想要了解... 
+
+
+ a| 
+阵列LUN的大小
+ a| 
+可用于存储的容量(可用容量)。您必须考虑所有元素所需的空间量。
+
+
+
+ a| 
+阵列LUN中所需的存储容量
+ a| 
+所需的阵列LUN大小。您必须考虑所需的存储量以及其他元素所需的空间量。
+
+|===
+[NOTE]
+====
+这些公式中的2 TB表示2 TiB或2199023255552字节、根据ONTAP计算测量值的方式、这是2097.152 GnaB或2.097 TnaB。
+
+====
+
+
+== 计算可用容量的公式
+
+当您知道阵列LUN的大小后、可以使用以下公式确定阵列LUN中可用于存储的容量。此公式会考虑Snapshot预留。
+
+* y表示可用于存储的容量。
+* n是阵列LUN的总容量。
+
+
+[cols="2*"]
+|===
+| 校验和类型 | 公式 
+
+
+ a| 
+BCS --阵列LUN小于2 TB
+ a| 
+N x｛0.875 x 0.9 x 0.99 x (1—Snapshot预留)｝= Y
+
+
+
+ a| 
+bcs --阵列LUN大于2 TB
+ a| 
+N x｛0.875 x 0.9 x 0.不 等x (1—Snapshot预留)｝= Y
+
+
+
+ a| 
+－－小于2 TB的阵列LUN
+ a| 
+N x｛0.984 x 0.9 x 0.99 x (1 - Snapshot预留)｝= Y
+
+
+
+ a| 
+－－超过2 TB的阵列LUN
+ a| 
+N x｛0.984 x 0.9 x 0.983 x (1 - Snapshot预留)｝= Y
+
+|===
+
+
+== 示例1：计算_with _ a Snapshot预留
+
+在以下示例中、阵列LUN的总容量为4 GB、其中Data ONTAP 8.1.1 (5%)的默认Snapshot预留设置为卷Snapshot预留。
+
+以下示例适用于小于2 TB的阵列LUN：
+
+[cols="2*"]
+|===
+| 校验和类型 | 公式 
+
+
+ a| 
+BCS (阵列LUN小于2 TB)
+ a| 
+4个｛0.875 x 0.9 x 0.99 x 0.95｝= 2.96 GB可用存储空间
+
+
+
+ a| 
+18TB (阵列LUN小于2 TB)
+ a| 
+4个｛0.984 x 0.9 x 0.99 x 0.95｝= 3.33 GB可用存储空间
+
+|===
+
+
+== 用于计算所需最大阵列LUN大小的公式
+
+当您知道获取所需存储容量所需的阵列LUN容量时、可以使用以下公式确定所需的阵列LUN总大小、并考虑需要LUN空间的元素。
+
+* y表示阵列LUN中所需的确切空间量。
+* 如果您使用的是Snapshot副本、则会考虑Snapshot预留。
+
+
+以下示例适用于小于2 TB的阵列LUN：
+
+[cols="2*"]
+|===
+| 校验和类型 | 公式 
+
+
+ a| 
+BCS (阵列LUN小于2 TB)
+ a| 
+Y÷｛0.875 x 0.9 x 0.99 x (1—Snapshot预留)｝=所需实际容量
+
+
+
+ a| 
+18TB (阵列LUN小于2 TB)
+ a| 
+Y÷｛0.984 x 0.9 x 0.99 x (1—Snapshot预留)｝=所需的实际容量
+
+|===
+
+
+== 示例2：计算_with _ Snapshot预留
+
+在此示例中、卷Snapshot预留是Data ONTAP 8.1.1 (5%)的默认设置。
+
+以下示例适用于小于2 TB的阵列LUN：
+
+[cols="2*"]
+|===
+| 校验和类型 | 公式 
+
+
+ a| 
+BCS (阵列LUN小于2 TB)
+ a| 
+10 GB÷｛0.875 x 0.9 x 0.99 x 0.95｝=实际所需容量为13.5 GB
+
+
+
+ a| 
+18TB (阵列LUN小于2 TB)
+ a| 
+10 GB÷｛0.984 x 0.9 x 0.99 x 0.95｝=实际所需容量为12.05 GB
+
+|===
+
+
+== 示例3：计算_without _ Snapshot预留
+
+您需要10 GB的可用存储容量。以下示例显示了在不使用Snapshot副本的情况下计算实际阵列LUN大小。
+
+以下示例适用于小于2 TB的阵列LUN：
+
+[cols="2*"]
+|===
+| 校验和类型 | 公式 
+
+
+ a| 
+BCS (阵列LUN小于2 TB)
+ a| 
+10 GB÷｛0.875 x 0.9 x 0.99｝=实际所需容量为12.8 GB
+
+
+
+ a| 
+18TB (阵列LUN小于2 TB)
+ a| 
+10 GB÷｛0.984 x 0.9 x 0.99｝=实际所需容量11.41 GB
+
+|===

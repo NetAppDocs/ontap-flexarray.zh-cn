@@ -1,0 +1,63 @@
+---
+permalink: install/concept_planning_summary_for_a_v_series_system_using_native_disks.html 
+sidebar: sidebar 
+keywords: plan, summary, v-series, system, native, disks, additional, considerations, setup, array, luns 
+summary: 您可以在新的或现有的V系列系统上安装本机磁盘架。但是、与在FAS系统上安装磁盘架相比、如果您计划在V系列系统上安装本机磁盘架、则还必须考虑一些其他因素。 
+---
+= 使用本机磁盘的V系列系统的规划摘要
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在新的或现有的V系列系统上安装本机磁盘架。但是、与在FAS系统上安装磁盘架相比、如果您计划在V系列系统上安装本机磁盘架、则还必须考虑一些其他因素。
+
+
+
+== 在具有磁盘的V系列系统上进行基本设置时的其他规划注意事项
+
+在确定使用本机磁盘的V系列系统的基本设置和安装要求时、必须考虑以下事项：
+
+* 如果V系列系统随磁盘架一起订购、则出厂时会配置根卷并安装许可证和ONTAP软件(就像FAS系统一样)。
+* 如果V系列系统未随磁盘架一起订购、则必须计划安装ONTAP软件和相应的许可证。
+* ONTAP会自动为连接到V系列系统的本机磁盘分配所有权。
+
+
+
+
+== V系列系统同时使用磁盘和阵列LUN时的其他规划注意事项
+
+下表总结了其他规划注意事项以及可帮助您完成每项任务的信息位置。
+
+|===
+| 规划注意事项 | 从何处查找准则 
+
+
+ a| 
+根卷的位置
+ a| 
+xref:concept_location_of_the_root_volume.adoc[根卷的位置]
+
+
+
+ a| 
+在不超过V系列系统支持的最大限制的情况下、可以分配的磁盘和阵列LUN总数
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+
+
+ a| 
+FC启动程序端口使用情况
+ a| 
+xref:concept_requirements_for_v_series_fc_initiator_port_usage.adoc[FC启动程序端口使用要求]
+
+
+
+ a| 
+应驻留在磁盘上的数据类型以及应驻留在阵列LUN上的数据类型
+ a| 
+您必须评估需要管理的数据类型、然后确定这些数据是否可以驻留在本机磁盘或阵列LUN上。
+
+|===

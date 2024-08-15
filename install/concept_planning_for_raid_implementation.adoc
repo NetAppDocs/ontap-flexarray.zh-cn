@@ -1,0 +1,14 @@
+---
+permalink: install/concept_planning_for_raid_implementation.html 
+sidebar: sidebar 
+keywords: plan, raid, implementation 
+summary: 您需要规划存储阵列RAID组中LUN的大小和数量、并确定是否要在主机之间共享RAID组。 
+---
+= 规划RAID实施
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您需要规划存储阵列RAID组中LUN的大小和数量、并确定是否要在主机之间共享RAID组。

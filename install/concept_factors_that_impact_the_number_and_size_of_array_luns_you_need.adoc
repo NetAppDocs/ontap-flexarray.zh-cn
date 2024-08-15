@@ -1,0 +1,14 @@
+---
+permalink: install/concept_factors_that_impact_the_number_and_size_of_array_luns_you_need.html 
+sidebar: sidebar 
+keywords: factors, impact, number, size, array, luns, need 
+summary: 在确定所需的阵列LUN数量及其大小时、必须考虑多个因素、包括LUN中的可用空间。 
+---
+= 影响所需阵列LUN数量和大小的因素
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在确定所需的阵列LUN数量及其大小时、必须考虑多个因素、包括LUN中的可用空间。

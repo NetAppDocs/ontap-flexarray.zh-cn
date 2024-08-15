@@ -1,0 +1,54 @@
+---
+permalink: implement-e-series/reference_supported_direct_attached_configurations_for_e_series_storage_arrays.html 
+sidebar: sidebar 
+keywords: supported, direct-attached, configurations, e-series, storage, arrays, stand-alone, four-port, lun, group, eight-port 
+summary: 您可以使用E-Series存储阵列连接直连配置中的ONTAP系统。您必须验证ONTAP系统和存储阵列之间的连接冗余、以避免发生单点故障的可能性。FlexArray延伸型MetroCluster支持使用E-Series存储阵列的直连配置。 
+---
+= 支持使用E-Series存储阵列的直连配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用E-Series存储阵列连接直连配置中的ONTAP系统。您必须验证ONTAP系统和存储阵列之间的连接冗余、以避免发生单点故障的可能性。FlexArray延伸型MetroCluster支持使用E-Series存储阵列的直连配置。有关详细信息，请参阅、 https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"] 和 https://docs.netapp.com/us-en/ontap-metrocluster/install-stretch/index.html["延伸型 MetroCluster 安装和配置"]。
+
+互操作性表提供了有关在使用ONTAP系统的直连配置中支持的特定E-Series阵列型号的信息。
+
+ONTAP支持使用E-Series存储阵列的以下直连配置：
+
+
+
+== 独立的基本配置
+
+在独立基本配置中、ONTAP系统中的两个FC启动程序端口可访问双端口阵列LUN组的端口。
+
+下图显示了一个直连配置、其中、ONTAP FC启动程序端口0a和0h访问双端口阵列LUN组的目标端口：
+
+image::../media/da_2port_standalone.gif[DA 2端口独立]
+
+
+
+== 四端口阵列LUN组
+
+HA对中每个ONTAP系统的两个FC启动程序端口可访问四端口阵列LUN组中的不同存储阵列端口、以实现连接冗余。
+
+下图显示了一个直连配置、其中、ONTAP FC启动程序端口可访问四端口阵列LUN组的目标端口。
+
+image::../media/da_4port_hapair.gif[4端口的沙波特]
+
+此外、您还可以将HA对中每个ONTAP系统的四个FC启动程序端口连接到两个不同的四端口阵列LUN组、以便端口对中的每个FC启动程序端口访问备用LUN组。
+
+下图显示了一个直连配置、其中、ONTAP FC启动程序端口可访问两个四端口阵列LUN组的目标端口：
+
+image::../media/direct_attached_configuration_with_two_four_port_array_lun_groups.gif[包含两个四端口阵列LUN组的直连配置]
+
+
+
+== 八端口阵列LUN组
+
+HA对中每个ONTAP系统的四个FC启动程序端口可访问一个八端口阵列LUN组中的不同存储阵列端口、以实现连接冗余。
+
+下图显示了一个直连配置、其中、ONTAP FC启动程序端口可访问八端口阵列LUN组的目标端口：
+
+image::../media/eight_port_direct_attached_ha_pair_configuration.gif[八端口直连HA对配置]

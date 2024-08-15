@@ -1,0 +1,41 @@
+---
+permalink: implement-third-party/task_preparing_hp_eva_storage_arrays_for_ndu.html 
+sidebar: sidebar 
+keywords: prepare, hp, eva, storage, arrays, ndu 
+summary: 在固件升级期间，HP EVA存储阵列往往会使目标端口脱机。ONTAP提供的命令可提高ONTAP故障恢复能力、以便在固件升级期间目标端口脱机时、ONTAP系统不会中断。这些命令只能用于运行ONTAP的存储系统。 
+---
+= 为NDU准备HP EVA存储阵列
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在固件升级期间，HP EVA存储阵列往往会使目标端口脱机。ONTAP提供的命令可提高ONTAP故障恢复能力、以便在固件升级期间目标端口脱机时、ONTAP系统不会中断。这些命令只能用于运行ONTAP的存储系统。
+
+您必须遵循HP提供的固件升级准则、包括有关加载建议(HP EVA)的准则。您只能升级到HP支持的固件。此过程适用于HP EVA固件升级类型_online upgrade。
+
+[NOTE]
+====
+固件升级期间，两个HP EVA控制器都会重新启动。
+
+====
+此过程将指导您使用ONTAP命令在整个固件升级过程中提高ONTAP故障恢复能力。固件升级完成后、您可以再次使用ONTAP命令将端口恢复到其正常运行模式。
+
+.步骤
+. 在ONTAP系统上、将命令会话的权限级别设置为advanced: *`set -privilege advanced`*
+. 将正在进行固件升级的HP EVA存储阵列的参数设置 `is-upgrade-pending` 为*TRUE*： *`storage array modify -name array_name -is-upgrade-pending true`*
+. 在存储阵列上、开始固件升级。
+. 固件升级完成后、如果需要、请再次将权限级别设置为高级、然后在ONTAP系统上将参数设置 `is-upgrade-pending` 为*错误*、以使存储阵列端口恢复正常运行： *`storage array modify -name array_name -is-upgrade-pending false`*
++
+如果您在步骤2中未退出高级模式、则无需再次访问它。
+
++
+ `is-upgrade-pending`参数包含以下功能、可确保正确使用命令：
+
++
+** 如果在存储阵列上进行升级时尝试设置 `is-upgrade-pending` 为*false*，则该命令将失败，并返回EMS消息。
+** 如果 `is-upgrade-pending` 状态在设置为*TRUE*后的60分钟内未返回到*false*，则每小时记录EMS消息，直到返回到*false*为止 `is-upgrade-pending` 。
+
+
+

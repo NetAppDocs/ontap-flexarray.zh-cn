@@ -1,0 +1,219 @@
+---
+permalink: install/reference_terminology_comparison_between_storage_array_vendors.html 
+sidebar: sidebar 
+keywords: terminology, comparison, between, storage, array, vendors 
+summary: 不同的存储阵列供应商偶尔会使用不同的术语来描述类似的概念。相反、同一术语的含义可能因阵列供应商而异。 
+---
+= 存储阵列供应商之间的术语比较
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不同的存储阵列供应商偶尔会使用不同的术语来描述类似的概念。相反、同一术语的含义可能因阵列供应商而异。
+
+下表提供了一些常见供应商术语之间的对应关系：
+
+|===
+| 期限 | 供应商 | 定义 
+
+
+ a| 
+主机组
+ a| 
+Hitachi
+ a| 
+一种配置实体、可用于指定主机对存储阵列上端口的访问权限。确定要访问LUN的ONTAP系统的FC启动程序端口WWN；此过程因供应商而异、有时因同一供应商的不同存储阵列型号而异。
+
+
+
+ a| 
+HP XP
+ a| 
+
+
+
+| 存储组  a| 
+EMC CX、EMC VNX
+ a| 
+
+
+
+| 主机定义  a| 
+3PAR
+ a| 
+
+
+
+| host  a| 
+3PAR、HP EVA、HP XP、Hitachi
+ a| 
+
+
+
+ a| 
+
+
+
+| 奇偶校验  a| 
+Hitachi、HP XP
+ a| 
+后端磁盘的排列方式、这些磁盘共同构成定义的RAID级别。
+
+
+
+ a| 
+RAID组
+ a| 
+ONTAP、EMC CX、EMC VNX
+ a| 
+
+
+
+| 磁盘组  a| 
+HP EVA
+ a| 
+一组物理磁盘、用于形成存储池、您可以从中创建虚拟磁盘。
+
+
+
+ a| 
+奇偶校验集、RAID集
+ a| 
+3PAR
+ a| 
+一组受奇偶校验保护的_chUNCHlets_。(区块是物理磁盘上256 MB的连续空间块。)
+
+
+
+ a| 
+ a| 
+|  
+
+
+| 集群  a| 
+ONTAP
+ a| 
+在ONTAP中，一组节点，使多个节点能够将其资源汇集到一个大型虚拟服务器中并在集群中分布工作。
+
+
+
+ a| 
+| Hitachi、HP XP  a| 
+存储阵列上的一个硬件组件、其中包含主机连接到的端口。
+
+
+
+ a| 
+ a| 
+|  
+
+
+| 控制器  a| 
+ONTAP
+ a| 
+存储系统中运行ONTAP操作系统并与后端存储阵列交互的组件。控制器有时也称为机头或CPU模块。
+
+
+
+ a| 
+| Hitachi、HP EVA、HP XP  a| 
+目标端口所在存储阵列上的硬件。
+
+
+
+ a| 
+节点
+ a| 
+3-PAR
+ a| 
+存储阵列上的一个硬件组件、其中包含主机连接到的端口。
+
+
+
+ a| 
+Fbe板
+ a| 
+EMC Symmetrix
+ a| 
+
+
+
+| 存储处理器(SP)  a| 
+EMC CX、EMC VNX
+ a| 
+
+
+
+ a| 
+LUN
+ a| 
+许多存储阵列
+ a| 
+一个或多个磁盘或磁盘分区分组为一个磁盘存储空间跨度。在ONTAP文档中、此名称称为_array LUN _。
+
+
+
+ a| 
+Ldev
+ a| 
+Hitachi、HP XP
+ a| 
+
+
+
+| LUN  a| 
+ONTAP
+ a| 
+ONTAP系统可以对与其连接的存储进行虚拟化、并将存储作为LUN提供给外部应用程序和客户端(例如、通过iSCSI和FC)。客户端不知道前端LUN的存储位置。
+
+
+
+ a| 
+LUN、虚拟磁盘
+ a| 
+HP EVA
+ a| 
+虚拟磁盘(在用户界面中称为_vdisk_)是在磁盘组中创建的模拟磁盘驱动器。您可以为虚拟磁盘分配多种特征、例如名称、冗余级别和大小。提供虚拟磁盘可将其存储提供给主机。
+
+
+
+ a| 
+阵列LUN
+ a| 
+ONTAP文档、ONTAP存储管理工具
+ a| 
+ONTAP文档使用术语_array LUN)将存储阵列上的LUN与前端LUN (ONTAP LUN)区分开来。
+
+
+
+ a| 
+vLUN
+ a| 
+3PAR
+ a| 
+(volume-LUN)虚拟卷与逻辑单元号(Logical Unit Number、LUN)之间的配对关系。要使主机能够看到虚拟卷、必须通过在存储阵列上创建vLUN将该卷导出为LUN。
+
+
+
+ a| 
+ a| 
+|  
+
+
+| volume  a| 
+ONTAP
+ a| 
+一种逻辑实体、用于存放可通过ONTAP支持的一个或多个访问协议(包括网络文件系统(NFS)、Common Internet File System (CIFS)、超文本传输协议(HTTP)、光纤通道(FC)和Internet SCSI (iSCSI)访问的用户数据。
+
+
+
+ a| 
+虚拟卷
+ a| 
+3PAR
+ a| 
+通过映射一个或多个逻辑磁盘中的数据创建的一种虚拟存储单元。
+
+|===

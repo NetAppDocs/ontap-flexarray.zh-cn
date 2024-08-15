@@ -1,0 +1,14 @@
+---
+permalink: install/concept_planning_a_port_to_port_connectivity_scheme.html 
+sidebar: sidebar 
+keywords: plan, port to port, connectivity, scheme 
+summary: 规划ONTAP系统上的FC启动程序端口与存储阵列端口之间的连接包括确定如何实现冗余并满足阵列LUN的路径数要求。 
+---
+= 规划端口到端口连接方案
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+规划ONTAP系统上的FC启动程序端口与存储阵列端口之间的连接包括确定如何实现冗余并满足阵列LUN的路径数要求。

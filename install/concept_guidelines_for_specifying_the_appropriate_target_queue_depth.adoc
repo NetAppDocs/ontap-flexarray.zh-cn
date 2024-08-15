@@ -1,0 +1,30 @@
+---
+permalink: install/concept_guidelines_for_specifying_the_appropriate_target_queue_depth.html 
+sidebar: sidebar 
+keywords: guidelines, specify, appropriate, target, queue, depth 
+summary: 在为未运行ONTAP的特定ONTAP系统或特定主机规划配置时、需要考虑所有访问存储阵列端口的启动程序的影响。 
+---
+= 指定适当目标队列深度的准则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在为未运行ONTAP的特定ONTAP系统或特定主机规划配置时、需要考虑所有访问存储阵列端口的启动程序的影响。
+
+如果您的部署在一个目标端口上包含多个启动程序、则在设置目标队列深度时、您需要考虑所有启动程序发送到目标端口的命令总数。
+
+指定适当的目标队列深度的准则如下：
+
+* 请勿将值配置为0 (零)。
++
+值为0表示未完成的命令没有限制。
+
+* 请考虑特定启动程序可能会向目标端口发送的命令量。
++
+然后、您可以为可能发送更多请求的启动程序配置较高的值、为可能发送较少请求的启动程序配置较低的值。
+
+* 根据为未运行ONTAP的主机提供的准则配置这些主机。
+* 如果端口间的工作负载不同、请考虑按目标端口设置目标队列深度。
+

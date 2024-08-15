@@ -1,0 +1,62 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_emc_vnx_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, emc, vnx, storage, arrays, ontap, systems 
+summary: 要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。 
+---
+= 使用ONTAP系统的EMC VNX存储阵列所需的参数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。
+
+下表列出了必须在存储阵列上设置的主机配置参数。
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Initiator type`
+ a| 
+CLARi/VNX
+
+
+
+ a| 
+`Array Com Path`
+ a| 
+已启用
+
+
+
+ a| 
+`Failover mode`
+ a| 
+4
+
+
+
+ a| 
+`Unit serial number`
+ a| 
+LUN
+
+
+
+ a| 
+`Host name`
+ a| 
+用户提供的主机名和端口号
+
+
+
+ a| 
+`IP address`
+ a| 
+唯一伪IP地址您必须确保未在存储阵列配置中的任何其他位置输入此IP地址、并且此IP地址不是网络上存在的IP地址。
+
+|===

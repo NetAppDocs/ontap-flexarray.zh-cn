@@ -1,0 +1,71 @@
+---
+permalink: install/concept_planning_summary_for_a_ontap_system_using_array_luns.html 
+sidebar: sidebar 
+keywords: plan, summary, ontap, systems, array, luns 
+summary: 如果您计划在ONTAP系统中使用阵列LUN、则必须与存储阵列和交换机管理员进行通信、以便将后端设备配置为使用ONTAP系统。 
+---
+= 使用阵列LUN的ONTAP系统的规划摘要
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您计划在ONTAP系统中使用阵列LUN、则必须与存储阵列和交换机管理员进行通信、以便将后端设备配置为使用ONTAP系统。
+
+下表总结了主要规划任务以及可帮助您完成每个任务的信息位置。
+
+|===
+| 规划任务 | 从何处查找信息 
+
+
+ a| 
+确定设置存储阵列以使用ONTAP的要求
+ a| 
+* https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]
+* https://docs.netapp.com/us-en/ontap-flexarray/implement-e-series/index.html["适用于 NetApp E 系列存储的 FlexArray 虚拟化实施"]
+* https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+
+
+
+ a| 
+阵列LUN与ONTAP结合使用的准则
+ a| 
+xref:concept_planning_for_ontap_use_of_array_luns.adoc[规划阵列LUN的ONTAP使用]
+
+
+
+ a| 
+确定有关阵列LUN的ONTAP限制
+ a| 
+https://hwu.netapp.com["NetApp Hardware Universe"]
+
+
+
+ a| 
+确定LUN安全方案、在存储阵列上设置访问控制、如果已部署交换机、则在交换机上设置分区
+ a| 
+* xref:concept_planning_for_lun_security_on_storage_arrays.adoc[规划存储阵列上的LUN安全性]
+* xref:concept_zoning_for_a_configuration_with_storage_arrays.adoc[分区要求]
+
+
+
+
+ a| 
+确定ONTAP系统和存储阵列之间的端口到端口连接方案
+ a| 
+* xref:concept_planning_a_port_to_port_connectivity_scheme.adoc[规划端口到端口连接方案]
+* https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+
+
+
+ a| 
+确定哪个ONTAP系统要"`拥有`"哪个阵列LUN (磁盘所有权)
+ a| 
+* xref:concept_how_array_luns_become_available_for_ontap_storage_use.adoc[阵列LUN如何可供ONTAP存储使用]
+* xref:task_assigning_ownership_of_array_luns.adoc[分配阵列 LUN 的所有权]
+
+
+|===

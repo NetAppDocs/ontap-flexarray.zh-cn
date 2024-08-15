@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/concept_limitation_on_array_lun_numbering_with_emc_and_vnx_arrays.html 
+sidebar: sidebar 
+keywords: limitation, array, lun, numbering, emc, vnx, array 
+summary: EMC VNX存储阵列仅支持从0到255的阵列LUN编号。编号超过此范围的阵列LUN对ONTAP不可见。 
+---
+= EMC VNX阵列中阵列LUN编号的限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+EMC VNX存储阵列仅支持从0到255的阵列LUN编号。编号超过此范围的阵列LUN对ONTAP不可见。

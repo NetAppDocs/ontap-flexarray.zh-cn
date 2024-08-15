@@ -1,0 +1,106 @@
+---
+permalink: install/concept_guidelines_for_connecting_a_v_series_system_to_native_disk_shelves.html 
+sidebar: sidebar 
+keywords: guidelines, connect, v-series, system, native, disk, shelves, fc initiator, ports 
+summary: 在规划如何将V系列系统连接到本机磁盘架时、您的端口到端口连接计划应遵循冗余和其他准则。 
+---
+= 将V系列系统连接到本机磁盘架的准则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在规划如何将V系列系统连接到本机磁盘架时、您的端口到端口连接计划应遵循冗余和其他准则。
+
+
+
+== 磁盘所需的FC启动程序端口数
+
+将V系列系统连接到磁盘架所需的FC启动程序端口数取决于V系列系统是独立系统还是HA对
+
+[cols="2*"]
+|===
+| 配置 | FC启动程序端口数 
+
+
+ a| 
+独立系统
+ a| 
+* 如果您使用的是一个环路：一个FC启动程序端口。
+* 如果要连接两个环路：两个FC启动程序端口、每个环路一个。
+
+
+
+
+ a| 
+在HA对中
+ a| 
+* 如果您使用的是多路径存储、则每个环路需要两个FC启动程序端口。
+* 如果不使用多路径存储、则为配置中的每个环路中的每个控制器配置一个FC启动程序端口。
+
+
+|===
+
+
+== V系列系统和磁盘之间的连接
+
+将V系列系统连接到本机磁盘架的过程与将FAS系统连接到本机磁盘架的过程相同。在创建端口到端口连接方案时、本指南以及下表中的ONTAP和硬件指南提供了有关磁盘和磁盘架设置和管理的信息。
+
+[cols="2*"]
+|===
+| 有关的信息 | 请参见... 
+
+
+ a| 
+磁盘支持、包括支持的磁盘速度和磁盘容量
+ a| 
+https://mysupport.netapp.com/site/global/dashboard["NetApp 支持"]
+
+
+
+ a| 
+在机架或系统机柜中安装V系列系统
+ a| 
+在新系统上、此任务通常由工厂执行。如果需要说明、请参见机柜的指南。
+
+
+
+ a| 
+将磁盘架连接到独立V系列系统
+ a| 
+适用于您的平台的《安装和设置说明》。
+
+* https://library.netapp.com/ecm/ecm_download_file/ECMP1213632["《32xx系统安装和设置说明》"]
+* https://library.netapp.com/ecm/ecm_download_file/ECMP1147995["《 62xx 系统安装和设置说明》"]
+
+
+
+
+ a| 
+将HA对连接到磁盘架
+ a| 
+https://docs.netapp.com/us-en/ontap/high-availability/index.html["高可用性配置"]
+
+
+
+ a| 
+正在添加磁盘架
+ a| 
+适用于您的磁盘架类型的指南。
+
+
+
+ a| 
+移动磁盘架
+ a| 
+适用于您的磁盘架类型的指南。
+
+
+
+ a| 
+磁盘管理
+ a| 
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["磁盘和聚合管理"]
+
+|===

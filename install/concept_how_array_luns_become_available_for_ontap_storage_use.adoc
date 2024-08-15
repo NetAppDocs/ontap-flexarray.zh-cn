@@ -1,0 +1,28 @@
+---
+permalink: install/concept_how_array_luns_become_available_for_ontap_storage_use.html 
+sidebar: sidebar 
+keywords: how, array, luns, available, ontap, storage, use 
+summary: 在将ONTAP配置为使用阵列LUN之前、ONTAP系统无法使用提供给它的阵列LUN。 
+---
+= 阵列LUN如何可供ONTAP存储使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将ONTAP配置为使用阵列LUN之前、ONTAP系统无法使用提供给它的阵列LUN。
+
+尽管存储阵列管理员会使ONTAP可以访问某个阵列LUN、但在完成以下两项任务之前、ONTAP无法使用该阵列LUN进行存储：
+
+. 必须分配一个ONTAP系统(已获得使用阵列LUN的许可)作为阵列LUN的_owner_。
+. 必须将阵列LUN添加到聚合中。
+
+
+将阵列LUN分配给ONTAP系统时、ONTAP会将数据写入阵列LUN、以将分配的系统标识为阵列LUN的所有者。此逻辑关系称为_disk所有权_。
+
+将阵列LUN分配给ONTAP系统后、该阵列LUN将成为该系统的备用LUN、并且不再可供任何其他ONTAP系统使用。
+
+在将备用阵列LUN添加到聚合之前、无法将其用于存储。之后、ONTAP可确保只有阵列LUN的所有者才能向LUN写入数据和从LUN读取数据。
+
+在HA对中、两个节点都必须能够看到相同的存储、但该对中只有一个节点是阵列LUN的所有者。如果所属节点发生故障、配对节点将接管对阵列LUN的读/写访问权限。修复导致节点不可用的问题后、原始所属节点将恢复所有权。

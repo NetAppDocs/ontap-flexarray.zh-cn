@@ -1,0 +1,27 @@
+---
+permalink: install/concept_situations_not_identified_by_commands_that_check_back_end_configuration.html 
+sidebar: sidebar 
+keywords: situations, not, identified, commands, check, back end, configuration 
+summary: 在某些情况下、您可能会认为存在问题、但从ONTAP的角度来看并非错误、因为这种情况不会阻止系统运行。用于检查后端配置的ONTAP命令不会识别不会阻止系统运行的配置。 
+---
+= 检查后端配置的命令无法识别的情况
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在某些情况下、您可能会认为存在问题、但从ONTAP的角度来看并非错误、因为这种情况不会阻止系统运行。用于检查后端配置的ONTAP命令不会识别不会阻止系统运行的配置。
+
+和等命令 `storage errors show` `storage disk error show` `storage disk show -errors` 不会在出现以下情况时向您发出警报：
+
+* 不符合最佳实践建议的配置；即不需要这些配置
+* 过渡状态期间可能出现的情况
++
+例如、在LUN从一个LUN组迁移到另一个LUN组完成之前、输出中可能会显示更多的LUN组 `storage array config show` 。
+
+* 与预期配置不匹配的条件
++
+例如、如果您要配置多个LUN组、但只配置了一个LUN组、则ONTAP不会将其标识为错误、因为支持单个LUN组。
+
+

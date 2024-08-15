@@ -1,0 +1,57 @@
+---
+permalink: install/task_configuring_fc_ports_as_initiators_clustered_data_ontap.html 
+sidebar: sidebar 
+keywords: configure, fc ports, initiators 
+summary: 您可以将各个FC端口配置为ONTAP系统上的启动程序。启动程序模式可使端口连接到存储阵列。 
+---
+= 将FC端口配置为启动程序
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将各个FC端口配置为ONTAP系统上的启动程序。启动程序模式可使端口连接到存储阵列。
+
+.步骤
+. *可选：*如果适配器端口已配置LIF、请使用命令删除所有LIF `network interface delete` 。
++
+如果LIF位于端口集中、则必须先从端口集中删除LIF、然后才能删除LIF。
+
++
+以下示例显示了如何删除SVM VS3上的LUN： `network interface delete -vserver vs3 -lif lif2,lif0`
+
+. 使用命令使此端口脱机 `network fcp adapter modify` 。
++
+以下示例显示了如何使节点sysnode的端口0c脱机： `network fcp adapter modify -node sysnode1 -adapter 0c -state down`
+
+. 使用 `system hardware unified-connect modify` 命令将脱机端口从目标更改为启动程序。
++
+以下示例显示了如何将0c的端口类型从目标更改为启动程序： `system node hardware unified-connect modify -node sysnode1 -adapter 0c -type initiator`
+
+. 重新启动托管已更改适配器的节点。
+. 使用 `system hardware unified-connect show` 命令验证是否已针对您的配置正确配置FC端口。
++
+以下示例显示了0c的端口类型更改：
+
++
+`system node hardware unified-connect show -node sysnode1`
+
++
+[listing]
+----
+
+
+                       Current  Current    Pending  Pending
+Node          Adapter  Mode     Type       Mode     Type       Status
+------------  -------  -------  ---------  -------  ---------  -----------
+sysnode1      0a       fc       target     -        -          online
+sysnode1      0b       fc       target     -        -          online
+sysnode1      0c       fc       initiator  -        -          offline
+sysnode1      0d       fc       target     -        -          online
+----
+. 使用 `storage enable adapter` 命令将脱机端口恢复联机。
++
+以下示例显示了如何使端口0c联机： `node run -node sysnode1 -command storage enable adapter -e 0c`
+
+

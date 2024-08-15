@@ -1,0 +1,28 @@
+---
+permalink: install/concept_rules_for_sharing_a_target_port_with_multiple_fc_initiator_ports.html 
+sidebar: sidebar 
+keywords: rules, share, target, port, multiple, fc initiator 
+summary: 支持将最多两个ONTAP FC启动程序端口连接到存储阵列上的一个目标端口。每个目标端口都会分区为两个FC启动程序端口、每个集群节点一个。不支持与任何其他主机共享连接到ONTAP系统的目标端口。 
+---
+= 与多个FC启动程序端口共享目标端口的规则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+支持将最多两个ONTAP FC启动程序端口连接到存储阵列上的一个目标端口。每个目标端口都会分区为两个FC启动程序端口、每个集群节点一个。不支持与任何其他主机共享连接到ONTAP系统的目标端口。
+
+与多个启动程序共享一个目标端口有助于优化存储阵列端口的使用、以实现与ONTAP系统的连接。
+
+此配置的规则如下：
+
+* 如果ONTAP系统位于HA对中、则每个节点最多可与同一目标端口共享一个FC启动程序端口。
+* 所有存储阵列都必须来自同一供应商和型号系列。
+* MetroCluster配置支持将单个目标端口连接到多个FC启动程序端口。
+* 分区的最佳实践是、将每个FC启动程序-目标端口对置于一个单独的分区中(1：1)。
+
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["光纤连接的 MetroCluster 安装和配置"]

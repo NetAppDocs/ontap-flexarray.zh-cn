@@ -1,0 +1,39 @@
+---
+permalink: install/concept_valid_pathing_standalone_system_with_a_single_2_port_array_lun_group.html 
+sidebar: sidebar 
+keywords: valid, path, stand-alone, system, single, 2-port, array, lun, group 
+summary: 对于所有ONTAP版本、大多数存储阵列均支持使用一个双端口阵列LUN组的光纤连接独立系统。 
+---
+= 有效路径：具有单个双端口阵列LUN组的独立系统
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于所有ONTAP版本、大多数存储阵列均支持使用一个双端口阵列LUN组的光纤连接独立系统。
+
+[NOTE]
+====
+不同的存储阵列(即使是来自同一供应商的存储阵列)可能会为端口添加与示例中所示不同的标签。在存储阵列上、您需要确保所选端口位于备用控制器上。
+
+====
+下图显示了一个具有独立ONTAP系统的双端口阵列LUN组：
+
+image::../media/one_standalone_2_port_array_lun_group_array_port_labels.gif[在具有独立系统的单个双端口阵列LUN组配置中]
+
+在验证安装时、您可以根据以下示例检查命令输出、以验证LUN组的数量是否符合您的预期以及是否存在冗余路径。
+
+.示例
+以下示例显示了所示配置的预期 `storage array config show` 输出—一个LUN组(LUN组0)、每个阵列LUN具有两个冗余路径。(输出中与图匹配的冗余路径显示在阵列目标端口名称20**1A**00a0b80fee04和20**2A**00a0b80fee0420中。)
+
+[listing]
+----
+
+vs1::> storage array config show
+             LUN   LUN
+Node         Group Count     Array Name    Array Target Port   Initiator
+------------ ----- ----- ----------------- ------------------- ----------
+vs1           0    50        DGC_RAID5_1	 201A00a0b80fee04     0a
+                                             202A00a0b80fee04     0h
+----

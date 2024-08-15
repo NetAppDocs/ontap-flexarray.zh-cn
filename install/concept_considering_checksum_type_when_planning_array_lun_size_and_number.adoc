@@ -1,0 +1,16 @@
+---
+permalink: install/concept_considering_checksum_type_when_planning_array_lun_size_and_number.html 
+sidebar: sidebar 
+keywords: consider, checksum, type, plan, array, lun, size, number 
+summary: 在规划ONTAP所需的阵列LUN的数量和大小时、必须考虑校验和类型对阵列LUN中可用空间量的影响。必须为分配给ONTAP系统的每个阵列LUN指定校验和类型。 
+---
+= 规划阵列LUN大小和数量时考虑校验和类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在规划ONTAP所需的阵列LUN的数量和大小时、必须考虑校验和类型对阵列LUN中可用空间量的影响。必须为分配给ONTAP系统的每个阵列LUN指定校验和类型。
+
+当存储阵列上的阵列LUN映射为供ONTAP系统使用时，ONTAP会将该阵列LUN视为未格式化的原始磁盘。将阵列LUN分配给ONTAP系统时、您可以指定校验和类型、这会告知ONTAP如何格式化原始阵列LUN。校验和类型对可用空间的影响取决于您为LUN指定的校验和类型。

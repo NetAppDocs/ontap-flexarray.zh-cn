@@ -1,0 +1,41 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_hp_eva_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, hp, eva, arrays, ontap, systems 
+summary: 要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。 
+---
+= 使用ONTAP系统的HP EVA阵列所需的参数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。
+
+下表提供了系统参数设置：
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Redundancy`
+ a| 
+除VRAID0之外的任何RAID级别
+
+
+
+ a| 
+`Preferred path/mode`
+ a| 
+无首选项(默认)
+
+
+
+ a| 
+`Host type`
+ a| 
+SUN Solaris
+
+|===

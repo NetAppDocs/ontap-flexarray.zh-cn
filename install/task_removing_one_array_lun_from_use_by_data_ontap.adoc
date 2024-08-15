@@ -1,0 +1,25 @@
+---
+permalink: install/task_removing_one_array_lun_from_use_by_data_ontap.html 
+sidebar: sidebar 
+keywords: remove, one, array, lun, use, ontap 
+summary: '如果存储阵列管理员不再希望将特定阵列LUN用于ONTAP、则必须删除ONTAP写入LUN的信息(例如大小和所有权)、然后该管理员才能重新配置LUN以供其他主机使用。' 
+---
+= 删除ONTAP使用的一个阵列LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果存储阵列管理员不再希望将特定阵列LUN用于ONTAP、则必须删除ONTAP写入LUN的信息(例如大小和所有权)、然后该管理员才能重新配置LUN以供其他主机使用。
+
+* 您需要的内容 *
+
+如果存储阵列管理员不再希望ONTAP使用的LUN位于某个聚合中、则必须先使该聚合脱机并销毁该聚合、然后再开始此过程。使聚合脱机并将其销毁会将数据LUN更改为备用LUN。
+
+.步骤
+. 输入以下命令： `storage disk removeowner -disk LUN_name`
++
+_LUN名称_是阵列LUN的名称。
+
+

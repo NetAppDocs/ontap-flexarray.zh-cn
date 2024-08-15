@@ -1,0 +1,16 @@
+---
+permalink: implement-e-series/concept_where_to_find_information_for_configurations_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: Where, find, information, configurations, storage, arrays 
+summary: 在规划将ONTAP系统与存储阵列结合使用的配置时、除了产品文档之外、您还应查看各种来源、了解有关阵列LUN配置的信息。 
+---
+= 从何处查找有关使用存储阵列的配置的信息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在规划将ONTAP系统与存储阵列结合使用的配置时、除了产品文档之外、您还应查看各种来源、了解有关阵列LUN配置的信息。
+
+NetApp支持站点上提供的工具可在一个中央位置提供有关特定版本支持的功能、配置和存储阵列型号的特定信息。

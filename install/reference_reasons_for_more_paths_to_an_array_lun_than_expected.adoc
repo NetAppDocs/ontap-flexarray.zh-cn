@@ -1,0 +1,60 @@
+---
+permalink: install/reference_reasons_for_more_paths_to_an_array_lun_than_expected.html 
+sidebar: sidebar 
+keywords: reasons, paths, array, lun, expected, output, show, config, issue 
+summary: 导致阵列LUN出现意外的额外路径的主要原因是分区问题和缆线过多。一个阵列LUN的三个路径不是最佳实践、但您不需要修复此问题。 
+---
+= 指向阵列LUN的路径比预期多的原因
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+导致阵列LUN出现意外的额外路径的主要原因是分区问题和缆线过多。一个阵列LUN的三个路径不是最佳实践、但您不需要修复此问题。
+
+
+
+== storage array config show输出示例
+
+ONTAP系统上的FC启动程序端口对为0a和0c。以下示例在输出中显示了一个额外的路径0b `storage array config show` ：
+
+[listing]
+----
+
+mysystem1::> storage array config show
+             LUN   LUN
+Node         Group Count   Array Name       Array Target Port   Initiator
+----------   ----- -----  ----------------  ------------------  ----------
+mysystem1a    1     3     HITACHI_DF600F_1  50060e80004291c0    0a
+                                            50060e80004291c1    0b
+                                                                0c
+
+3 entries were displayed.
+----
+[NOTE]
+====
+如果输出中的启动程序 `storage array config show` 前面没有阵列目标端口、则该启动程序将连接到与其上方启动程序相同的阵列目标端口。
+
+====
+
+
+== 说明
+
+一个LUN组中有三个路径表示存在一个额外的路径。对于ONTAP配置、最佳实践是使用两个或四个路径。
+
+路径数可能超过预期的原因包括：
+
+* 连接的缆线数量超出所需数量。
+* 分区配置错误导致了额外的路径。
+
+
+
+
+== 解决问题
+
+使用额外的路径并不是最佳做法、但从系统角度来看、这并不是不正确的。您不必修复此问题。如果要根据您的预期配置修复此问题、请完成以下步骤：
+
+. 检查布线和分区配置以确定原因、然后修复导致额外路径的问题。
+. 修复此问题后、请再次运行 `storage array config show` 以确认额外的路径已删除。
+

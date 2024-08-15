@@ -1,0 +1,30 @@
+---
+permalink: install/concept_location_of_the_root_volume.html 
+sidebar: sidebar 
+keywords: location, root, volume 
+summary: 根卷的位置取决于ONTAP系统是预订购了本机磁盘、还是要将磁盘添加到为阵列LUN配置的ONTAP系统。 
+---
+= 根卷的位置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+根卷的位置取决于ONTAP系统是预订购了本机磁盘、还是要将磁盘添加到为阵列LUN配置的ONTAP系统。
+
+请遵循以下准则来确定根卷在ONTAP系统上的位置：
+
+* 根卷可以位于存储阵列上、也可以位于本机磁盘架上。
++
+但是、如果ONTAP系统同时具有本机磁盘和阵列LUN、则应将根卷安装在本机磁盘上。
+
++
+如果您订购的存储系统配有磁盘、则出厂时会将根卷安装在本机磁盘上。
+
+* 在HA对中，最佳做法是根卷位于两个节点的相同类型的存储上，无论是在本机磁盘架上，还是在两个节点的存储阵列上。
+* 对于同时包含磁盘和阵列LUN的MetroCluster配置、如果要设置新配置、则应在磁盘上创建根卷。
++
+如果要向使用阵列LUN的现有MetroCluster配置添加磁盘、则可以将根卷保留在阵列LUN上。
+
+

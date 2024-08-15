@@ -1,0 +1,71 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_3par_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, 3par, arrays, ontap, systems, host, persona, settings, port, 
+summary: 要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。 
+---
+= 使用ONTAP系统的3PAR阵列所需的参数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。
+
+
+
+== 主机个人设置
+
+对于固件为3.3.1及更高版本的3CAR阵列、必须按下表所示设置所需的主机个人身份值：
+
+|===
+| 连接类型 | 主机个人身份 
+
+
+ a| 
+直接连接
+ a| 
+10
+
+
+
+ a| 
+光纤连接
+ a| 
+10
+
+|===
+在对交换机进行分区以将ONTAP系统连接到3CAR存储阵列之前、应在3CAR存储阵列上创建具有所需主机角色的主机定义。如果在定义主机之前配置了分区、则ONTAP会发现3PAR LUN为LUN 254和产品类型SES、而ONTAP无法使用这些LUN。因此、无法将新映射的3PAR LUN分配给ONTAP系统、并且无法使用某些可能已添加到聚合的3PAR LUN、因为ONTAP会看到LUN 254、而不是3PAR LUN。如果发生此问题、ONTAP将生成以下EMS消息：
+
+[listing]
+----
+mlm.array.unknown:warning - Array LUN XXXXXXXX.126L254 [S/N 'XXXXXXX' vendor '3PARdata' product 'SES'] is unknown and is not supported in this version of Data ONTAP.
+----
+如果在定义主机之前配置了分区、则可以通过执行路径重新初始化来强制重新发现从3CAR存储阵列映射的阵列LUN来解决此问题。有关此问题的解决方法、请参见"解决3CAR存储阵列中未知设备(L254/SES)问题"一节。
+
+xref:reference_workaround_for_the_unknown_device_l254_ses_problem_with_3par_storage_arrays.adoc[3CAR存储阵列的未知设备(L254/SES)问题的解决方法]
+
+
+
+== 端口个人设置
+
+对于固件为2.2.x的3CAR阵列、必须按下表所示设置所需的端口个人身份值：
+
+|===
+| 连接类型 | 端口个人身份 
+
+
+ a| 
+直接连接
+ a| 
+18
+
+
+
+ a| 
+光纤连接
+ a| 
+19
+
+|===

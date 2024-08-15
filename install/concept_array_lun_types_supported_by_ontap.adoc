@@ -1,0 +1,20 @@
+---
+permalink: install/concept_array_lun_types_supported_by_ontap.html 
+sidebar: sidebar 
+keywords: array, lun, type, supported, ontap 
+summary: 您只能将存储阵列LUN映射到ONTAP。如果LUN 0是存储类型的LUN、则可以将其映射到ONTAP。 
+---
+= ONTAP支持的阵列LUN类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您只能将存储阵列LUN映射到ONTAP。如果LUN 0是存储类型的LUN、则可以将其映射到ONTAP。
+
+某些存储阵列具有非storage _command_ LUN。您不能将命令类型LUN映射到ONTAP系统。
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]

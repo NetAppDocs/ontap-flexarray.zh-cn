@@ -1,0 +1,40 @@
+---
+permalink: install/concept_characteristics_of_checksum_types_that_ontap_supports.html 
+sidebar: sidebar 
+keywords: characteristics, checksum, types, ontap, supports, block, advanced, zoned 
+summary: 'ONTAP支持对阵列LUN、磁盘和聚合使用块校验和类型(BCS)和高级分区校验和类型(Advanced zoned Checksum Type、Array、磁盘和聚合)。' 
+---
+= ONTAP支持的校验和类型的特征
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP支持对阵列LUN、磁盘和聚合使用块校验和类型(BCS)和高级分区校验和类型(Advanced zoned Checksum Type、Array、磁盘和聚合)。
+
+在ONTAP中分配给阵列LUN的校验和类型可能会影响阵列LUN的性能或可用空间。因此、根据分配给阵列LUN的校验和类型、可能会影响所需的阵列LUN的数量和大小。
+
+
+
+== 块校验和(BCS)
+
+BCS是阵列LUN的默认和建议校验和类型。BCS为阵列LUN提供的性能优于BACS。
+
+BCS对阵列LUN中可用空间的影响大于A安全 磁盘。BCS使用阵列LUN中12.5%的可用空间。
+
+
+
+== 高级分区校验和(高级分区校验和、ZCS)
+
+它是BCS的替代方案。与使用BCS相比、使用的是设备容量的1.56%、而使用的是使用的设备容量的1.56%。但是、您必须权衡对更多可用空间的需求与性能。有时、可能会导致阵列LUN出现性能问题。
+
+对于高性能随机工作负载、建议不要对阵列LUN使用Array LUN。但是、您可以对灾难恢复、归档或类似工作负载的阵列LUN使用阵列LUN。
+
+对于本机磁盘、不会影响到任何一种使用。
+
+校验和类型的准则因磁盘大小和类型而异。有关详细信息、请参见_TR3838存储子系统配置指南_。
+
+* 相关信息 *
+
+https://www.netapp.com/pdf.html?item=/media/19675-tr-3838.pdf["NetApp 技术报告 3838 ：《存储子系统配置指南》"^]

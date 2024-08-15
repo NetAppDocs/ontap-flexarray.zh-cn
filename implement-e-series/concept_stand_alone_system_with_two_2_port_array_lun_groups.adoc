@@ -1,0 +1,24 @@
+---
+permalink: implement-e-series/concept_stand_alone_system_with_two_2_port_array_lun_groups.html 
+sidebar: sidebar 
+keywords: stand-alone, system, two, 2-port, array, lun, groups 
+summary: 在采用简单光纤连接配置的独立ONTAP系统中、ONTAP系统上的每个FC启动程序端口对都会访问一个单独的阵列LUN组。 
+---
+= 具有两个双端口阵列LUN组的独立系统
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在采用简单光纤连接配置的独立ONTAP系统中、ONTAP系统上的每个FC启动程序端口对都会访问一个单独的阵列LUN组。
+
+此配置支持与互操作性表中列出的所有存储阵列一起使用、就像在系统上运行的ONTAP版本支持的那样。
+
+下图显示了光纤连接的简单配置：
+
+image::../media/multiple_lun_groups_with_stand_alone_6xxx_array_controller.gif[本图通过周围的文字进行了说明。]
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

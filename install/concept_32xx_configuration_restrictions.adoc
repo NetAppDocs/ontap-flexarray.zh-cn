@@ -1,0 +1,16 @@
+---
+permalink: install/concept_32xx_configuration_restrictions.html 
+sidebar: sidebar 
+keywords: 32xx, system, configuration, restrictions 
+summary: 32xx系统存在一些不适用于其他型号的限制。在配置系统时、您必须了解这些信息。 
+---
+= 32xx系统配置限制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+32xx系统存在一些不适用于其他型号的限制。在配置系统时、您必须了解这些信息。
+
+标有0c和0d的两个板载FC端口不在独立的主板上。因此、它们不会提供存储冗余。某些端口故障可能会导致系统崩溃。要配置冗余端口对、您需要在可用扩展插槽中使用FC HBA。

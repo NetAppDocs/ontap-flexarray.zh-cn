@@ -1,0 +1,22 @@
+---
+permalink: implement-third-party/concept_alua_behavior_of_vnx2_storage_arrays.html 
+sidebar: sidebar 
+keywords: alua, behavior, vnx2, storage, arrays 
+summary: '尽管所有EMC CLARiON和VNX阵列都使用ALUA (非对称主动-主动)故障转移模式、但VNX2存储阵列的ALUA行为可能有所不同。' 
+---
+= VNX2存储阵列的AUA行为
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+尽管所有EMC CLARiON和VNX阵列都使用ALUA (非对称主动-主动)故障转移模式、但VNX2存储阵列的ALUA行为可能有所不同。
+
+与所有其他EMC阵列LUN一样、从动态磁盘池提供给ONTAP系统的VNX2阵列LUN也会使用ALUA故障转移模式。但是、传统RAID组提供给ONTAP系统的VNX2阵列LUN会使用主动-主动故障转移模式、所有路径都会报告为 *`AO`*(活动优化)。在某些操作(例如在后端阵列中创建Snapshot)期间、阵列LUN的这种行为会发生变化。
+
+因此、为了保持VNX2阵列LUN的行为一致、ONTAP会将这些LUN视为ALUA、而不管这些阵列LUN是从传统RAID组提供的还是从动态磁盘池提供的。
+
+在这种情况下、给定VNX2 LUN的I/O请求只会分布在报告为*(正在使用)状态的路径上、而不会分布 *`INU`在报告为*(主动-优化)的所有路径上 *`AO`。
+
+例如、如果从传统RAID组向ONTAP系统提供的VNX2阵列LUN有四个路径、则所有路径都会报告为 *`AO`*； 但是、只有两个路径处于 *`INU`*状态、而其他两个路径未使用、但处于 *`RDY`*(就绪)状态。

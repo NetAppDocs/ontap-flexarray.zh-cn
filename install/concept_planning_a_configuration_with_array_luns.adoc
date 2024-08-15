@@ -1,0 +1,20 @@
+---
+permalink: install/concept_planning_a_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: plan, configuration, array, luns 
+summary: 要规划使用阵列LUN的ONTAP配置、您必须验证特定ONTAP版本是否支持存储阵列。此外、您还必须检查互操作性和支持信息、以确保所有系统都满足使用阵列LUN的配置的要求。 
+---
+= 规划使用阵列LUN的配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要规划使用阵列LUN的ONTAP配置、您必须验证特定ONTAP版本是否支持存储阵列。此外、您还必须检查互操作性和支持信息、以确保所有系统都满足使用阵列LUN的配置的要求。
+
+* 相关信息 *
+
+https://mysupport.netapp.com/site/global/dashboard["NetApp 支持"]
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

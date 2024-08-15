@@ -1,0 +1,33 @@
+---
+permalink: install/concept_array_lun_name_format.html 
+sidebar: sidebar 
+keywords: array, lun, name, format 
+summary: 分配给阵列LUN的名称采用新格式、以确保名称在集群中是唯一的。 
+---
+= 阵列LUN名称格式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+分配给阵列LUN的名称采用新格式、以确保名称在集群中是唯一的。
+
+阵列LUN名称由两个部分组成、如下所示：
+
+``<array_prefix>.<offset>``，例如 `EMC-1.1`。
+
+*  `array_prefix`是ONTAP默认分配给每个存储阵列的唯一前缀。
++
+此字段在本例中由组成 ``<array_name-array_instance> (EMC-1`` )。
+
++
+`array_name` 可以用供应商名称的前三个字母表示。
+
++
+如果有多个阵列来自同一供应商、则的值将按升序排列 `array_instance` 。
+
+* 偏移量是ONTAP分配给每个LUN的按升序排列的虚拟磁盘编号。它与主机的LUN ID无关。
+
+
+您可以使用命令修改此 ``<array_prefix>`` 字段 `storage array modify -name -prefix` 。

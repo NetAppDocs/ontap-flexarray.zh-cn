@@ -1,0 +1,97 @@
+---
+permalink: install/reference_commands_for_checking_back_end_configuration.html 
+sidebar: sidebar 
+keywords: commands, check, back-end, configuration 
+summary: 多个ONTAP命令可提供有关存储阵列配置的信息、包括后端配置错误。这些命令在安装验证和故障排除期间尤其有用。 
+---
+= 用于检查后端配置的命令
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+多个ONTAP命令可提供有关存储阵列配置的信息、包括后端配置错误。这些命令在安装验证和故障排除期间尤其有用。
+
+ `storage array config show`命令是安装验证期间要使用的第一个命令。如果您发现系统运行不理想或收到错误消息、也可以使用此命令。
+
+下表显示了对安装验证和故障排除特别有用的命令：
+
+|===
+| 命令 | 说明 
+
+
+ a| 
+`storage array config show`
+ a| 
+在存储阵列级别提供有关在使用阵列LUN的ONTAP系统的部署中配置后端设备的信息。此命令显示存储阵列如何连接到集群。如果ONTAP检测到一个问题、导致使用阵列LUN的ONTAP系统和存储阵列无法一起正常运行、则会指示您运行以获取有关此错误的详细信息。 `storage array config show` `storage errors show`
+
+此命令还可用于验证是否已按预期设置配置。例如、您可以查看输出以确认已创建所需的阵列LUN组数量。
+
+
+
+ a| 
+`storage array show -name array_name`
+ a| 
+显示有关集群可见的所有存储阵列或您指定的存储阵列的信息。如果提供的阵列LUN数量超过系统容量、则错误文本字段将显示ONTAP无法发现的LUN数量。在内存不足的系统上、尤其应注意此问题。
+
+
+
+ a| 
+`storage path quiesce`
+ a| 
+临时暂停特定路径上特定阵列LUN的I/O。重新引导或运行时，路径将再次处于活动状态 `storage path resume`。某些存储阵列需要在一段时间内停止I/O才能删除或移动阵列LUN。
+
+[NOTE]
+====
+ `storage path quiesce`命令不能用于IBM DS存储阵列。
+
+====
+
+
+ a| 
+`storage path resume`
+ a| 
+允许I/O重新开始流动；这与静噪相反。此 `storage path resume` 命令主要用于硬件维护(例如、拉线或GBIC)、或者在阵列LUN的路径意外停止后使用。在静音路径后、并不总是需要运行此命令。例如、ONTAP可以发现新映射的阵列LUN。
+
+
+
+ a| 
+`storage array show`
+ a| 
+显示有关集群可见的存储阵列的信息、例如名称、供应商、型号、 和故障转移类型。
+
+
+
+ a| 
+`storage disk show`
+ a| 
+如果不输入 `storage disk show` 参数、则会显示所有磁盘和阵列LUN的以下信息：名称、可用大小、容器类型、位置、聚合、 和所有者。输入 `storage disk show` 并将磁盘名称或阵列LUN名称作为参数可显示有关单个磁盘或阵列LUN的详细信息、例如、阵列LUN的状态(已分配或未分配)、所有者和路径。输出分为三个部分：有关阵列LUN的信息、有关阵列LUN的路径的信息以及与阵列LUN相关的任何错误。
+
+
+
+ a| 
+`storage disk show -errors _**_`
+ a| 
+输入并输入 `storage disk show` ``-errors` 参数可提供磁盘和阵列LUN级别的配置错误详细信息。尽管命令输出与命令输出类似 `storage disk error show` 、但提供了一些附加选项、 `storage disk show -errors` 用于按参数(例如节点、集群和托架位置)筛选输出。
+
+
+
+ a| 
+`storage disk error show`
+ a| 
+提供有关磁盘和阵列LUN级别的后端配置错误的详细信息。输入 `storage disk error` show并将阵列LUN名称作为参数可显示与指定阵列LUN相关的配置错误的详细信息。您必须先修复这些错误、然后才能将ONTAP配置为使用存储阵列。
+
+
+
+ a| 
+`storage errors show`
+ a| 
+在阵列LUN级别提供有关阻止ONTAP系统和存储阵列一起运行的后端配置错误的详细信息。在将ONTAP配置为使用存储阵列之前、您必须修复识别的错误 `storage errors show` 。
+
+[NOTE]
+====
+ `storage errors show`命令不提供有关磁盘配置错误的信息。要查看有关磁盘和阵列LUN配置错误的信息、您可以使用 `storage disk show -errors` 命令或 `storage disk error show` 命令。
+
+====
+|===

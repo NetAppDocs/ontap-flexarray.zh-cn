@@ -1,0 +1,213 @@
+---
+permalink: install/reference_duplicate_lun_ids_on_a_target_port.html 
+sidebar: sidebar 
+keywords: duplicate, lun, ids, target, port, storage, errors, problem, resolution, show, message 
+summary: 同一存储阵列目标端口上的每个阵列LUN都必须具有唯一的LUN ID。storage errors. show输出用于标识在同一目标端口上显示相同LUN ID的LUN。 
+---
+= 目标端口上的LUN ID重复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+同一存储阵列目标端口上的每个阵列LUN都必须具有唯一的LUN ID。输出将 `storage errors show` 标识在同一目标端口上具有相同LUN ID的LUN。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+
+NAME (UID), port WWPNx: LUN x occurs more than once.  LUNs cannot be reused on the same array target port.
+----
+
+
+== 说明
+
+目标端口上LUN ID重复的常见原因是分区错误。管理员会将ONTAP系统的FC启动程序放入不同的主机组、以便在存储阵列上创建多个LUN组、但随后会发生分区错误、使不同主机组中的启动程序能够访问同一目标端口。
+
+发生此类分区错误时、输出将 `storage array config show` 显示两个LUN组具有相同的目标端口。
+
+
+
+== 问题场景
+
+管理员希望映射四个LEVs (a、b、c和d)以供ONTAP使用、两个LUN组中的每个组有两个LEVs。在这种情况下、假设存储阵列向启动程序端口提供LEVs、而不考虑启动程序用来访问存储阵列的目标端口；也就是说、主机组是特定于某个目标端口的_not _。必须使用分区来创建LUN组、方法是控制每个启动程序要访问的目标端口。
+
+[NOTE]
+====
+对于某些存储阵列(如HP EVA)、所有目标端口的主机组都相同。对于其他存储阵列(如Hitachi)、主机组特定于目标端口。
+
+====
+管理员正确设置了两个主机组、如下所示、这样就有两个LUN组：
+
+|===
+| 主机组 | 主机组中的FC启动程序 | LDEVs和关联的LUN ID 
+
+
+ a| 
+1
+ a| 
+0a0c
+ a| 
+Ldev a/LUN 1Ldev b/LUN 2.
+
+
+
+ a| 
+2
+ a| 
+0b 0d.
+ a| 
+Ldev c/LUN 1Ldev d/LUN 2
+
+|===
+分区应设置如下：
+
+* 主机组1、0a和0c中的启动程序应分区到目标端口对1A和2A。
+* 主机组2、0b和0d中的启动程序应分区到目标端口对1B和2B。
+
+
+请注意、在上表中、Ldev a和Ldev c都具有相同的LUN ID (L1)。同样、Ldev b和Ldev d都具有相同的LUN ID (L2)。如果分区设置正确、则复制LUN ID不会有问题、因为支持在不同的目标端口上重复使用LUN ID。
+
+此情形中的问题是、在配置分区时、某些启动程序放置在错误的分区中、如下表所示：
+
+|===
+| 分区 | ONTAP 系统 |  | 存储阵列 |  
+
+
+ a| 
+交换机vnbr200es25
+
+
+
+ a| 
+z1
+ a| 
+vs1
+ a| 
+端口0A
+ a| 
+控制器 1
+ a| 
+端口 1A
+
+
+
+ a| 
+z2
+ a| 
+vs1
+ a| 
+端口0b
+ a| 
+控制器 1
+ a| 
+端口1A (而不是1B)
+
+
+
+ a| 
+交换机vnci919vs53
+
+
+
+ a| 
+z3
+ a| 
+vs1
+ a| 
+端口0c
+ a| 
+控制器 2
+ a| 
+端口 2A
+
+
+
+ a| 
+z4
+ a| 
+vs1
+ a| 
+端口0d
+ a| 
+控制器 2
+ a| 
+端口2A (而不是2B)
+
+|===
+下图显示了分区错误的结果：
+
+image::../media/duplicate_lun_ids_on_a_target_port.gif[本图在周围的文字中进行了说明。]
+
+如图所示、系统会创建两个LUN组。但是、由于分区错误、LUN组0和LUN组1位于同一个目标端口对(1A和2A)上、而不是每个目标端口对上有一个LUN组。
+
+以下 `storage array config show` 示例输出显示了两个LUN组。问题在于这两个LUN组具有相同的目标端口。
+
+[listing]
+----
+
+vs1::> storage array config show
+
+       LUN    LUN
+Node  Group  Count  Array Name   Array Target Ports     Switch Port   Initiator
+----- ----- ------- -----------  -------------------    ----------    ---------
+
+ vs1    0       2   DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr200es25:5  0a
+                                 20:2A:00:a0:b8:0f:ee:04  vnci9124s53:6  0c
+        1       2   DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr200es25:5  0b
+                                 20:2A:00:a0:b8:0f:ee:04  vnci9124s53:6  0d
+
+Warning: Configuration were errors detected.  Use 'storage errors show' for detailed information.
+----
+此示例的以下 `storage errors show` 输出确定了存在问题的LUN：
+
+[listing]
+----
+
+vs1::> storage errors show
+
+Disk: EMC-1.1
+UID: UID-a
+----------
+EMC-1.1 (UID-a), port WWPN1: LUN 1 occurs more than once.  LUNs cannot be reused on the same array target port.
+
+
+Disk: EMC-1.2
+UID: UID-b
+----------
+EMC-1.2 (UID-b), port WWPN1: LUN 2 occurs more than once.  LUNs cannot be reused on the same array target port.
+
+
+Disk: EMC-1.3
+UID: UID-c
+----------
+EMC-1.3 (UID-c), port WWPN2: LUN 1 occurs more than once.  LUNs cannot be reused on the same array target port.
+
+
+Disk: EMC-1.4
+UID: UID-d
+----------
+EMC-1.4 (UID-d), port WWPN2: LUN 2 occurs more than once.  LUNs cannot be reused on the same array target port.
+----
+在此示例中 `storage errors show` 、您可以看到显示了所有四个LEVs的UID、但只有两个唯一的LUN ID：LUN 1和LUN 2。 而不是四个。
+
+
+
+== 故障排除和问题解决
+
+存储阵列管理员必须修复分区、以使不同主机组中的启动程序无法访问同一目标端口。
+
+. 在输出中 `storage array config` 、查找正在与同一目标端口通信的启动程序。
+. 输入以下命令以查看此错误的详细信息： `storage errors show`
+. 确定LUN ID重复的LDEV。
+. 对于控制器1上具有来自同一ONTAP系统的多个启动程序的每个目标端口、更改分区、使两个FC启动程序与同一目标端口进行通信。
++
+之所以执行此步骤、是因为不同主机组中的启动程序不应位于同一个分区中。您需要一次对一个启动程序执行此步骤、以便始终有指向阵列LUN的路径。
+
+. 对控制器2重复此过程。
+. 在ONTAP中输入 `storage errors show` 并确认错误已修复。``
+

@@ -1,0 +1,46 @@
+---
+permalink: install/concept_invalid_path_setup_alternate_paths_are_not_configured.html 
+sidebar: sidebar 
+keywords: invalid, path, setup, alternate, paths, configured 
+summary: '请务必从ONTAP系统上的两个FC启动程序设置指向所有阵列LUN的备用路径、以避免单点故障(Single Point of Failure、SPof)。' 
+---
+= 路径设置无效：未配置备用路径
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请务必从ONTAP系统上的两个FC启动程序设置指向所有阵列LUN的备用路径、以避免单点故障(Single Point of Failure、SPof)。
+
+以下配置无效、因为它不会提供从ONTAP系统上的每个FC启动程序端口到存储阵列上每个LUN的备用路径。同一ONTAP系统中的两个FC启动程序端口通过同一交换机连接到存储阵列。
+
+image::../media/invalid_config_no_alternate_paths.gif[本图在周围的文字中进行了说明。]
+
+假设在此无效示例中存在以下分区：
+
+* 对于 vs1 ：
++
+** 对0a进行分区以识别控制器1的端口A
+** 对0C进行分区以查看控制器1的端口B
+
+
+* 对于 vs2 ：
++
+** 对0a进行分区以识别控制器2的端口A
+** 对0C进行分区以查看控制器2的端口B
+
+
+
+
+在此示例配置中、每个交换机都将成为一个SP的SP一 个。
+
+要使此配置有效、必须进行以下更改：
+
+* 必须将VS1的FC启动程序端口0c连接到交换机2。
+* 必须将VS2的FC启动程序端口0A连接到交换机1。
+* 必须配置适当的分区。
++
+如果您在存储阵列上使用多个端口、而这些端口支持在一组选定端口上配置一组特定的LUN、则给定的FC启动程序端口必须能够看到网络结构上显示的所有阵列LUN。
+
+

@@ -1,0 +1,38 @@
+---
+permalink: install/reference_fc_initiator_ports_required_for_connection_with_disks.html 
+sidebar: sidebar 
+keywords: fc initiator, ports, required, connection, native, disks 
+summary: 您必须通过FC启动程序端口将V系列系统连接到本机磁盘架。连接所需的启动程序端口数取决于V系列系统是独立系统还是HA对。 
+---
+= 连接到本机磁盘所需的FC启动程序端口
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须通过FC启动程序端口将V系列系统连接到本机磁盘架。连接所需的启动程序端口数取决于V系列系统是独立系统还是HA对。
+
+下表列出了将V系列系统连接到本机磁盘架所需的FC启动程序端口数、具体取决于系统配置：
+
+|===
+| 配置 | FC启动程序端口数 
+
+
+ a| 
+独立系统
+ a| 
+* 如果您使用的是一个环路、则使用一个FC启动程序端口
+* 如果要连接两个环路、则需要两个FC启动程序端口：每个环路一个
+
+
+
+
+ a| 
+HA对
+ a| 
+* 如果您使用的是多路径存储、则每个环路需要两个FC启动程序端口
+* 如果不使用多路径存储、则配置中每个环路的每个控制器都有一个FC启动程序端口
+
+
+|===

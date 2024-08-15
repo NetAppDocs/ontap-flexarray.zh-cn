@@ -1,0 +1,111 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_hitachi_storage_arrays_with_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, hitachi, storage, arrays, ontap, systems, ams, hus, vsp, hus vm, workaround 
+summary: 要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。 
+---
+= 使用ONTAP系统的Hitachi存储阵列所需的参数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。
+
+
+
+== AMS和HUS存储阵列所需的系统参数
+
+下表列出了必须设置的参数：
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Mapping mode`
+ a| 
+已启用
+
+
+
+ a| 
+`Host group security`
+ a| 
+已启用
+
+
+
+ a| 
+`Mode Setting > Common Setting`
+ a| 
+标准模式
+
+
+
+ a| 
+`Platform`
+ a| 
+未指定
+
+
+
+ a| 
+`Middleware`
+ a| 
+未指定
+
+|===
+
+
+== VSP和HUS VM存储阵列所需的系统参数
+
+下表列出了必须设置的参数：
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Host mode`
+ a| 
+标准或00
+
+
+
+ a| 
+`Port security`
+ a| 
+已启用
+
+
+
+ a| 
+[NOTE]
+====
+应为每个启动程序-目标端口对创建一个与默认主机组不同的主机组。
+
+====
+|===
+在对交换机进行分区以将ONTAP系统连接到Hitachi存储阵列之前、应设置存储阵列参数并将LUN映射到主机组。
+
+如果在设置存储阵列参数之前已将ONTAP FC启动程序端口与Hitachi阵列目标端口分区、并且LUN已映射到主机组、则可能无法看到提供给ONTAP接口的任何LUN。
+
+在这种情况下、ONTAP会生成以下EMS消息之一：
+
+[listing]
+----
+[fci.device.login.reject:info] The PLOGI transmitted by port XX was rejected by port_id 0xYYYY with reason code 0x9 'Invalid R_CTL Field', explanation code 0x29 'Insufficient Resources to Support Login'
+----
+[listing]
+----
+[fci.device.login.reject:info]: The PLOGI transmitted by port XX was rejected by port_id 0xYYYY with reason code 0x3 'Nx_Port Not Available, Temporary', explanation code 0x29 'Insufficient Resources to Support Login'
+----
+
+
+== 临时解决策
+
+如果在设置参数并将LUN映射到主机组之前配置了分区、则可以通过执行路径重新初始化来强制重新发现从Hitachi存储阵列映射的阵列LUN、从而解决LUN不可见的问题。有关此问题的解决方法、请参见"在Hitachi存储阵列中看不到LUN时的解决方法"一节。
+
+xref:reference_workaround_when_luns_are_not_visible_with_hitachi_storage_arrays.adoc[在Hitachi存储阵列中看不到LUN时的解决方法]

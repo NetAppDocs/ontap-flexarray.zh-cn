@@ -1,0 +1,14 @@
+---
+permalink: implement-third-party/reference_ibm_xiv_storage_arrays.html 
+sidebar: sidebar 
+keywords: ibm, xiv, storage, arrays 
+summary: 在配置存储阵列以使用使用阵列LUN的ONTAP系统时、您必须满足特定要求。这些要求包括在存储阵列上设置配置参数以及仅部署受支持的配置。 
+---
+= IBM Xiv存储阵列
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在配置存储阵列以使用使用阵列LUN的ONTAP系统时、您必须满足特定要求。这些要求包括在存储阵列上设置配置参数以及仅部署受支持的配置。

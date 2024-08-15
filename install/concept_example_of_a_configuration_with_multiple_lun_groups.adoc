@@ -1,0 +1,86 @@
+---
+permalink: install/concept_example_of_a_configuration_with_multiple_lun_groups.html 
+sidebar: sidebar 
+keywords: example, configuration, multiple, lun, groups 
+summary: 您可以使用多个LUN组配置将工作负载分布到多个目标端口上、从而提高系统性能。 
+---
+= 包含多个LUN组的配置示例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用多个LUN组配置将工作负载分布到多个目标端口上、从而提高系统性能。
+
+大多数存储阵列均支持多LUN组配置。请参见_互操作性表_以确认您的存储阵列支持此配置。
+
+下图显示了ONTAP系统上的一个FC启动程序端口对(0c和0f)如何通过一个存储阵列端口对访问一个LUN组、 第二个FC启动程序端口对(0a和0h)通过不同的存储阵列端口对访问同一存储阵列上的第二个LUN组。
+
+此配置称为"_Stand-alone with two 2-port array LUN groups_"(具有两个双端口阵列LUN组的独立配置)。多LUN组配置可以使用HA对、而不是独立系统。
+
+image::../media/multiple_lun_groups_with_stand_alone_6xxx_array_controller.gif[本图通过周围的文字进行了说明。]
+
+通过这种多LUN组配置、您可以在存储阵列上的RAID组(奇偶校验组)之间分布I/O。您可以对配置进行设置、以使不同的FC启动程序端口对访问存储阵列上的不同LUN组。ONTAP系统只能通过两个路径看到任何给定阵列LUN、因为给定的LDEV (逻辑设备)仅映射到存储阵列上的两个冗余端口。每个LUN组都通过一个不同的目标端口对进行访问。
+
+每个LEV都通过一个LUN ID在外部进行标识。LEV必须映射到所有存储阵列端口上的相同LUN ID、ONTAP系统可以通过这些端口识别LEV。
+
+[NOTE]
+====
+同一LUN ID不能引用两个不同的LDE、即使使用相同ID的LUN位于目标端口上的不同主机组中也是如此。尽管不支持在同一目标端口上重复使用LUN ID、但如果LUN映射到不同的存储阵列端口、则存储阵列上也支持重复使用LUN ID。
+
+====
+下表总结了此示例中的分区。建议使用单启动程序分区策略。
+
+|===
+| 分区 | ONTAP系统上的FC启动程序端口 | 存储阵列 
+
+
+ a| 
+交换机 1
+
+
+
+ a| 
+z1
+ a| 
+端口0A
+ a| 
+控制器1端口B
+
+
+
+ a| 
+z2
+ a| 
+端口0c
+ a| 
+控制器1端口A
+
+
+
+ a| 
+交换机 2
+
+
+
+ a| 
+z3
+ a| 
+端口0f
+ a| 
+控制器2端口A
+
+
+
+ a| 
+z4
+ a| 
+端口0h
+ a| 
+控制器2端口B
+
+|===
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

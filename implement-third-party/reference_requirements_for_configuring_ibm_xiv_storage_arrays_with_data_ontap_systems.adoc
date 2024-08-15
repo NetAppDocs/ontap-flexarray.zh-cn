@@ -1,0 +1,45 @@
+---
+permalink: implement-third-party/reference_requirements_for_configuring_ibm_xiv_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: requirements, configuring, ibm xiv, arrays, ontap, systems, parameter, settings 
+summary: 要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。 
+---
+= 使用ONTAP系统配置IBM Xiv阵列的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。
+
+
+
+== 系统参数设置
+
+下表列出了IBM Xiv Gen3阵列的系统参数设置：
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Type`
+ a| 
+默认
+
+
+
+ a| 
+`Host`
+ a| 
+用户提供的主机名
+
+
+
+ a| 
+`Cluster`
+ a| 
+用户提供的集群名称
+
+|===

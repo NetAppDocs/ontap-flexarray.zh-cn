@@ -1,0 +1,32 @@
+---
+permalink: install/concept_planning_considerations_for_ontap_raid_groups.html 
+sidebar: sidebar 
+keywords: plan, considerations, ontap, raid, groups 
+summary: 在为阵列LUN设置ONTAP RAID组之前、您必须规划聚合的大小、RAID组的数量和大小以及阵列LUN的大小。最能满足您的数据要求的RAID组可确保在阵列上为数据及其可用性提供足够的保护。 
+---
+= ONTAP RAID组的规划注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在为阵列LUN设置ONTAP RAID组之前、您必须规划聚合的大小、RAID组的数量和大小以及阵列LUN的大小。最能满足您的数据要求的RAID组可确保在阵列上为数据及其可用性提供足够的保护。
+
+规划ONTAP RAID组涉及以下任务：
+
+. 规划最符合数据要求的聚合大小。
+. 规划聚合大小所需的RAID组的数量和大小。
+. 规划ONTAP RAID组中所需阵列LUN的大小：
++
+** 为避免性能降低、特定ONTAP RAID组中的所有阵列LUN的大小都应相同。
+** 在同一聚合中的所有RAID组中、阵列LUN的大小应相同。
+
+
+. 与存储阵列管理员通信、以创建聚合所需大小的阵列LUN数量。
++
+应根据存储阵列供应商文档中的说明对阵列LUN进行性能优化。
+
+
+
+有关设置用于存储阵列的ONTAP RAID组的更多建议，请参见 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["磁盘和聚合管理_"]。

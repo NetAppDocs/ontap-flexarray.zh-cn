@@ -1,0 +1,75 @@
+---
+permalink: install/concept_target_port_utilization_policy_settings.html 
+sidebar: sidebar 
+keywords: target, port, utilization, policy, settings, output, examples, array 
+summary: ONTAP可以检测目标端口上的资源争用事件、例如I/O队列已满、命令超时或HBA资源耗尽。 
+---
+= 目标端口利用率策略设置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP可以检测目标端口上的资源争用事件、例如I/O队列已满、命令超时或HBA资源耗尽。
+
+如果在给定阵列目标端口上检测到此类事件、则可以使用命令设置目标端口利用率策略 `storage array port modify` 。
+
+下表介绍了与目标端口关联的两个利用率策略：
+
+|===
+| 策略 | 说明 
+
+
+ a| 
+*正常*
+ a| 
+当ONTAP在给定阵列目标端口上检测到目标端口资源争用时、它会减少目标端口的队列深度并对目标端口的I/O进行控制。在此模式下、目标端口队列深度的缩减小于每个目标端口资源争用事件的*defer*策略。目标端口队列深度的后续提升速度快于*defer*策略。默认策略为*NORMENT*。
+
+
+
+ a| 
+*推迟*
+ a| 
+当ONTAP在给定阵列目标端口上检测到目标端口资源争用时、它会减少目标端口的队列深度并对目标端口的I/O进行控制。在此模式下、目标端口队列深度的缩减大于每个目标端口资源争用事件的*NORM*策略。目标端口队列深度的后续提升速度慢于*NORMENT*利用率策略。
+
+|===
+
+
+== 用于查看和修改阵列目标端口利用率策略的输出示例
+
+以下命令显示与阵列目标端口关联的目标端口利用率策略：
+
+[listing]
+----
+vgv3170_jon::> storage array port show -wwnn 2703750270235
+        Array Name: HITACHI_DF600F_1
+              WWNN: 2703750270235
+              WWPN: 2703750270235
+   Connection Type: fabric
+       Switch Port: vgbr300s89:9
+        Link Speed: 4 GB/s
+   Max Queue Depth: 1024
+Utilization Policy: defer
+                              LUN                                        Link
+Node              Initiator  Count   IOPS    KB/s    %busy    %waiting   Errs
+----------------  ---------  -----  ------  ------  -------  ----------  ----
+     vgv3170f54a         0a      2       50   1956       85           0     0
+     vgv3170f54b         0a      2      350  15366      100          40     0
+----
+默认情况下、给定阵列目标端口的I/O策略为*正常*。您可以通过运行以下命令来修改与端口关联的I/O策略：
+
+[listing]
+----
+vgv3070f50ab::> storage array port modify -wwpn 50014380025d1509 -utilization-policy ?
+
+
+
+normal      This policy aggressively competes for target port resources, in effect competing with other hosts.
+             (normal)
+
+defer      	This policy does not aggressively compete for target port resources, in effect deferring to other hosts.
+
+vgv3070f50ab::> storage array port modify -wwpn 50014380025d1509 -utilization-policy defer
+1 record updated.
+----

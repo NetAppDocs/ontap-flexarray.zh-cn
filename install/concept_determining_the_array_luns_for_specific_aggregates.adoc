@@ -1,0 +1,14 @@
+---
+permalink: install/concept_determining_the_array_luns_for_specific_aggregates.html 
+sidebar: sidebar 
+keywords: determine, array, luns, specific, aggregates 
+summary: 在使用阵列LUN的ONTAP系统所特有的聚合中混用不同类型的存储时、需要遵循许多规则。在规划要向哪些聚合添加哪些阵列LUN和磁盘时、您必须了解这些规则。 
+---
+= 确定特定聚合的阵列LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在使用阵列LUN的ONTAP系统所特有的聚合中混用不同类型的存储时、需要遵循许多规则。在规划要向哪些聚合添加哪些阵列LUN和磁盘时、您必须了解这些规则。

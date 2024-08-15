@@ -1,0 +1,91 @@
+---
+permalink: install/concept_example_of_cascading_zoning_and_host_group_configuration_errors.html 
+sidebar: sidebar 
+keywords: example, cascade, zone, host, group, configuration, errors, troubleshoot 
+summary: 区域定义中的错误可能会影响主机组定义、反之亦然。如果LUN在路径上不可见、则需要检查分区和主机组配置错误。 
+---
+= 级联分区和主机组配置错误示例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+区域定义中的错误可能会影响主机组定义、反之亦然。如果LUN在路径上不可见、则需要检查分区和主机组配置错误。
+
+假设您的配置顺序如下：
+
+. 已在交换机上创建分区定义。
++
+已将ONTAP系统的FC启动程序端口0A的WWPN置于分区定义中。但是、其目的是将FC启动程序端口0c的WWPN置于分区定义中。
+
+. 已在存储阵列上创建主机组。
++
+选择了FC启动程序端口0a的WWPN (因为这是唯一可用的WWPN、并且不明显是0a的WWPN而不是0c的WWPN)。
+
+. 在ONTAP中、您查看了FC启动程序端口上的阵列LUN、希望看到0c以上的阵列LUN。
++
+但是、0c以上的阵列LUN不存在、因为分区定义和主机组定义都错误地包含FC启动程序端口0a的WWPN。
+
++
+[NOTE]
+====
+您已使用 `storage array config show` 命令查看阵列LUN信息。
+
+====
+. 您之所以开始进行故障排除、是因为在您希望看到的启动程序上看不到LUN。
+
+
+您需要同时检查分区和主机组配置、但首先检查以下哪个过程并不重要。您可能会看到不同的消息、具体取决于您是先从主机组开始修复内容、还是先从分区开始修复内容。
+
+
+
+== 通过首先检查分区进行故障排除
+
+. 检查ONTAP系统的分区定义。
++
+您发现其中有两个分区的FC启动程序端口0a具有WWPN、而其中没有任何分区的WWPN为0c。
+
+. 修复错误的分区定义并激活它们。
++
+[NOTE]
+====
+运行时，您将无法通过启动程序端口查看阵列LUN `storage array config show`。
+
+====
+. 转到阵列并重新配置主机组、以包含FC启动程序端口0c的WWPN。
++
+现在、0c的WWPN位于已激活的分区定义中、0c的WWPN将显示在存储阵列上主机组配置的选择列表中。
+
+. 在ONTAP系统上、运行 `storage array config show` 以检查FC启动程序端口上的阵列LUN、以确认阵列LUN显示在0c上。
+
+
+
+
+== 首先检查主机组进行故障排除
+
+. 从ONTAP系统的控制台中，运行 `storage show adapteradapter#``，然后记下此示例中缺少的适配器的WWPN --0c。
+. 转到存储阵列、将您记下的WWPN与主机组选择列表中显示的WWPN进行比较、以查看是否列出了您所需的FC启动程序端口的WWPN。
++
+如果未显示所需的WWPN、则表示分区定义中不存在所需的启动程序。
+
+. 如果存储阵列允许您修改主机组中的WWPN、则可以修改显示为您记下的WWPN的WWPN。
++
+[NOTE]
+====
+如果存储阵列不允许您修改主机组中的WWPN、则需要在修改分区定义后修改主机组定义。
+
+====
++
+由于分区尚未修复、您仍然看不到所需启动程序上的LUN。
+
+. 转到交换机、将不正确的WWPN替换为正确的FC端口启动程序、然后激活分区定义。
+. 如果在此过程的前面部分中无法更正主机组定义中的WWPN、请转到存储阵列并重新配置主机组、以包括FC启动程序端口0c的WWPN。
++
+现在、0c的WWPN位于已激活的分区定义中、0c的WWPN将显示在存储阵列上主机组配置的选择列表中。
+
+. 在ONTAP系统上、运行 `storage array config show` 以检查FC启动程序端口上的阵列LUN、以确认阵列LUN显示在0c上。
++
+现在、您应该可以看到通过FC启动程序端口访问LUN。
+
+

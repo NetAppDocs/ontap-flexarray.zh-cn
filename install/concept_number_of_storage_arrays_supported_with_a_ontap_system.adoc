@@ -1,0 +1,39 @@
+---
+permalink: install/concept_number_of_storage_arrays_supported_with_a_ontap_system.html 
+sidebar: sidebar 
+keywords: considerations, connect, multiple, storage, arrays, ontap, system 
+summary: 根据ONTAP系统支持的存储阵列型号、您可以将多个存储阵列或单个存储阵列连接到ONTAP系统。 
+---
+= 将多个存储阵列连接到ONTAP系统时的注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+根据ONTAP系统支持的存储阵列型号、您可以将多个存储阵列或单个存储阵列连接到ONTAP系统。
+
+[NOTE]
+====
+互操作性表可确定ONTAP系统仅支持一个存储阵列的任何存储阵列型号。
+
+====
+将多个存储阵列连接到ONTAP系统时、请考虑以下事项：
+
+* 如果您可以将多个具有相同受支持存储阵列型号的阵列连接到ONTAP系统、则可以部署的存储阵列数量没有限制。
+* 存储阵列可以来自受支持的同一供应商、也可以来自不同供应商。
++
+如果存储阵列来自同一供应商、则它们可以来自同一系列、也可以来自不同系列。
+
+
+
+[NOTE]
+====
+同一系列中的存储阵列具有相同的性能和故障转移特征。例如、同一系列的成员都执行主动-主动故障转移、或者都执行主动-被动故障转移。可以使用多个因素来确定存储阵列系列。例如，具有不同架构的存储阵列可能属于不同的系列，即使其他特性可能都相同。
+
+====
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

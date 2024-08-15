@@ -1,0 +1,47 @@
+---
+permalink: install/concept_minimum_and_maximum_array_lun_sizes_supported_by_ontap.html 
+sidebar: sidebar 
+keywords: minimum, maximum, array, lun, sizes, supported, ontap, configurations 
+summary: 存储阵列提供的阵列LUN必须符合使用阵列LUN的ONTAP配置的大小上限和下限要求。ONTAP发出错误消息、指出阵列LUN不符合大小上限或下限要求。 
+---
+= ONTAP配置支持的最小和最大阵列LUN大小
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+存储阵列提供的阵列LUN必须符合使用阵列LUN的ONTAP配置的大小上限和下限要求。ONTAP发出错误消息、指出阵列LUN不符合大小上限或下限要求。
+
+最小和最大阵列LUN大小是根据ONTAP定义度量单位的方式计算的。ONTAP对GB和TB的定义如下：
+
+[cols="2*"]
+|===
+| 一个... | 等于... 
+
+
+ a| 
+GB
+ a| 
+1000 x 1024 x 1024字节(1000 MB)
+
+
+
+ a| 
+TB
+ a| 
+1000 x 1000 x 1024 x 1024字节(1000 GB)
+
+|===
+不同的存储阵列供应商使用不同的公式计算度量单位。您必须使用供应商的计量单位来计算与ONTAP配置支持的最小和最大大小相等的阵列LUN大小。
+
+ONTAP支持的最大LUN大小因ONTAP版本而异。有关最小和最大阵列Hardware Universe大小的信息、请参见_LUN _。
+
+[NOTE]
+====
+数据(存储) LUN的最小阵列LUN大小与根卷的最小阵列LUN大小不同。
+
+====
+* 相关信息 *
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

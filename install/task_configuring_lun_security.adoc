@@ -1,0 +1,32 @@
+---
+permalink: install/task_configuring_lun_security.html 
+sidebar: sidebar 
+keywords: configure, lun, security 
+summary: 存储阵列管理员必须配置存储阵列并创建主机组、以使其他主机无法访问要由ONTAP使用的阵列LUN。 
+---
+= 正在配置LUN安全性
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+存储阵列管理员必须配置存储阵列并创建主机组、以使其他主机无法访问要由ONTAP使用的阵列LUN。
+
+LUN安全性的概念与分区类似、不同之处在于LUN安全性是在存储阵列上设置的。LUN安全性可防止不同的服务器在SAN上使用彼此的存储。LUN安全性也可以称为_LUN屏蔽_。
+
+.步骤
+. 在存储阵列上设置LUN安全性。
++
+有关设置LUN安全性的信息、请参见存储阵列文档。
+
++
+有关供应商存储阵列的LUN安全性的任何其他详细信息、您还应参见 https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"] 。某些存储阵列必须专用于ONTAP系统。
+
+. 为ONTAP系统创建主机组或等效主机组。
++
+在某些存储阵列中、术语_host group_用于描述一个配置参数、通过该参数、您可以指定主机对存储阵列上特定端口的访问权限。不同的存储阵列使用不同的术语来描述此配置参数。每个存储阵列供应商都有自己的主机组或等效主机组创建流程。
+
+
+
+* 相关信息 *

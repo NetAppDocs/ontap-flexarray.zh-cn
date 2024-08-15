@@ -1,0 +1,36 @@
+---
+permalink: implement-third-party/reference_required_settings_for_ibm_ds_storage_arrays_with_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, settings, ibm ds, storage, arrays, ontap, systems. host type, ds8xxx, configuring, ds8300 9a2 lpar models 
+summary: 要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。 
+---
+= 使用ONTAP系统的IBM DS存储阵列所需的设置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使存储阵列成功与ONTAP系统配合使用、需要在存储阵列上设置某些参数。
+
+
+
+== DS8xxx存储阵列所需的主机类型
+
+下表显示了所需的主机类型设置：
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Host type`
+ a| 
+N系列网关
+
+|===
+
+
+== DS8300 9A2 LPAR型号的配置要求
+
+在设置DS9300 9A2 LPAR (系统逻辑分区)模型以与ONTAP系统交互时、您必须设置对每个阵列LUN的访问权限、以便冗余路径都访问同一个LPAR。

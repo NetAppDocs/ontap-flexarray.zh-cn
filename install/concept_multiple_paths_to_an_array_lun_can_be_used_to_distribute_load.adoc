@@ -1,0 +1,33 @@
+---
+permalink: install/concept_multiple_paths_to_an_array_lun_can_be_used_to_distribute_load.html 
+sidebar: sidebar 
+keywords: multiple, paths, array, lun, used, distribute, load, commands 
+summary: 给定LUN的I/O请求可以通过所有可用的优化路径分布到该LUN。这一点与先前版本不同、在先前版本中、尽管有多个可用路径、但给定LUN的I/O请求仅通过一个活动优化路径发送。 
+---
+= 可以使用阵列LUN的多个路径来分布负载
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+给定LUN的I/O请求可以通过所有可用的优化路径分布到该LUN。这一点与先前版本不同、在先前版本中、尽管有多个可用路径、但给定LUN的I/O请求仅通过一个活动优化路径发送。
+
+通过多个路径分布给定LUN的I/O请求具有以下优势：
+
+* 通过最大限度地利用所有可用和优化路径、提高了效率
+* 通过在多个路径上实现负载平衡提高了性能
+
+
+例如、在主动-主动阵列上、给定LUN的I/O请求可以分布在该LUN可用的所有四个目标端口上。对于非对称双主动阵列LUN、I/O请求可以分布在给定LUN的所有优化路径上。
+
+
+
+== 用于查看给定LUN的多个路径上的负载平衡的命令
+
+您可以运行以下命令来查看给定LUN在多个路径之间的负载分布：
+
+* ``storage disk show -disk <LUN name>`` 显示给定阵列LUN的可用路径中的I/O负载分布。
+* ``storage path show-by-initiator -array-name <array name>`` 显示连接到给定存储阵列的ONTAP系统上所有启动程序端口的I/O负载分布。
+* ``storage path show -by-target -array-name <array name>`` 显示给定存储阵列上所有目标端口的I/O负载分布。
+

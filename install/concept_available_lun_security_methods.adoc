@@ -1,0 +1,44 @@
+---
+permalink: install/concept_available_lun_security_methods.html 
+sidebar: sidebar 
+keywords: available, lun, security, methods, port-level, storage, array, dedicate, ontap 
+summary: 各种LUN安全方法可帮助您指定哪些主机可以访问特定阵列LUN。您可以使用端口级安全或LUN安全产品、也可以使用专用存储供ONTAP系统使用。 
+---
+= 可用的LUN安全方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+各种LUN安全方法可帮助您指定哪些主机可以访问特定阵列LUN。您可以使用端口级安全或LUN安全产品、也可以使用专用存储供ONTAP系统使用。
+
+
+
+== 端口级安全性
+
+您可以使用端口级安全性仅显示特定主机的阵列LUN。然后、该端口将专用于该主机。
+
+并非所有存储阵列都支持端口级安全性。默认情况下、某些存储阵列会在所有端口上显示所有LUN、并且无法将LUN的可见性限制为特定主机。对于这些阵列、您必须使用LUN安全产品或将存储阵列专用于ONTAP系统。您应查看存储阵列文档、以确定存储阵列是否支持端口级安全性。
+
+
+
+== LUN安全产品
+
+您可以使用LUN安全产品来控制分区到同一端口的主机、使其只能通过该端口访问特定阵列LUN。这样、其他主机就无法访问这些相同的阵列LUN、方法是屏蔽其他主机。
+
+
+
+== 将存储阵列专用于ONTAP
+
+您可以将存储阵列专用于ONTAP系统。在这种情况下、除ONTAP系统外、没有任何其他主机连接到存储阵列。
+
+您应同时使用分区和LUN安全性来为ONTAP系统提供额外的保护和冗余。
+
+除了遵循LUN安全方法之外、您还应检查有关供应商存储阵列的LUN安全性的任何其他详细信息。某些存储阵列必须专用于ONTAP系统。
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-e-series/index.html["适用于 NetApp E 系列存储的 FlexArray 虚拟化实施"]

@@ -1,0 +1,22 @@
+---
+permalink: install/concept_planning_for_lun_security_on_storage_arrays.html 
+sidebar: sidebar 
+keywords: plan, lun, security, storage, arrays 
+summary: 如果将ONTAP系统与存储阵列结合使用、则必须使用LUN安全方法来避免非ONTAP系统覆盖ONTAP系统拥有的阵列LUN的可能性、反之亦然。 
+---
+= 在存储阵列上规划LUN安全性
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果将ONTAP系统与存储阵列结合使用、则必须使用LUN安全方法来避免非ONTAP系统覆盖ONTAP系统拥有的阵列LUN的可能性、反之亦然。
+
+LUN安全性是一种隔离可访问特定阵列LUN的主机的方法。LUN安全性在概念上类似于交换机分区、但它是在存储阵列上执行的。_LUN security_和_LUN屏蔽_是描述此功能的等效术语。
+
+[NOTE]
+====
+ONTAP磁盘所有权方案可防止一个ONTAP系统覆盖另一个ONTAP系统所拥有的阵列LUN。但是、它并不会阻止ONTAP系统覆盖可由非ONTAP主机访问的阵列LUN。同样、如果没有阻止覆盖的方法、则非ONTAP主机可能会覆盖ONTAP系统使用的阵列LUN。
+
+====

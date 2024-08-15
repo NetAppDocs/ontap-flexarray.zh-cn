@@ -1,0 +1,14 @@
+---
+permalink: implement-e-series/reference_requirements_for_configuring_e_series_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, configure, e-series, storage, arrays 
+summary: 在配置存储阵列以使用ONTAP系统时、必须设置一些系统参数并牢记一些注意事项。 
+---
+= 配置E-Series存储阵列的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在配置存储阵列以使用ONTAP系统时、必须设置一些系统参数并牢记一些注意事项。

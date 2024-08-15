@@ -1,0 +1,20 @@
+---
+permalink: install/task_preparing_array_luns_before_removing_a_v_series_system_from_service.html 
+sidebar: sidebar 
+keywords: prepare, array, luns, before, remove, ontap, system, service 
+summary: 在从服务中删除ONTAP系统之前、您必须释放分配给该系统的所有阵列LUN上的永久性预留。 
+---
+= 在从服务中删除ONTAP系统之前准备阵列LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在从服务中删除ONTAP系统之前、您必须释放分配给该系统的所有阵列LUN上的永久性预留。
+
+在为阵列LUN分配ONTAP所有权时、ONTAP会在该阵列LUN上放置永久性预留(所有权锁定)、以确定哪个ONTAP系统拥有该LUN。如果您希望阵列LUN可供其他类型的主机使用、则必须删除ONTAP对这些阵列LUN设置的永久性预留； 如果您不删除ONTAP写入预留LUN的所有权和永久性预留、则某些阵列不允许销毁该LUN。
+
+例如、Hitachi USP存储阵列没有用于从LUN中删除永久性预留的用户命令。如果在从服务中删除ONTAP系统之前未通过ONTAP删除永久性预留、则必须致电Hitachi技术支持以删除这些预留。
+
+请参见知识库文章 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/What_are_SCSI_Reservations_and_SCSI_Persistent_Reservations["什么是SCSI预留和SCSI永久性预留"^]

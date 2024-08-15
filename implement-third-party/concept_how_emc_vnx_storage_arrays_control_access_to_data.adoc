@@ -1,0 +1,24 @@
+---
+permalink: implement-third-party/concept_how_emc_vnx_storage_arrays_control_access_to_data.html 
+sidebar: sidebar 
+keywords: emc, vnx, storage, array, control, access, data 
+summary: EMC VNX阵列使用存储组来控制对数据的访问。存储组是指存储阵列中的一个或多个LUN、只有与这些阵列LUN关联的一个或多个主机才能访问这些LUN。主机无法访问或修改不属于其存储组的任何阵列LUN中的数据。 
+---
+= EMC VNX存储阵列如何控制对数据的访问
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+EMC VNX阵列使用存储组来控制对数据的访问。存储组是指存储阵列中的一个或多个LUN、只有与这些阵列LUN关联的一个或多个主机才能访问这些LUN。主机无法访问或修改不属于其存储组的任何阵列LUN中的数据。
+
+如果遵循以下规则、则ONTAP支持多个存储组：
+
+* 交换机分区必须定义ONTAP系统上的FC启动程序端口用于访问每个阵列LUN组的目标端口。
+* 必须使用LUN屏蔽限制主机对阵列LUN的访问。
+* 存储组必须定义向每个FC启动程序端口提供哪些阵列LUN组。
+* 每个阵列LUN组需要在每个ONTAP系统上配置一个FC启动程序端口对。
+
+
+如果使用阵列LUN相邻关系、则同一相邻关系中的V系列系统必须位于同一存储组中。

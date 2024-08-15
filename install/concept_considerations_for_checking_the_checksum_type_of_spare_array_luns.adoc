@@ -1,0 +1,28 @@
+---
+permalink: install/concept_considerations_for_checking_the_checksum_type_of_spare_array_luns.html 
+sidebar: sidebar 
+keywords: checksum, type, considerations, add, spare, array, luns, aggregates 
+summary: 向聚合添加备用阵列LUN时、必须考虑与校验和类型相关的某些注意事项。例如、如果您计划通过指定备用阵列LUN的名称将其添加到聚合中、则必须确保阵列LUN和聚合具有相同的校验和类型。 
+---
+= 向聚合添加备用阵列LUN时的校验和类型注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+向聚合添加备用阵列LUN时、必须考虑与校验和类型相关的某些注意事项。例如、如果您计划通过指定备用阵列LUN的名称将其添加到聚合中、则必须确保阵列LUN和聚合具有相同的校验和类型。
+
+以下是向聚合添加备用阵列LUN时需要注意的一些校验和类型注意事项：
+
+* 不能在一个阵列LUN聚合中混用不同校验和类型的阵列LUN。
+* 如果您指定了要添加到聚合中的多个备用阵列LUN、则默认情况下、ONTAP会选择与聚合具有相同校验和类型的阵列LUN。
+* 如果将分区校验和类型的阵列LUN添加到现有分区校验和聚合中、则这些阵列LUN仍会成为分区校验和阵列LUN。
+* 已添加到高级区域校验和(Advanced Zone Checksum、ZCS)类型聚合的分区校验和备用阵列LUN会使用此类阵列LUN校验和方案。
+
+
+[NOTE]
+====
+您可以使用命令检查备用阵列LUN的校验和类型 `storage disk show` 。有关命令的详细信息，请参见手册页。
+
+====

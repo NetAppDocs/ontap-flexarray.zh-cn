@@ -1,0 +1,30 @@
+---
+permalink: implement-third-party/concept_limits_information_for_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: limit, types, configurations, storage, arrays 
+summary: 在规划ONTAP配置时、您必须考虑某些存储阵列限制。 
+---
+= 限制使用存储阵列的配置的类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在规划ONTAP配置时、您必须考虑某些存储阵列限制。
+
+Hardware Universe包含存储阵列和本机磁盘的特定限制值。
+
+以下类型的限制仅适用于存储阵列、而不适用于本机磁盘：
+
+* ONTAP支持的最小和最大阵列LUN大小
+* 根卷的阵列LUN的最小大小
+* 备用核心阵列LUN的最小大小
+* 包含阵列LUN的RAID组的限制
+* 阵列LUN聚合的最小聚合大小
+* 每个平台的最大阵列LUN和磁盘总数
+
+
+* 相关信息 *
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

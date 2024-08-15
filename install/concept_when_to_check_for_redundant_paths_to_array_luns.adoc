@@ -1,0 +1,32 @@
+---
+permalink: install/concept_when_to_check_for_redundant_paths_to_array_luns.html 
+sidebar: sidebar 
+keywords: when, check, redundant, paths, array, luns 
+summary: 在安装之后以及执行网络结构维护活动期间、您需要检查阵列LUN的冗余路径。 
+---
+= 何时检查阵列LUN的冗余路径
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在安装之后以及执行网络结构维护活动期间、您需要检查阵列LUN的冗余路径。
+
+在执行以下活动时、应重新检查路径冗余：
+
+* 初始安装
+* 网络结构维护、例如：
++
+** 基础架构升级之前、期间和之后
+** 在交换机停止服务以进行维护之前和之后
++
+在删除ONTAP系统和存储阵列之间的交换机之前、请确保已将这些路径配置为冗余路径、以便不会中断对阵列LUN的访问。
+
+** 维护存储阵列上的硬件前后
++
+例如、在维护主机适配器和端口所在的硬件组件时、应重新检查路径冗余。(此组件的名称因存储阵列型号而异)。
+
+
+
+

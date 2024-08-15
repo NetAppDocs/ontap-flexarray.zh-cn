@@ -1,0 +1,14 @@
+---
+permalink: install/concept_array_lun_assignment_changes.html 
+sidebar: sidebar 
+keywords: array, lun, assignment, changes 
+summary: 您可以将备用阵列LUN的分配从一个ONTAP系统更改为另一个LUN系统。您可能需要更改节点上负载平衡的所有权。 
+---
+= 阵列LUN分配发生更改
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将_spare_阵列LUN的分配从一个ONTAP系统更改为另一个LUN系统。您可能需要更改节点上负载平衡的所有权。

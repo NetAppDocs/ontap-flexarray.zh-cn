@@ -1,0 +1,50 @@
+---
+permalink: install/reference_an_access_control_lun_is_presented_to_ontap.html 
+sidebar: sidebar 
+keywords: access, control, lun, presented, ontap 
+summary: ONTAP不支持访问控制阵列LUN。storage errorors show输出会在显示访问控制LUN时向您发出警报。 
+---
+= 访问控制LUN将提供给ONTAP
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP不支持访问控制阵列LUN。输出将 `storage errors show` 在显示访问控制LUN时向您发出警报。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+
+NAME (UID): This array LUN is an access control LUN. It is not supported and should be masked off or disabled.
+----
+
+
+== 说明
+
+ONTAP仅支持存储阵列LUN。例如、将阵列LUN (E-Series访问控制LUN)提供给ONTAP时、 `storage array config show` 输出看起来正常；它显示了LUN组中的访问控制LUN、如以下示例所示。屏幕底部的警告消息指示出现问题。您需要运行 `storage errors show` 来确定问题在于提供了访问控制LUN以及它是哪个LUN。
+
+[listing]
+----
+
+mysystem1::> storage array config show
+
+          LUN     LUN
+Node      Group   Count  Array Name    Array Target Port       Initiator
+------    ------  -----  ------------ ------------------       --------
+mysystem1   0       1    NETAPP_INF_1  20:1A:00:a0:b8:0f:ee:04   0a
+                                       20:2A:00:a0:b8:0f:ee:04   0c
+
+Warning: Configuration errors were detected.  Use 'storage errors show' for detailed information.
+----
+
+
+== 故障排除和问题解决
+
+. 在存储阵列上、屏蔽掉访问控制LUN。
+. 在ONTAP中、再次运行 `storage errors show` 以确认访问控制LUN不再提供给ONTAP。
+

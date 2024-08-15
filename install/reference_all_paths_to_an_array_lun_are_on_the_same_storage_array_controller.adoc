@@ -1,0 +1,94 @@
+---
+permalink: install/reference_all_paths_to_an_array_lun_are_on_the_same_storage_array_controller.html 
+sidebar: sidebar 
+keywords: all, paths, array, lun, same, storage, array, controller, errors, message 
+summary: 'ONTAP不支持配置指向同一存储阵列控制器的所有路径、因为这样做会设置具有单点故障(Single Point of Failure、SPof)的配置。storage errors show命令可确定其路径设置为指向同一存储阵列控制器的任何阵列LUN。' 
+---
+= 一个阵列LUN的所有路径都位于同一个存储阵列控制器上
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP不支持配置指向同一存储阵列控制器的所有路径、因为这样做会设置具有单点故障(Single Point of Failure、SPof)的配置。 `storage errors show`命令用于标识其路径设置为转至同一存储阵列控制器的任何阵列LUN。
+
+在修复此错误之前、ONTAP不允许将阵列LUN分配给ONTAP系统。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+NAME (UID): All paths to this array LUN are connected to the same fault domain. This is a single point of failure
+----
+
+
+== 说明
+
+之所以出现此错误、是因为阵列LUN的路径已设置为指向同一个存储阵列控制器或FRU。
+
+[NOTE]
+====
+使用四条路径访问阵列LUN、使用具有多个控制器的CRU的存储阵列(例如EMC Symmetrix或HDS USP)或使用双控制器的存储阵列(例如EMC CX或HP EVA)是实现冗余的好方法。但是、如果您设置了通过单个存储阵列控制器或FRU的路径、则您将使用SPIF (即使具有此类功能)来设置配置。在主动-主动存储阵列上、整个FRU被视为一个容错域。例如、一个EMC Symmetrix存储阵列在同一个FEBE板上具有多个通道导向器。FEBE板被视为一个故障域、因为如果所有路径都穿过同一个FEBE板、则在必须更换该板时、所有路径都将丢失。
+
+====
+下图显示了在设置阵列LUN的冗余路径以避免出现单个故障域时选择的存储阵列端口的正确和错误。左侧示例中的路径设置正确、因为阵列LUN的路径是冗余的—每个连接都指向存储阵列上不同控制器上的端口。在右侧示例中、阵列LUN的两个路径都指向同一个控制器、从而设置一个SPPO。
+
+image::../media/redundant_array_port_selection.gif[本图在周围的文字中进行了说明。]
+
+命令可 `storage errors show` 显示位于同一容错域中的阵列LUN。如果您查看TPGN"列(目标端口组编号)、也会在输出中看到此问题 `storage disk show` 。对于启动程序端口对中的每个启动程序、应显示不同的TPGN.如果对中两个启动程序的TPGN相同、则两个启动程序位于同一故障域中。
+
+以下 `storage disk show` 示例显示了LUN 30的TPGN1、该LUN可通过启动程序0a和0c进行访问。如果路径冗余、则每个启动程序会显示不同的TPGN.
+
+[listing]
+----
+
+mysystem1::> storage disk show mysystem1:vgbr300s70:9.126L30
+                  Disk: HP-1.15
+        Container Type: unassigned
+            Owner/Home: -  / -
+               DR Home: -
+                 Array: HP_HSV450_1
+                Vendor: HP
+                 Model: HSV450
+         Serial Number: 600508B4000B63140000800001660000
+                   UID: 600508B4:000B6314:00008000:01660000:00000000:...
+                   BPS: 512
+         Physical Size: -
+              Position: present
+Checksum Compatibility: block
+             Aggregate: -
+                  Plex: -
+Paths:
+                     LUN Initiator Side   Target Side
+Controller Initiator ID  Switch Port      Switch Port     Acc Use  Target Port      TPGN...
+---------- --------- --- ---------------- --------------- --- ---  ---------------- -----
+mysystem1    0c      30  vgci9148s75:1-12 vgci9148s75:1-9 AO  RDY  50014380025d1509   1
+mysystem1    0a      30  vgbr300s70:12    vgbr300s70:9    AO  INU  50014380025d1508   1
+
+Errors:
+HP-1.15 (600508b4000b63140000800001660000): All paths to this array LUN are connected to the same fault domain. This is a single point of failure.
+----
+[NOTE]
+====
+此示例中的完整UID为600508B4：000B6314：00008000：01660000：00000000：00000000：00000000：00000000：00000000：00000000：00000000：00000000：00000000：00000000。在本示例中、由于空间原因、此名称会被截断。
+
+====
+
+
+== 故障排除和问题解决
+
+必须重新配置阵列LUN的路径、使其转到冗余存储阵列控制器或FRU。
+
+. 向另一控制器上的冗余目标端口添加缆线。
++
+在解决此问题时、您应保持冗余、方法是向备用控制器添加缆线_Before _使用SPOF从控制器中拔下缆线。在这种情况下、可以保持冗余、因为您是临时增加到三个路径的路径数、而不是在解决问题时将路径数减少到一个。
+
+. 从控制器上拔下一根使用SPUP设置的缆线。
++
+现在、您有两条通往阵列LUN的冗余路径。
+
+. 在ONTAP命令行中、再次输入以下命令、并确认错误已修复： `storage errors show`
+

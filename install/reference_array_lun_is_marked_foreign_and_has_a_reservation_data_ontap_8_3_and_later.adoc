@@ -1,0 +1,60 @@
+---
+permalink: install/reference_array_lun_is_marked_foreign_and_has_a_reservation_data_ontap_8_3_and_later.html 
+sidebar: sidebar 
+keywords: array, lun, marked, foreign, reservation, show, message, troubleshoot, resolution, problem 
+summary: 您可以将阵列LUN上托管的数据以其本机格式导入到ONTAP中。如果此阵列LUN在导入期间具有外部主机预留、则导入此类标记为外部的阵列LUN的内容的过程可能会受到影响。 
+---
+= 阵列LUN标记为外部并具有预留
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将阵列LUN上托管的数据以其本机格式导入到ONTAP中。如果此阵列LUN在导入期间具有外部主机预留、则导入此类标记为*外部*的阵列LUN的内容的过程可能会受到影响。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+
+EMC-1.3 (600000e00d1000000010000e00030000): This array LUN is marked foreign and has a reservation.
+----
+
+
+== 说明
+
+如果在ONTAP管理员启动导入过程之前未清除LUN上的外部主机应用程序创建的预留、则会出现此错误情况。导入操作失败、命令输出将显示消息 `storage errors show` 。
+
+要成功执行导入操作、必须清除预留。
+
+
+
+== 故障排除和问题解决
+
+要解决此问题、存储阵列管理员必须从阵列LUN中删除永久性预留。
+
+您可以从以本机格式访问阵列LUN数据的外部主机或使用ONTAP命令删除永久性预留。您可以使用以下ONTAP命令删除预留：
+
+. 查看 `storage errors show` 输出以确定具有预留的阵列LUN、如以下示例所示：
++
+[listing]
+----
+
+system1a::> storage errors show
+EMC_SYMMETRIX_1
+--------------------------------------
+EMC-1.3 (600000e00d1000000010000e00030000): This array LUN is marked foreign and has a reservation.
+----
+. 运行 `set -privilege advanced` 命令切换到_advanced_模式、因为无法在_admin_模式下导入阵列LUN内容。
+. 使用 `storage disk -remove-reservation` 命令从已标识的阵列LUN中删除永久性预留。
++
+[listing]
+----
+
+system1a::>* storage disk remove-reservation -disk EMC-1.3
+----
+. 使用 `lun import start` 命令启动将阵列LUN内容导入ONTAP的过程。
+

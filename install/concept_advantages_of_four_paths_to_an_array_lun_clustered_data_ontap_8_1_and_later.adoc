@@ -1,0 +1,21 @@
+---
+permalink: install/concept_advantages_of_four_paths_to_an_array_lun_clustered_data_ontap_8_1_and_later.html 
+sidebar: sidebar 
+keywords: advantages, four, paths, array, lun 
+summary: 在为ONTAP规划阵列LUN的路径数时、需要考虑是设置两个路径还是四个路径。 
+---
+= 一个阵列LUN使用四个路径的优势
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在为ONTAP规划阵列LUN的路径数时、需要考虑是设置两个路径还是四个路径。
+
+设置阵列LUN的四个路径具有以下优势：
+
+* 如果交换机发生故障、两个存储阵列控制器仍可用。
+* 如果存储阵列控制器发生故障、则两个交换机仍可用。
+* 由于负载平衡采用四个路径而非两个路径、因此性能可以提高。
+

@@ -1,0 +1,18 @@
+---
+permalink: install/concept_overview_of_setting_up_ontap_to_work_with_array_luns.html 
+sidebar: sidebar 
+keywords: set, up, ontap, work, array, luns 
+summary: 设置ONTAP系统以使用阵列LUN的过程因订购的ONTAP系统是否包含磁盘而异。 
+---
+= 设置ONTAP以使用阵列LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+设置ONTAP系统以使用阵列LUN的过程因订购的ONTAP系统是否包含磁盘而异。
+
+如果订购的ONTAP系统附带有磁盘架、则出厂时会安装ONTAP软件。在这种配置中、您无需创建根卷并安装许可证和ONTAP软件。
+
+您可以在订购的系统中安装ONTAP软件、但不附带磁盘架。在这些系统上、您必须先安装ONTAP、然后再设置集群。

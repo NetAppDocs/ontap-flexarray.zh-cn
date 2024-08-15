@@ -1,0 +1,24 @@
+---
+permalink: implement-e-series/concept_stand_alone_basic_configuration.html 
+sidebar: sidebar 
+keywords: stand-alone, basic, configuration 
+summary: 使用阵列LUN的ONTAP系统的独立基本配置是一种简单的光纤连接配置、其中、一个FC启动程序端口对可访问一个LUN组。 
+---
+= 独立的基本配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用阵列LUN的ONTAP系统的独立基本配置是一种简单的光纤连接配置、其中、一个FC启动程序端口对可访问一个LUN组。
+
+此配置支持与互操作性表中列出的所有存储阵列一起使用、就像在系统上运行的ONTAP版本支持的那样。
+
+下图显示了此配置：
+
+image::../media/one_standalone_2_port_array_lun_group_array_port_labels.gif[在具有独立系统的单个双端口阵列LUN组配置中]
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

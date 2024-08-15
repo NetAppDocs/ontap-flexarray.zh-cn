@@ -1,0 +1,69 @@
+---
+permalink: install/reference_array_lun_is_either_smaller_or_larger_than_the_supported_values.html 
+sidebar: sidebar 
+keywords: array, lun, size, smaller, larger, supported, values, show, message, storage, errors 
+summary: 规划阵列LUN大小时、必须遵守ONTAP的最小和最大阵列LUN大小限制。这些限制因ONTAP版本而异。storage errors show输出用于确定不符合大小要求的阵列LUN。 
+---
+= 阵列LUN大小小于或大于支持的值
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+规划阵列LUN大小时、必须遵守ONTAP的最小和最大阵列LUN大小限制。这些限制因ONTAP版本而异。输出将 `storage errors show` 确定不符合大小要求的阵列LUN。
+
+您不能将存在大小问题的阵列LUN分配给ONTAP系统。
+
+
+
+== storage errors.显示消息
+
+[listing]
+----
+NAME (Serial #): This array LUN is too large and is not usable. The maximum array LUN size supported is xTB
+----
+或
+
+[listing]
+----
+NAME (Serial #): This array LUN is too small and is not usable. The minimum array LUN size supported is xGB.
+----
+
+
+== 说明
+
+如果阵列LUN小于ONTAP支持的最小阵列LUN大小或超过支持的最大大小、则会生成此消息。阵列LUN大小大于或小于支持值的主要原因可能如下：
+
+* 存储阵列管理员未根据供应商的度量单位定义将ONTAP阵列LUN大小限制转换为等效限制。
++
+某些供应商计算阵列LUN大小限制的方式与ONTAP不同、以确定阵列LUN大小上限和下限。
+
++
+_LULUN _列出了受支持的最大和最小阵列Hardware Universe大小限制的值。
+
+* 阵列LUN适用于大小限制与ONTAP限制不同的另一台主机。
++
+在开放的SAN中、如果尚未屏蔽用于其他主机的阵列LUN、则ONTAP会公开给这些阵列LUN。
+
++
+ONTAP会生成有关向其公开的任何阵列LUN的大小问题的错误消息。
+
+
+
+
+
+== 故障排除和问题解决
+
+. 查看 `storage errors show` 输出、确定哪个阵列LUN存在大小问题。
++
+** 如果存在大小问题的阵列LUN是针对ONTAP的、则存储阵列管理员必须调整阵列LUN的大小以满足ONTAP要求、然后将其再次提供给ONTAP。
+** 如果存在大小问题的阵列LUN是另一台主机的、则存储阵列管理员必须屏蔽该阵列LUN、以使其不会暴露给ONTAP。
+
+
+. 修复问题后、再次运行 `storage array config show` 以确认错误不会持续。
+
+
+* 相关信息 *
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

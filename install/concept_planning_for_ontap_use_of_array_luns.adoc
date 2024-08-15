@@ -1,0 +1,27 @@
+---
+permalink: install/concept_planning_for_ontap_use_of_array_luns.html 
+sidebar: sidebar 
+keywords: plan, ontap, use, array, luns 
+summary: 要使ONTAP使用阵列LUN、存储阵列管理员必须先在存储阵列上创建LUN、并使其可供ONTAP使用。然后、ONTAP管理员必须将ONTAP配置为使用存储阵列提供的阵列LUN。 
+---
+= 规划阵列LUN的ONTAP使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使ONTAP使用阵列LUN、存储阵列管理员必须先在存储阵列上创建LUN、并使其可供ONTAP使用。然后、ONTAP管理员必须将ONTAP配置为使用存储阵列提供的阵列LUN。
+
+规划如何配置阵列LUN以供ONTAP使用时、需要考虑以下注意事项：
+
+* ONTAP支持的阵列LUN类型
+* ONTAP最小和最大阵列LUN大小
+* 所需的阵列LUN数量
+
+
+[NOTE]
+====
+ONTAP将阵列LUN视为虚拟磁盘。
+
+====

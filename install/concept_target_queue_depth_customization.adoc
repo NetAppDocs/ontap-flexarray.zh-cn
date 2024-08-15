@@ -1,0 +1,28 @@
+---
+permalink: install/concept_target_queue_depth_customization.html 
+sidebar: sidebar 
+keywords: target, queue, depth, customization 
+summary: '目标队列深度定义了可在存储阵列目标端口上排队(未完成)的ONTAP命令的数量。ONTAP提供默认值。对于大多数部署、默认目标队列深度是合适的；但是、您可以进行更改以更正性能问题。' 
+---
+= 目标队列深度自定义
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+目标队列深度定义了可在存储阵列目标端口上排队(未完成)的ONTAP命令的数量。ONTAP提供默认值。对于大多数部署、默认目标队列深度是合适的；但是、您可以进行更改以更正性能问题。
+
+默认目标队列深度因不同版本的ONTAP而异：
+
+* 对于ONTAP、默认值为512。
+* 对于Data ONTAP 8.2之前的所有版本、默认值均为256。
+
+
+如果为存储阵列配置了多个共享目标端口的启动程序、则不希望所有启动程序在队列缓冲区中的未完成命令加起来超过存储阵列可以处理的命令。否则、所有主机的性能都会受到影响。存储阵列在队列缓冲区中可以处理的命令数量有所不同。
+
+[NOTE]
+====
+目标队列深度也可以称为"`目标队列长度、`""`Q深度、`"或"`Max thorth."`
+
+====

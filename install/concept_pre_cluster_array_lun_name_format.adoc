@@ -1,0 +1,58 @@
+---
+permalink: install/concept_pre_cluster_array_lun_name_format.html 
+sidebar: sidebar 
+keywords: pre cluster, array, lun, name, format, ontap, systems 
+summary: 在节点加入集群之前或系统处于维护模式时、阵列LUN名称采用Data ONTAP 8.3之前使用的格式、即集群前格式。 
+---
+= 集群前阵列LUN名称格式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在节点加入集群之前或系统处于维护模式时、阵列LUN名称采用Data ONTAP 8.3之前使用的格式、即_pre-cluster-_格式。
+
+采用这种格式时、阵列LUN名称是一个基于路径的名称、其中包括ONTAP系统与存储阵列之间路径中的设备、使用的端口以及存储阵列在外部显示的用于映射到主机的路径中的SCSI LUN ID。
+
+在支持阵列LUN的ONTAP系统上、每个阵列LUN可以具有多个名称、因为每个LUN都有多个路径。
+
+
+
+== ONTAP系统的阵列LUN名称格式
+
+|===
+| 配置 | 阵列LUN名称格式 | 组件说明 
+
+
+ a| 
+直连
+ a| 
+`node-name.adapter.idlun-id`
+ a| 
+`node-name` 是集群节点的名称。如果使用ONTAP、则会在LUN名称之前添加节点名称、以便基于路径的名称在集群中是唯一的。 adapter是ONTAP系统上的适配器编号。
+
+`id` 是存储阵列上的通道适配器端口。
+
+`lun-id` 是存储阵列提供给主机的阵列LUN编号。
+
+示例： `node1.0a.0L1`
+
+
+
+ a| 
+光纤连接
+ a| 
+`node-name:switch-name:port.idlun-id`
+ a| 
+`node-name` 是节点的名称。如果使用ONTAP、则会在LUN名称之前添加节点名称、以便基于路径的名称在集群中是唯一的。 `switch-name` 是交换机的名称。
+
+`port` 是连接到目标端口(端点)的交换机端口。
+
+`id` 是设备ID。
+
+`lun-id` 是存储阵列提供给主机的阵列LUN编号。
+
+示例： `node1:brocade3:6.126L1`
+
+|===

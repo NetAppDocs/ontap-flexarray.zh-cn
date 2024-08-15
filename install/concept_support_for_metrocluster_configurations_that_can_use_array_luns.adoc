@@ -1,0 +1,33 @@
+---
+permalink: install/concept_support_for_metrocluster_configurations_that_can_use_array_luns.html 
+sidebar: sidebar 
+keywords: requirements, metrocluster, configurations, array, luns 
+summary: 在设置使用阵列LUN的MetroCluster配置之前、您必须确保此配置中使用的ONTAP系统和存储符合基本可支持性要求。 
+---
+= 使用阵列LUN的MetroCluster配置的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在设置使用阵列LUN的MetroCluster配置之前、您必须确保此配置中使用的ONTAP系统和存储符合基本可支持性要求。
+
+支持使用阵列LUN的MetroCluster配置的基本要求如下：
+
+* 您可以同时使用V系列系统和FAS系统、并支持MetroCluster配置中的阵列LUN。
++
+但是、您必须确保MetroCluster配置中使用的所有ONTAP系统的型号都相同。
+
+* ONTAP系统只能使用本机磁盘、仅存储阵列上的LUN或同时使用这两者。
+* 如果要设置同时包含本机磁盘和阵列LUN的MetroCluster配置、则必须使用FC-SAS网桥以及这些网桥支持的本机磁盘。
+* ONTAP系统和存储阵列必须在_Inter可 操作性表_中标识为受MetroCluster配置支持。
+
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["光纤连接的 MetroCluster 安装和配置"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-stretch/index.html["延伸型 MetroCluster 安装和配置"]

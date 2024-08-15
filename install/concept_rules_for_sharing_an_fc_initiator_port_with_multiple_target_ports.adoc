@@ -1,0 +1,56 @@
+---
+permalink: install/concept_rules_for_sharing_an_fc_initiator_port_with_multiple_target_ports.html 
+sidebar: sidebar 
+keywords: rules, share, fc initiator, port, multiple, target, connect, storage, arrays 
+summary: 您可以将ONTAP系统上的一个FC启动程序端口最多连接到不同存储阵列上的四个目标端口。如果要最大限度地减少使用的FC启动程序端口数、与多个目标共享一个FC启动程序端口非常有用。 
+---
+= 与多个目标端口共享FC启动程序端口的规则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将ONTAP系统上的一个FC启动程序端口最多连接到_SETTANSE_存储阵列上的四个目标端口。如果要最大限度地减少使用的FC启动程序端口数、与多个目标共享一个FC启动程序端口非常有用。
+
+此外、您还可以将一个FC启动程序端口最多连接到_sus相同_存储阵列上的四个目标端口、前提是该阵列可以根据要访问的目标端口向FC启动程序提供不同的逻辑设备集。
+
+可通过FC启动程序端口查看的阵列LUN数量存在限制。这些限制因版本而异。
+
+
+
+== FC启动程序端口连接到_SETTLGE_存储阵列上的多个目标端口时的规则
+
+此配置的规则如下：
+
+* 所有存储阵列都必须属于同一个供应商型号系列。
++
+同一系列中的存储阵列具有相同的性能和故障转移特征。例如、同一系列的成员都执行主动-主动故障转移、或者都执行主动-被动故障转移。可以使用多个因素来确定存储阵列系列。例如，具有不同架构的存储阵列可能属于不同的系列，即使其他特性可能都相同。
+
+* MetroCluster配置支持将一个FC启动程序端口连接到多个目标端口。
+* 一个FC启动程序端口最多可以连接到多个存储阵列上的四个目标端口。
+* 每个FC启动程序-目标端口对都必须位于一个单独的分区(1：1)中、即使同一个FC启动程序端口正在访问多个目标端口也是如此。
+
+
+
+
+== FC启动程序端口连接到_send_存储阵列上的多个目标端口时的规则
+
+此配置只能用于LUN屏蔽、表示或主机组功能允许根据所访问的目标端口向同一FC启动程序提供不同LUN组的存储阵列。
+
+根据要访问的目标端口、某些存储阵列可以为FC启动程序提供不同的逻辑设备集。这些类型的存储阵列允许同一个FC启动程序位于多个主机组中。在具有此功能的存储阵列上、每个FC启动程序端口都可以访问同一存储阵列上的多个阵列目标端口、每个目标端口向FC启动程序提供不同的LUN组。请参见存储阵列文档、以确定存储阵列是否允许同一个FC启动程序位于多个主机组中。
+
+以下是此配置的规则：
+
+* 一个FC启动程序端口最多可以连接到存储阵列上的四个目标端口。
+* MetroCluster配置支持将一个FC启动程序端口连接到多个目标端口。
+* 每个FC启动程序-目标端口对都必须位于一个单独的分区(1：1)中、即使同一个FC启动程序正在访问多个目标端口也是如此。
+
+
+* 相关信息 *
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]
+
+https://docs.netapp.com/us-en/ontap-flexarray/implement-e-series/index.html["适用于 NetApp E 系列存储的 FlexArray 虚拟化实施"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["光纤连接的 MetroCluster 安装和配置"]

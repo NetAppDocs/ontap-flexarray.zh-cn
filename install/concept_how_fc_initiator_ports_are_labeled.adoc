@@ -1,0 +1,27 @@
+---
+permalink: install/concept_how_fc_initiator_ports_are_labeled.html 
+sidebar: sidebar 
+keywords: how, fc initiator, ports, labeled 
+summary: ONTAP系统上的所有FC启动程序端口均由数字和字母标识。根据端口位于主板上还是位于扩展插槽中的卡上、标签会有所不同。 
+---
+= 如何标记FC启动程序端口
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP系统上的所有FC启动程序端口均由数字和字母标识。根据端口位于主板上还是位于扩展插槽中的卡上、标签会有所不同。
+
+* 主板上的端口编号
++
+端口编号为0a、0b、0c、0d...
+
+* 扩展卡上的端口编号
++
+端口根据安装扩展卡的插槽进行编号。插槽3中的卡可产生端口3A和3B。
+
++
+FC启动程序端口标记为1和2。但是、软件将其称为A和B。您可以在用户界面中看到这些标签、并在控制台上显示系统消息。
+
+

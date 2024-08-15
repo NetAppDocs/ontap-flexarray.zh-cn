@@ -1,0 +1,29 @@
+---
+permalink: install/concept_rules_for_mixing_storage_in_aggregates_for_v_series_systems.html 
+sidebar: sidebar 
+keywords: rules, mix, storage, array, lun, aggregates 
+summary: 规划聚合时、必须考虑在聚合中混用存储的规则。您不能在同一聚合中混用不同存储类型或不同供应商或供应商系列的阵列LUN。 
+---
+= 在阵列LUN聚合中混用存储的规则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+规划聚合时、必须考虑在聚合中混用存储的规则。您不能在同一聚合中混用不同存储类型或不同供应商或供应商系列的阵列LUN。
+
+不支持向同一聚合添加以下内容：
+
+* 阵列LUN和磁盘
+* 校验和类型不同的阵列LUN
+* 不同驱动器类型(例如、FC和SATA)或不同速度的阵列LUN
+* 来自不同存储阵列供应商的阵列LUN
+* 来自不同存储阵列型号系列的阵列LUN
+
+
+[NOTE]
+====
+同一系列中的存储阵列具有相同的性能和故障转移特征。例如、同一系列的成员都执行主动-主动故障转移、或者都执行主动-被动故障转移。可以使用多个因素来确定存储阵列系列。例如，具有不同架构的存储阵列可能属于不同的系列，即使其他特性可能都相同。
+
+====

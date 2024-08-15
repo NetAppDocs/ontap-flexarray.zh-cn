@@ -1,0 +1,12 @@
+---
+permalink: implement-e-series/index.html 
+sidebar: sidebar 
+keywords: flexarray, virtualization, implementation, NetApp, e-series, storage 
+summary: 欢迎使用ONTAP FlexArray信息库。您可以在此处找到有关如何将E-Series存储阵列用作集群后端存储的信息。 
+---
+= 针对NetApp®E-Series存储的FlexArray®虚拟化实施
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+

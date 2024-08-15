@@ -1,0 +1,27 @@
+---
+permalink: install/concept_requirements_for_connecting_to_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, connect, storage, arrays 
+summary: 在规划如何将ONTAP系统连接到存储阵列时、端口到端口连接计划必须满足冗余、路径和其他准则要求。 
+---
+= 连接到存储阵列的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在规划如何将ONTAP系统连接到存储阵列时、端口到端口连接计划必须满足冗余、路径和其他准则要求。
+
+设置连接的要求如下：
+
+* 存储阵列上冗余端口对中的每个连接都必须连接到ONTAP系统上的不同FC启动程序端口。
+* FC交换机上使用的端口必须为冗余端口。
+* 必须设置连接以避免SP的 发生。
++
+请确保存储阵列上用于访问给定LUN的端口来自不同的组件、以避免单点故障、例如备用控制器、集群或机箱。原因是、您不希望在一个组件发生故障时丢失对阵列LUN的所有访问权限。
+
+* 路径数不能超过ONTAP版本支持的路径数。
+* 如果要设置一个FC启动程序端口与多个目标端口共享或目标端口与多个FC启动程序端口共享的配置、则必须遵循相应的规则。
+* 如果存储阵列支持的每个主机组每个端口的LUN数量少于ONTAP系统正在使用的LUN数量、则需要在ONTAP系统和存储阵列之间添加更多缆线。
+

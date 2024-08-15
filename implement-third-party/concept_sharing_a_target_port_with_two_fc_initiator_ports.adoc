@@ -1,0 +1,41 @@
+---
+permalink: implement-third-party/concept_sharing_a_target_port_with_two_fc_initiator_ports.html 
+sidebar: sidebar 
+keywords: share, target, port, two fc initiator, ports 
+summary: 最多可以将节点间的两个ONTAP FC启动程序端口连接到存储阵列上的一个目标端口。ONTAP中的MetroCluster配置支持此配置。 
+---
+= 与两个FC启动程序端口共享一个目标端口
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+最多可以将节点间的两个ONTAP FC启动程序端口连接到存储阵列上的一个目标端口。ONTAP中的MetroCluster配置支持此配置。
+
+此配置支持与互操作性表中列出的所有存储阵列一起使用、就像在系统上运行的ONTAP版本支持的那样。
+
+下图显示了具有HA对的共享目标端口配置。独立系统和HA对均支持与两个FC启动程序端口共享目标端口。
+
+[NOTE]
+====
+有关与多个目标端口共享FC启动程序端口和分区的详细信息、请参见_ FlexArray虚拟化安装要求和参考_
+
+====
+
+
+== 连接到FC启动程序端口的共享目标端口
+
+以下示例显示了一个HA对、其中一个目标端口连接到两个FC启动程序端口：
+
+image::../media/shared_target_ports.gif[本图在周围的文字中进行了说明]
+
+控制器VS1和VS2的启动程序端口0a连接到存储阵列端口1A、控制器的端口0c连接到存储阵列端口2A。
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]
+
+https://docs.netapp.com/us-en/ontap-flexarray/install/index.html["FlexArray 虚拟化安装要求和参考"]
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["光纤连接的 MetroCluster 安装和配置"]

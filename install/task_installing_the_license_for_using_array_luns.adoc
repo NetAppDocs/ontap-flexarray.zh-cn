@@ -1,0 +1,41 @@
+---
+permalink: install/task_installing_the_license_for_using_array_luns.html 
+sidebar: sidebar 
+keywords: install, license, use, array, luns 
+summary: 要使用阵列LUN的每个ONTAP节点上都必须安装V_StorageAttach许可证。它不是集群的单一许可证。只有在安装了许可证之后、才能在聚合中使用阵列LUN。 
+---
+= 安装使用阵列LUN所需的许可证
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使用阵列LUN的每个ONTAP节点上都必须安装V_StorageAttach许可证。此许可证不是集群的单个许可证。只有在安装了许可证之后、才能在聚合中使用阵列LUN。
+
+* 您需要的内容 *
+
+* 必须安装集群。
+* 您必须具有 V_StorageAttach 许可证的许可证密钥。
++
+https://mysupport.netapp.com/site/global/dashboard["NetApp 支持"]
+
+
+
+如果已安装V_StorageAttach软件包的许可证密钥、则无需执行此过程。如果订购的ONTAP系统附带有磁盘、则出厂时通常会为您安装许可证包。或者、许多客户也会在安装过程早期安装所有必要的许可证。
+
+.步骤
+. 对于集群中用于阵列LUN的每个ONTAP节点、在该节点上输入以下命令： `system license add license key`
++
+[listing]
+----
+
+vgv3170f41a> license
+Serial Number: nnnnnnnn
+Owner: mysystem1a
+Package           Type    Description           Expiration
+----------------- ------- --------------------- --------------------
+V_StorageAttach   license Virtual Attached Storage
+----
+. 查看输出以确认是否显示V_StorageAttach软件包。
+

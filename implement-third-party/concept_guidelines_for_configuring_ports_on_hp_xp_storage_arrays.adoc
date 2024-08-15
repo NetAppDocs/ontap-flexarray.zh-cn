@@ -1,0 +1,20 @@
+---
+permalink: implement-third-party/concept_guidelines_for_configuring_ports_on_hp_xp_storage_arrays.html 
+sidebar: sidebar 
+keywords: guidelines, configuring, ports, hp xp, storage, arrays 
+summary: 在HP XP存储阵列上配置端口时，应遵循特定的准则。 
+---
+= 在HP XP存储阵列上配置端口的准则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在HP XP存储阵列上配置端口时，应遵循特定的准则。
+
+在HP XP存储阵列上配置端口的准则如下：
+
+* 每个端口只能添加一个主机组。
+* 您应确保主机组包含阵列LUN邻居中V系列系统的所有FC启动程序端口。
+

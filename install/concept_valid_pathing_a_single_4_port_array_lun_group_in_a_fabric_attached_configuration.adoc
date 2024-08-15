@@ -1,0 +1,36 @@
+---
+permalink: install/concept_valid_pathing_a_single_4_port_array_lun_group_in_a_fabric_attached_configuration.html 
+sidebar: sidebar 
+keywords: valid, path, single, 4, port, array, lun, group, fabric attached, configuration 
+summary: 一个4端口阵列LUN组配置可用于所有ONTAP版本的所有存储阵列。 
+---
+= 有效路径：光纤连接配置中的一个4端口阵列LUN组
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+一个4端口阵列LUN组配置可用于所有ONTAP版本的所有存储阵列。
+
+下图显示了使用单个4端口阵列LUN组的配置中的路径：
+
+image::../media/one_4_port_array_lun_gp.gif[本图通过周围的文字进行了说明。]
+
+在一个四端口LUN组配置中、阵列LUN会映射到存储阵列上的四个端口。阵列LUN组将通过不同的阵列目标端口提供给HA对中的两个节点。但是、每个节点只能通过两个路径端到端查看一个阵列LUN。配置分区后、节点上的每个FC启动程序端口只能访问一个目标阵列端口。
+
+在检查是否已设置预期的LUN组数时、将输出与有效输出进行比较会很有帮助 `storage array config show` 。以下 `storage array config show` 输出示例显示了此配置(单个阵列LUN组)的预期输出：
+
+[listing]
+----
+vs::> storage array config show
+             LUN   LUN
+Node         Group Count  Array Name     Array Target Port     Initiator
+------------ ----- ----- ------------- ----------------------- ---------
+vs1            1    10   DGC_RAID5_1      50050763030301241A     0a
+                                          50050763031301242A     0c
+vs2            1    10   DGC_RAID5_1      50050763030881241B     0a
+                                          50050763031881242B     0c
+
+4 entries were displayed.
+----

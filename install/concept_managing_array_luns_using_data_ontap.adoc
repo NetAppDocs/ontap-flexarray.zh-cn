@@ -1,0 +1,14 @@
+---
+permalink: install/concept_managing_array_luns_using_data_ontap.html 
+sidebar: sidebar 
+keywords: manage, array, luns, ontap 
+summary: '如果存储阵列管理员希望在将阵列LUN分配给节点后对其进行配置更改(例如调整其大小)、则可能需要在ONTAP中执行一些操作、然后才能在存储阵列上重新配置LUN。' 
+---
+= 使用ONTAP管理阵列LUN
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果存储阵列管理员希望在将阵列LUN分配给节点后对其进行配置更改(例如调整其大小)、则可能需要在ONTAP中执行一些操作、然后才能在存储阵列上重新配置LUN。

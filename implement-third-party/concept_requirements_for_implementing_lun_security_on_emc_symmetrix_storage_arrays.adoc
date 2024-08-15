@@ -1,0 +1,32 @@
+---
+permalink: implement-third-party/concept_requirements_for_implementing_lun_security_on_emc_symmetrix_storage_arrays.html 
+sidebar: sidebar 
+keywords: requirements, implementing, lun, security, emc, symmetrix, storage, arrays 
+summary: 您可以使用LUN安全性来消除主机向非该主机所拥有的LUN写入数据的可能性。 
+---
+= 在EMC Symmetrix存储阵列上实施LUN安全性的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用LUN安全性来消除主机向非该主机所拥有的LUN写入数据的可能性。
+
+要避免非ONTAP主机覆盖ONTAP系统拥有的EMC Symmetrix阵列LUN或反之、您必须通过主机(通道)控制器端口通过以下方式之一提供Symmetrix逻辑设备：
+
+* 仅在专用于ONTAP的特定Symmetrix主机(通道)控制器端口上提供ONTAP的Symmetrix逻辑设备。
++
+如果端口不能专用于ONTAP、则应确认使用这些端口的所有其他主机均符合ONTAP要求。这是因为连接到Symmetrix阵列的每个主机都需要不同的端口属性设置。在连接到Symmetrix存储阵列的多个主机之间共享端口可能会导致无法实施配置。
+
+* 对于VMAX存储阵列、通过创建端口组、存储组和启动程序组来为所需映射和屏蔽创建屏蔽视图。
++
+为此、必须先在VMAX存储阵列端口上启用ACLX端口属性。
+
+
+
+[NOTE]
+====
+默认情况下、不要向所有主机提供VCMDB LUN。配置全局设置、以限制VCMDB的可见性、除非已明确对特定主机可见。
+
+====

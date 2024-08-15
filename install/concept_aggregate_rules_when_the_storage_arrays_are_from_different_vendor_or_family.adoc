@@ -1,0 +1,43 @@
+---
+permalink: install/concept_aggregate_rules_when_the_storage_arrays_are_from_different_vendor_or_family.html 
+sidebar: sidebar 
+keywords: aggregate, rules, storage, arrays, different, vendors, families, luns, mixed 
+summary: 当存储阵列来自不同供应商或来自同一供应商的不同存储阵列系列时、如何在聚合中布局阵列LUN适用特定规则。 
+---
+= 存储阵列来自不同供应商或系列时的聚合规则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当存储阵列来自不同供应商或来自同一供应商的不同存储阵列系列时、如何在聚合中布局阵列LUN适用特定规则。
+
+如果您的存储阵列来自不同供应商或来自同一供应商的不同系列、则需遵循以下规则：
+
+* 您不能在同一聚合中混用来自不同供应商或同一供应商不同系列的存储阵列的阵列LUN。
+* 无论存储阵列的系列类型如何、您都可以将包含根卷的聚合与任何存储阵列相关联。
+
+
+[NOTE]
+====
+创建聚合时、请确保明确指定要添加到聚合的阵列LUN的ID。请勿使用参数指定要选取的阵列LUN的数量和大小、因为系统可能会自动选取来自不同系列或不同供应商存储阵列的LUN。在不同系列或供应商的阵列LUN位于同一聚合中之后、解决聚合中混用阵列LUN问题的唯一方法是销毁聚合并重新创建它。
+
+====
+以下示例显示了当存储阵列来自_不同供应商或来自同一供应商的不同系列_时如何在聚合中布局阵列LUN的选项。
+
+
+
+== 示例1：两个存储阵列中的LUN位于不同的聚合中
+
+在此示例中、ONTAP的某些LUN来自存储阵列1 (系列A)、而ONTAP的其他LUN来自存储阵列2、 系列B。无法将两个存储阵列中的LUN添加到同一聚合中、因为这两个存储阵列来自同一供应商的不同系列。如果这两个存储阵列来自不同的供应商、情况也是如此。
+
+image::../media/luns_assigned_to_multiple_aggrs_dif_family.gif[本图通过周围的文字进行了说明。]
+
+
+
+== 示例2：可以在同一聚合中混用某些LUN、而不能混用某些LUN
+
+在此示例中、 一个存储阵列来自系列A、另两个存储阵列来自系列B。系列A存储阵列中的LUN不能添加到与系列B存储阵列中的LUN相同的聚合中、因为这些存储阵列来自不同的系列。但是、可以将存储阵列3的LUN 1分配给聚合2、该聚合还包含存储阵列2中的LUN、因为这两个存储阵列属于同一系列。
+
+image::../media/luns_assigned_to_multiple_aggrs_dif_and_same_family.gif[本图通过周围的文字进行了说明。]

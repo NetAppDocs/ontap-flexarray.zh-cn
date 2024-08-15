@@ -1,0 +1,28 @@
+---
+permalink: install/concept_elements_that_reduce_the_usable_space_in_an_array_lun.html 
+sidebar: sidebar 
+keywords: elements, reduce, usable, space, array, lun 
+summary: 阵列LUN中的可用空间会受到多种因素的影响。在规划所需数量和大小的阵列LUN时、您必须根据所使用的校验和类型以及可能配置的元素考虑阵列LUN中的可用空间。 
+---
+= 用于减少阵列LUN中可用空间的元素
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+阵列LUN中的可用空间会受到多种因素的影响。在规划所需数量和大小的阵列LUN时、您必须根据所使用的校验和类型以及可能配置的元素考虑阵列LUN中的可用空间。
+
+计算阵列LUN中的可用空间时、必须考虑以下因素来减少LUN的可用空间：
+
+* 为ONTAP预留的空间
+* 用于核心转储的空间
+* 卷级Snapshot预留
+* 聚合级Snapshot副本
+* 校验和类型(您分配一种类型)：
++
+** 块校验和(BCS)
+** 高级分区校验和(高级分区校验和、ZCS)
+
+
+

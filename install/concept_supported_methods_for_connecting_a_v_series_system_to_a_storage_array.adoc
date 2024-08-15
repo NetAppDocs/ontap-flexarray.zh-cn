@@ -1,0 +1,20 @@
+---
+permalink: install/concept_supported_methods_for_connecting_a_v_series_system_to_a_storage_array.html 
+sidebar: sidebar 
+keywords: supported, methods, connect, ontap, system, storage, array 
+summary: 您可以将光纤连接配置中的ONTAP系统与存储阵列连接起来。独立系统和HA对均支持光纤连接配置。直连配置仅限于某些存储阵列和某些ONTAP版本。 
+---
+= 支持将ONTAP系统连接到存储阵列的方法
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将光纤连接配置中的ONTAP系统与存储阵列连接起来。独立系统和HA对均支持光纤连接配置。直连配置仅限于某些存储阵列和某些ONTAP版本。
+
+互操作性表提供了有关运行ONTAP的特定存储阵列和平台支持的连接方法的信息。
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

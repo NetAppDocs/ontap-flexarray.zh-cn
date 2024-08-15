@@ -1,0 +1,30 @@
+---
+permalink: install/concept_verifying_an_installation_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: verify, installation, storage, arrays 
+summary: 在生产环境中部署系统之前、请务必检测并解决任何后端配置错误。 
+---
+= 使用存储阵列验证安装
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在生产环境中部署系统之前、请务必检测并解决任何后端配置错误。
+
+验证后端配置的两个阶段如下：
+
+. 检查是否存在任何导致ONTAP无法在存储阵列上运行的后端配置错误。
++
+这些错误由标记 `storage errors show`。您必须修复这些错误。
+
+. 检查以确保配置符合预期。
++
+在许多情况下、从系统角度来看、这些情况不是错误、但可能与您的预期不同。例如、 `storage array config show` 输出将显示两个LUN组、但您只需要一个LUN组。本文档所指的情况是不符合您"`意向`"的情况。
+
+
+
+下图显示了以下工作流：首先从系统角度确认没有配置错误、然后确认安装符合预期。
+
+image::../media/installation_verification_flowchart.gif[首先运行storage array config show。如有说明,run storage errors show,review the messages and review the documentation. Contact technical support if the problem is not resolved.]

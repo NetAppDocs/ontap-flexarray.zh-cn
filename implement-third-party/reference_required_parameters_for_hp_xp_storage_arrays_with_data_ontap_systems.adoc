@@ -1,0 +1,67 @@
+---
+permalink: implement-third-party/reference_required_parameters_for_hp_xp_storage_arrays_with_data_ontap_systems.html 
+sidebar: sidebar 
+keywords: required, parameters, hp, xp, storage, arrays, ontap, workaround 
+summary: 要使此存储阵列成功用于ONTAP系统、需要在该存储阵列上设置某些参数。 
+---
+= 使用ONTAP的HP XP存储阵列所需的参数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使此存储阵列成功用于ONTAP系统、需要在该存储阵列上设置某些参数。
+
+
+
+== HP XP存储阵列所需的系统参数
+
+下表显示了所需的参数设置：
+
+|===
+| 参数 | 设置 
+
+
+ a| 
+`Host mode`
+ a| 
+标准或00
+
+
+
+ a| 
+`Port security`
+ a| 
+已启用
+
+
+
+ a| 
+[NOTE]
+====
+应为每个启动程序-目标端口对创建一个与默认主机组不同的主机组。
+
+====
+|===
+在对交换机进行分区以将ONTAP系统连接到HP XP存储阵列之前、应设置存储阵列参数并将LUN映射到主机组。
+
+如果在设置存储阵列参数之前已使用HP XP阵列目标端口对ONTAP FC启动程序端口进行分区、并且LUN已映射到主机组、则可能无法看到提供给ONTAP接口的任何LUN。
+
+在这种情况下、ONTAP会生成以下EMS消息之一：
+
+[listing]
+----
+[fci.device.login.reject:info] The PLOGI transmitted by port XX was rejected by port_id 0xYYYY with reason code 0x9 'Invalid R_CTL Field', explanation code 0x29 'Insufficient Resources to Support Login'
+----
+[listing]
+----
+[fci.device.login.reject:info]: The PLOGI transmitted by port XX was rejected by port_id 0xYYYY with reason code 0x3 'Nx_Port Not Available, Temporary', explanation code 0x29 'Insufficient Resources to Support Login'
+----
+
+
+== 临时解决策
+
+如果在设置参数并将LUN映射到主机组之前配置了分区、则可以通过执行路径重新初始化来强制重新发现从HP XP存储阵列映射的阵列LUN、从而解决LUN不可见的问题。
+
+xref:reference_workaround_when_luns_are_not_visible_with_hp_xp_storage_arrays.adoc[在HP XP存储阵列中看不到LUN时的解决方法]

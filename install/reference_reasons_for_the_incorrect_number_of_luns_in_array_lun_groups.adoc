@@ -1,0 +1,57 @@
+---
+permalink: install/reference_reasons_for_the_incorrect_number_of_luns_in_array_lun_groups.html 
+sidebar: sidebar 
+keywords: reasons, incorrect, number, luns, array, groups, issue, resolve 
+summary: 在验证配置时、您应检查storage array config show输出、以确保每个LUN组中的LUN数量符合您的预期。LUN组中LUN数量不正确的最可能原因是阵列LUN未映射到ONTAP系统。 
+---
+= 阵列LUN组中LUN数量不正确的原因
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在验证配置时、您应检查 `storage array config show` 输出以确保每个LUN组中的LUN数量符合您的预期。LUN组中LUN数量不正确的最可能原因是阵列LUN未映射到ONTAP系统。
+
+
+
+== storage array config show输出示例
+
+输出中会显示每个LUN组中的阵列LUN数量 `storage array config show` 、如下例所示：
+
+[listing]
+----
+mysystem1::> storage array config show
+
+               LUN     LUN
+Node           Group   Count Array Name     Array Target Port  Initiator
+------         ------ ----- -------------- -------------------- ----------
+mysystem1        0      50   DGC_RAID5_1     201A00a0b80fee04     0a
+                                             202A00a0b80fee04     0c
+----
+
+
+== 说明
+
+缺少您希望位于LUN组中的阵列LUN的最可能原因如下：
+
+* 阵列LUN未映射到ONTAP系统。
+* 发生映射错误、导致阵列LUN位于错误的LUN组中。
++
+例如、主机组配置可能不正确。
+
+* 存储阵列仍在初始化阵列LUN并使其可用(过渡状态)。
+* ONTAP LUN扫描程序尚未发现LUN (过渡状态)。
+
+
+
+
+== 解决问题
+
+. 如果阵列LUN尚未映射到ONTAP系统、则存储阵列管理员必须将其映射。
++
+将阵列LUN映射到主机的过程因存储阵列而异。
+
+. 如果阵列LUN已映射到ONTAP系统、请检查分区和主机组配置。
+. 修复问题后、再次运行 `storage array config show` 以确认问题已修复。
+

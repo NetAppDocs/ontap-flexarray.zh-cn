@@ -1,0 +1,23 @@
+---
+permalink: install/concept_additional_tasks_after_installing_and_testing_a_ontap_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: additional, tasks, after, install, test, ontap, configuration, array, luns, netapp 
+summary: 完成使用阵列LUN的ONTAP配置的安装和测试后、您可以向ONTAP系统分配其他阵列LUN、并在系统上设置各种ONTAP功能。 
+---
+= 安装和测试使用阵列LUN的ONTAP配置后的其他任务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成使用阵列LUN的ONTAP配置的安装和测试后、您可以向ONTAP系统分配其他阵列LUN、并在系统上设置各种ONTAP功能。
+
+以下是在完成使用阵列LUN的ONTAP系统的安装和测试后可以执行的一些任务：
+
+* 根据需要向ONTAP系统分配其他阵列LUN。
+* 根据需要创建ONTAP聚合和卷。
+* 根据需要在系统上设置其他ONTAP功能，例如用于备份和恢复的功能。
+
+
+有关配置各种ONTAP功能的信息、请参见相应的ONTAP指南。

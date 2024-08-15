@@ -1,0 +1,18 @@
+---
+permalink: install/concept_required_number_of_paths_to_an_array_lun.html 
+sidebar: sidebar 
+keywords: required, number, paths, array, lun 
+summary: ONTAP支持使用四个或两个路径访问阵列LUN。 
+---
+= 阵列LUN的所需路径数
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP支持使用四个或两个路径访问阵列LUN。
+
+ONTAP希望并要求存储阵列至少通过两个冗余存储阵列端口来访问特定阵列LUN、即至少通过两个冗余路径。
+
+请确保存储阵列上用于访问给定LUN的端口来自不同的组件、以避免单点故障、例如备用控制器、集群或机箱。原因是、您不希望在一个组件发生故障时丢失对阵列LUN的所有访问权限。

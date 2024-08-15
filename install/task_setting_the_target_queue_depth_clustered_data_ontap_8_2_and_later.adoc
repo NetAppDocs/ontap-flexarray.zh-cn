@@ -1,0 +1,41 @@
+---
+permalink: install/task_setting_the_target_queue_depth_clustered_data_ontap_8_2_and_later.html 
+sidebar: sidebar 
+keywords: set, target, queue, depth 
+summary: 对于大多数实施、默认目标队列深度均可接受、但在遇到性能问题时可以更改。 
+---
+= 设置目标队列深度
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于大多数实施、默认目标队列深度均可接受、但在遇到性能问题时可以更改。
+
+您可以按存储阵列设置目标队列深度、也可以按目标端口设置目标队列深度。
+
+.步骤
+. 使用以下命令之一在存储阵列的所有目标端口或特定目标端口上设置目标端口队列深度。
++
+|===
+| 如果要... | 使用的命令顺序 
+
+
+ a| 
+在存储阵列的所有目标端口上设置目标端口队列深度
+ a| 
+`set advanced` `storage array port modify -name array_name -max-queue-depth value`
+
+
+
+ a| 
+在存储阵列的特定目标端口上设置目标端口队列深度
+ a| 
+`set advanced` `storage array port modify -name array_name -wwnn value -wwpn value -max-queue-depth value`
+
+|===
++
+有关这些命令的详细信息，请参见手册页。
+
+

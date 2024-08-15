@@ -1,0 +1,29 @@
+---
+permalink: install/concept_raid_protection_for_array_luns.html 
+sidebar: sidebar 
+keywords: raid, protection, array, luns 
+summary: 存储阵列可为可供ONTAP使用的阵列LUN提供RAID保护。ONTAP不提供RAID保护。 
+---
+= 阵列LUN的RAID保护
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+存储阵列可为可供ONTAP使用的阵列LUN提供RAID保护。ONTAP不提供RAID保护。
+
+ONTAP对阵列LUN使用RAID0 (条带化)。ONTAP在存储阵列上支持多种RAID类型、但RAID0除外、因为RAID0不提供存储保护。
+
+在存储阵列上创建_RAID groups_时、您需要遵循存储阵列供应商的最佳实践、以确保存储阵列具有足够的保护级别、从而使磁盘故障不会导致数据丢失或数据访问丢失。
+
+[NOTE]
+====
+* 存储阵列上的_RAID group_是指共同构成定义的RAID级别的磁盘的排列方式。
++
+每个RAID组仅支持一种RAID类型。为RAID组选择的磁盘数决定了特定RAID组支持的RAID类型。不同的存储阵列供应商使用不同的术语来描述此实体- RAID组、奇偶校验组、磁盘组、奇偶校验RAID组等术语。
+
+* ONTAP在本机磁盘架上支持RAID4和RAID-DP、但在阵列LUN上仅支持RAID0。
+
+
+====

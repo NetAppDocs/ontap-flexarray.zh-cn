@@ -1,0 +1,14 @@
+---
+permalink: install/concept_troubleshooting.html 
+sidebar: sidebar 
+keywords: troubleshoot, configurations, storage, arrays 
+summary: 您应在初始安装期间验证配置、以便在将配置置于生产环境之前解决问题。 
+---
+= 对存储阵列配置进行故障排除
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您应在初始安装期间验证配置、以便在将配置置于生产环境之前解决问题。

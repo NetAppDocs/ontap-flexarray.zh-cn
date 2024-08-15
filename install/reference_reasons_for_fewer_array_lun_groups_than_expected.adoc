@@ -1,0 +1,54 @@
+---
+permalink: install/reference_reasons_for_fewer_array_lun_groups_than_expected.html 
+sidebar: sidebar 
+keywords: reasons, fewer, array, lun, groups, expected, resolve, issue 
+summary: 验证后端配置时、您需要检查storage array config show输出以确定输出中的阵列LUN组数量是否符合您的预期。 
+---
+= 阵列LUN组数少于预期的原因
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+验证后端配置时、您需要检查 `storage array config show` 输出以确定输出中的阵列LUN组数量是否符合您的预期。
+
+
+
+== 说明
+
+LUN组数少于预期的最可能原因是ONTAP系统上两个FC启动程序端口对的LDEV到LUN映射相同。如果两个FC启动程序端口对的LDEV到LUN映射相同、则 `storage array config show` 输出显示的LUN组比预期少一个。
+
+由于两个FC启动程序端口对都映射到同一个目标端口对、以下 `storage array config show` 输出仅显示一个阵列LUN组：
+
+[listing]
+----
+
+mysystem1::> storage array config show
+
+         LUN   LUN
+Node     Group Count Array Name  Array Target Ports      Switch Port    Initiator
+------   ----- ----- ---------- -------------------      -----------    ---------
+
+mysystem1  0     2   DGC_RAID5_1  20:1A:00:a0:b8:0f:ee:04  vnbr200es25:5   0a
+                                  20:2A:00:a0:b8:0f:ee:04  vnci9124s53:6   0c
+                                  20:1A:00:a0:b8:0f:ee:04  vnbr200es25:5   0b
+                                  20:2A:00:a0:b8:0f:ee:04  vnci9124s53:6   0d
+----
+通过查看阵列目标端口列、您可以在LUN组中多次看到相同的目标端口、并且每次出现都有不同的启动程序。
+
+* 启动程序0a和0b均可访问存储阵列端口1A。
+* 启动程序0c和0d均可访问存储阵列端口2A。
+
+
+
+
+== 解决问题
+
+ONTAP不会将此问题标记为错误、因为当两个FC启动程序端口对的LDEV到LUN映射相同时、ONTAP系统可以运行。但是、不支持将多个FC启动程序连接到同一个目标端口。您应修复此映射、以便ONTAP系统采用受支持的配置、并获得所需数量的LUN组。
+
+如果要修复此问题、请执行以下操作：
+
+. 在存储阵列上、修复映射、使ONTAP系统上两个FC启动程序端口对的FC启动程序端口对映射不再相同。
+. 在ONTAP系统上、重新运行 `storage array config show` 并确认显示了预期的LUN组数量、并且FC启动程序端口对未访问相同的目标端口。
+

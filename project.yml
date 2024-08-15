@@ -1,0 +1,21 @@
+---
+settings:
+  name: ONTAP FlexArray
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: zh-cn,us-en,ja-jp,ko-kr,zh-tw,de-de,es-es,fr-fr,it-it
+sidebar:
+  entries:
+  - title: ONTAP FlexArray文档
+    url: "/index.html"
+  - section: implement-e-series
+  - section: implement-third-party
+  - section: install
+  - title: 法律声明
+    url: "/reference_legal_notices.html"
+product-family:
+  name: ONTAP
+  repo: ontap-family

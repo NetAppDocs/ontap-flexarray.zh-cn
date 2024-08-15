@@ -1,0 +1,43 @@
+---
+permalink: install/concept_implementation_requirements_for_a_multiple_lun_group_configuration.html 
+sidebar: sidebar 
+keywords: implementation, requirements, multiple, lun, group, configuration 
+summary: 您可以通过在存储环境中实施多LUN组配置来提高系统性能。要实施此配置、必须在ONTAP系统和存储阵列上执行某些设置任务。 
+---
+= 多LUN组配置的实施要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过在存储环境中实施多LUN组配置来提高系统性能。要实施此配置、必须在ONTAP系统和存储阵列上执行某些设置任务。
+
+大多数存储阵列均支持多LUN组配置。请参见_互操作性表_以确认您的特定存储阵列支持此配置。
+
+您必须与存储阵列管理员合作、在_storage array_for a multiple LUN group configuration中设置以下内容：
+
+* 使用尽可能多的端口、以便访问为ONTAP系统分配的阵列LUN。
+* 使用主机组(或供应商的等效主机组)定义将哪些阵列LUN组显示给ONTAP系统上的每个FC启动程序端口。
+
+
+要实施多LUN组配置、您可以在ONTAP系统上进行以下设置：
+
+* 对每个阵列LUN组使用一个FC启动程序端口对。
++
+每个FC启动程序端口对都通过冗余路径访问存储阵列上的不同LUN组。
+
+* 在ONTAP配置中创建一个大型聚合、并将多个RAID组(奇偶校验组)中的阵列LUN添加到此聚合中。
++
+这样、I/O就会分布在更多磁盘上。将I/O分散在各个RAID组中并创建一个大型聚合可显著提升性能。
+
+
+
+要实施多LUN组配置、必须在_switch_上进行以下设置：
+
+* 配置交换机分区以定义ONTAP系统上的FC启动程序端口应使用哪些目标端口来访问每个阵列LUN组。
+
+
+* 相关信息 *
+
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"]

@@ -1,0 +1,34 @@
+---
+permalink: install/reference_factors_impacting_the_required_number_of_array_luns.html 
+sidebar: sidebar 
+keywords: factors, impact, required, number, array, luns 
+summary: 在规划ONTAP使用阵列LUN时、必须考虑阵列LUN大小、ONTAP开销和校验和类型等因素、这些因素会影响ONTAP环境中所需的阵列LUN数量。 
+---
+= 影响所需阵列LUN数量的因素
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在规划ONTAP使用阵列LUN时、必须考虑阵列LUN大小、ONTAP开销和校验和类型等因素、这些因素会影响ONTAP环境中所需的阵列LUN数量。
+
+在确定所需的阵列LUN数量时、应考虑以下事项：
+
+* 阵列LUN越小、存储所需的LUN就越多。
++
+理想情况下、建议从给定存储阵列RAID组创建一个大型阵列LUN。
+
+* 设备限制用于定义可分配给ONTAP系统的最大磁盘和阵列LUN数量。
++
+Hardware Universe包含有关设备限制的信息。
+
+* 阵列LUN中的可用空间越多、所需的阵列LUN就越少。
++
+阵列LUN中的可用空间量由ONTAP所需的空间、校验和类型以及其他因素(例如可选Snapshot预留所需的空间)决定。
+
+* 不同的应用程序产生不同的负载。
++
+在确定将阵列LUN分配给ONTAP系统时、必须考虑存储的用途以及不同应用程序可能生成的请求数量。
+
+

@@ -1,0 +1,18 @@
+---
+permalink: implement-third-party/concept_requirements_for_configuring_the_hp_eva_storage_management_server.html 
+sidebar: sidebar 
+keywords: requirements, configuring, hp, eva, storage, management, server 
+summary: 如果将ONTAP系统上的FC启动程序端口与HP EVA存储管理服务器上的启动程序端口与常用EVA目标端口共享、则会导致兼容性问题。 
+---
+= 配置HP EVA存储管理服务器的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果将ONTAP系统上的FC启动程序端口与HP EVA存储管理服务器上的启动程序端口与常用EVA目标端口共享、则会导致兼容性问题。
+
+之所以出现兼容性问题、是因为ONTAP系统上的FC启动程序端口和EVA存储管理服务器启动程序端口的主机设置不同。
+
+HP建议将驻留在网络结构中的所有HP EVA存储管理服务器配置在与所有操作系统分开的区域中。

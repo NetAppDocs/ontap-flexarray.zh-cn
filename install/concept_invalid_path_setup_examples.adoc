@@ -1,0 +1,14 @@
+---
+permalink: install/concept_invalid_path_setup_examples.html 
+sidebar: sidebar 
+keywords: invalid, path, setup, examples 
+summary: 路径设置可能无效、因为阵列LUN的路径不是冗余的、或者阵列LUN的路径数不符合ONTAP要求。 
+---
+= 无效的路径设置示例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+路径设置可能无效、因为阵列LUN的路径不是冗余的、或者阵列LUN的路径数不符合ONTAP要求。

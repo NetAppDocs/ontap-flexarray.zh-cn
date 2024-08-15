@@ -1,0 +1,29 @@
+---
+permalink: implement-e-series/reference_required_host_type_for_e_series_storage_arrays_reference.html 
+sidebar: sidebar 
+keywords: required, host, type, e-series, storage, arrays 
+summary: 您必须为E-Series存储阵列设置适当的主机类型选项、才能与ONTAP系统进行通信。您可以使用SANtricity Storage Manager设置主机类型。 
+---
+= E-Series存储阵列所需的主机类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须为E-Series存储阵列设置适当的主机类型选项、才能与ONTAP系统进行通信。您可以使用SANtricity Storage Manager设置主机类型。
+
+对于给定的ONTAP版本、您可以根据存储阵列固件版本设置所需的主机类型。
+
+如果您的固件版本为08.10.15.00及更高版本、请将主机类型设置为_ALOA (Data ONTAP)_。
+
+[NOTE]
+====
+固件版本08.10.15.00及更高版本支持的最低SANtricity Storage Manager版本为11.10.0G00.0026。
+
+====
+使用E-Series控制器固件8.25时、E-Series系统不再支持将ONTAP RDAC作为主机类型。因此、如果您使用的是ONTAP RDAC、则在将后端阵列升级到CFW 8.25或更高版本之前、必须按照此知识库文章将其转换为ONTAP ALOA。
+
+* 相关信息 *
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/E-Series_Storage_Array/How_to_non-disruptively_change_between_Active-Passive_and_ALUA_failover_modes["如何在连接到集群模式Data ONTAP系统的NetApp E-Series阵列上无故障切换主动-被动和ALOA故障转移模式"]

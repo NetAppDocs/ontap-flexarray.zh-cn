@@ -1,0 +1,14 @@
+---
+permalink: install/concept_planning_for_paths_to_array_luns.html 
+sidebar: sidebar 
+keywords: plan, paths, array, luns 
+summary: '路径是指ONTAP系统和存储阵列之间的物理连接。要消除ONTAP系统与存储阵列之间的任何单点故障(SPof)、需要使用冗余路径。' 
+---
+= 规划阵列LUN的路径
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+路径是指ONTAP系统和存储阵列之间的物理连接。要消除ONTAP系统与存储阵列之间的任何单点故障(SPof)、需要使用冗余路径。

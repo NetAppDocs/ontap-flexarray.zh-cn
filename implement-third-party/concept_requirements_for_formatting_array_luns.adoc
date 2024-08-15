@@ -1,0 +1,36 @@
+---
+permalink: implement-third-party/concept_requirements_for_formatting_array_luns.html 
+sidebar: sidebar 
+keywords: requirements, formatting, array, luns 
+summary: 您可以执行不同类型的阵列LUN格式化。每种类型都会影响LUN或整个存储阵列的可用性。 
+---
+= 格式化阵列LUN的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以执行不同类型的阵列LUN格式化。每种类型都会影响LUN或整个存储阵列的可用性。
+
+如果必须立即向ONTAP系统提供新的LUN、则应使用快速格式化。如果您计划将来向ONTAP系统提供LUN、则建议进行快速格式化、但可以进行联机格式化。
+
+建议进行快速格式化、因为联机和脱机格式化会将磁盘发现延迟到LUN格式化完成之后、如以下列表所述：
+
+* 联机格式化会使正在格式化的阵列LUN完全脱机、并且阵列LUN不会响应任何SCSI命令。
++
+一次对一个阵列LUN执行格式化、直到对所有阵列LUN进行格式化为止。
+
+* 脱机格式化会使整个存储阵列脱机、并且存储阵列不会对任何SCSI命令做出响应。
++
+每个控制器一次对六个阵列LUN进行格式化、直到格式化完成为止。
+
++
+在所有格式化完成之前、存储阵列不会响应。
+
+* 如果在初始设置ONTAP系统后创建阵列LUN (对于任何主机)、并且使用脱机格式化、则系统将发生故障。
++
+在格式化完成之前、映射到ONTAP系统的所有阵列LUN (包括根卷中的阵列LUN)都将不可用。
+
+* 联机快速格式化其他主机的LUN不会影响ONTAP系统。
+

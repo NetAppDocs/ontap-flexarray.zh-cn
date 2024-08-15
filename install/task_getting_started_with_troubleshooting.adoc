@@ -1,0 +1,67 @@
+---
+permalink: install/task_getting_started_with_troubleshooting.html 
+sidebar: sidebar 
+keywords: get, started, troubleshoot, ontap, configuration, array, luns 
+summary: 在对使用阵列LUN的ONTAP配置进行故障排除时、您应采用系统化的方法来确定问题的原因。 
+---
+= 使用阵列LUN对ONTAP配置进行故障排除入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在对使用阵列LUN的ONTAP配置进行故障排除时、您应采用系统化的方法来确定问题的原因。
+
+此过程建议了进行故障排除的顺序。
+
+[NOTE]
+====
+在继续执行故障排除步骤时、您应保存收集到的有关问题的任何信息、以便在升级时向技术支持提供此信息。
+
+====
+.步骤
+. 确定问题是与_Front End_(影响所有相应平台的ONTAP问题)还是与_Back End_(交换机或存储阵列配置问题)有关。
++
+例如、如果您尝试使用ONTAP功能、但该功能未按预期工作、则问题可能出在前端
+
+. 根据问题的性质、采取适当行动解决问题：
++
+|===
+| 如果ONTAP配置具有... | 操作 
+
+
+ a| 
+前端问题
+ a| 
+按照ONTAP指南中的说明继续对ONTAP功能进行故障排除。
+
+https://docs.netapp.com/us-en/ontap/index.html["ONTAP 9文档"^]
+
+
+
+ a| 
+后端问题
+ a| 
+.. 查看互操作性表以确保支持以下内容：配置、存储阵列、存储阵列固件、交换机和交换机固件。
++
+https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"^]
+
+.. 使用 `storage array config show` 命令检查系统是否可以检测到任何常见的后端配置错误。
++
+如果ONTAP检测到后端配置错误、则必须运行 `storage errors show` 命令以获取有关此错误的详细信息。
+
+
+
+|===
+. 如果问题的原因仍不明确、请检查以下来源、以确保您的系统符合使用存储阵列的要求：
++
+** xref:concept_verifying_an_installation_with_storage_arrays.adoc[使用存储阵列验证安装]
+** https://docs.netapp.com/us-en/ontap-flexarray/implement-third-party/index.html["第三方存储的 FlexArray 虚拟化实施"]
+** https://docs.netapp.com/us-en/ontap-flexarray/implement-e-series/index.html["适用于 NetApp E 系列存储的 FlexArray 虚拟化实施"]
+** https://mysupport.netapp.com/matrix["NetApp 互操作性表工具"^]
+** https://hwu.netapp.com["NetApp Hardware Universe"^]
+
+
+. 如果您仍需要帮助解决此问题、请联系技术支持。
+

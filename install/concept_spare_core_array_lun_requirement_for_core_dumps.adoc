@@ -1,0 +1,24 @@
+---
+permalink: install/concept_spare_core_array_lun_requirement_for_core_dumps.html 
+sidebar: sidebar 
+keywords: spare, array, lun, requirement, core, dumps 
+summary: 对于独立ONTAP系统和HA对中的节点、您必须创建一个大小足够的备用阵列LUN、以便在没有可用备用磁盘时保存核心转储。 
+---
+= 核心转储的备用阵列LUN要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于独立ONTAP系统和HA对中的节点、您必须创建一个大小足够的备用阵列LUN、以便在没有可用备用磁盘时保存核心转储。
+
+在同时使用磁盘和阵列LUN的系统上、如果有备用磁盘、则核心转储不需要备用阵列LUN。如果备用阵列LUN和备用磁盘都不可用、则没有可转储核心的空间。
+
+核心转储包含内存和NVRAM的内容。在系统崩溃期间、ONTAP会将核心转储到备用阵列LUN或备用磁盘(如果存在备用磁盘)。重新启动后、将从备用磁盘读取核心、并将其保存到根文件系统上的核心转储中。然后、技术支持可以使用核心转储来帮助解决问题。
+
+_LUN _包含每个平台的最小备用核心阵列Hardware Universe大小。
+
+* 相关信息 *
+
+https://hwu.netapp.com["NetApp Hardware Universe"]

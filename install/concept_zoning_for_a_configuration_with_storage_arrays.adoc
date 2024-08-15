@@ -1,0 +1,16 @@
+---
+permalink: install/concept_zoning_for_a_configuration_with_storage_arrays.html 
+sidebar: sidebar 
+keywords: zone, configuration, storage, arrays 
+summary: 通过分区、存储管理员可以限制特定ONTAP系统可以访问的阵列LUN。对于每个启动程序端口、ONTAP要求一个阵列LUN只能在一个目标端口上可见。 
+---
+= 使用存储阵列的配置中的分区
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+通过分区、存储管理员可以限制特定ONTAP系统可以访问的阵列LUN。对于每个启动程序端口、ONTAP要求一个阵列LUN只能在一个目标端口上可见。
+
+通过在光纤通道(FC)交换机上配置分区、您可以定义已连接节点之间的路径、从而限制连接到通用FC SAN的设备之间的可见性和连接性。

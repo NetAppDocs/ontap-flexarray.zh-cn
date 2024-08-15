@@ -1,0 +1,36 @@
+---
+permalink: install/task_changing_array_lun_size_or_composition.html 
+sidebar: sidebar 
+keywords: change, array, lun, size, composition 
+summary: 必须在存储阵列上重新配置阵列LUN的大小或构成。如果阵列LUN已分配给ONTAP系统、则必须先使用ONTAP将阵列LUN的状态更改为未使用、然后存储阵列管理员才能重新配置它。 
+---
+= 更改阵列LUN大小或构成
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+必须在存储阵列上重新配置阵列LUN的大小或构成。如果阵列LUN已分配给ONTAP系统、则必须先使用ONTAP将阵列LUN的状态更改为未使用、然后存储阵列管理员才能重新配置它。
+
+* 您需要的内容 *
+
+阵列LUN必须是备用阵列LUN、才能将其状态更改为未使用。
+
+.步骤
+. 在ONTAP系统上、输入以下命令以删除所有权信息： `storage disk removeowner  -disk arrayLUNname`
+. 在存储阵列上、完成以下步骤：
++
+.. 取消阵列LUN与ONTAP系统的映射(取消显示)、使其无法再看到该阵列LUN。
+.. 更改阵列LUN的大小或构成。
+.. 如果您希望ONTAP再次使用阵列LUN、请再次将该阵列LUN提供给ONTAP系统。
++
+此时、阵列LUN对提供该阵列LUN的FC启动程序端口可见、但它尚不能由任何ONTAP系统使用。
+
+
+
+. 在要成为阵列LUN所有者的ONTAP系统上输入以下命令： `storage disk assign -disk arrayLUNname -owner nodename`
++
+删除所有权信息后、任何ONTAP系统都无法使用该阵列LUN、直到将该阵列LUN重新分配给某个系统为止。您可以将阵列LUN保留为备用阵列LUN、也可以将其添加到聚合中。您必须先将阵列LUN添加到聚合、然后才能将该阵列LUN用于存储。
+
+

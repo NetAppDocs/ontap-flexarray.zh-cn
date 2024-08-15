@@ -1,0 +1,80 @@
+---
+permalink: install/task_displaying_target_port_queue_depth_statistics_clustered_data_ontap_8_2_and_later.html 
+sidebar: sidebar 
+keywords: display, target, queue, depth, statistics 
+summary: 如果您怀疑目标队列深度设置导致存储阵列出现性能问题、则应检查为队列深度设置的值、并检查FC启动程序端口上的请求状态。 
+---
+= 显示目标队列深度统计信息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您怀疑目标队列深度设置导致存储阵列出现性能问题、则应检查为队列深度设置的值、并检查FC启动程序端口上的请求状态。
+
+您可以访问不同级别的详细信息来确定在处理目标端口上的请求时是否存在问题。以下步骤介绍如何确定目标端口队列深度的当前设置、确定端口上是否有正在等待的请求以及显示详细的端口统计信息以帮助您了解端口上的工作负载。
+
+.步骤
+. 使用 `storage array show` 命令和 `-instance` 参数显示目标端口队列深度的当前值。
++
+[listing]
+----
+> set advanced
+> storage array show -instance
+
+Name: HP2
+                 Prefix: HP-2
+                 Vendor: HP
+                  Model: HSV300
+                options:
+          Serial Number: 50014380025d1500
+Target Port Queue Depth: 512
+        LUN Queue Depth: 32
+        Upgrade Pending: false
+    Optimization Policy: eALUA
+               Affinity: aaa
+             Error Text: -
+----
+. 使用 `storage array port show -fields max-queue-depth` 命令显示存储阵列上每个端口的队列深度设置。
++
+[listing]
+----
+> set advanced
+> storage array port show -fields max-queue-depth
+
+name            wwnn             wwpn             max-queue-depth
+--------------- ---------------- ---------------- ---------------
+EMC_SYMMETRIX_1 50060480000001a0 50060480000001a0 -
+EMC_SYMMETRIX_1 50060480000001a1 50060480000001a1 -
+EMC_SYMMETRIX_1 50060480000001b0 50060480000001b0 -
+EMC_SYMMETRIX_1 50060480000001b1 50060480000001b1 256
+----
++
+值"`-`表示 `Max Queue Depth` 端口没有特定的最大队列深度设置、而是使用在存储阵列级别设置的值。
+
+. 使用 `storage array port show` 命令显示有关存储阵列目标端口的性能信息。
++
+此命令的结果可帮助您确定是否存在与端口相关的性能问题。 `%busy`和 `%waiting` 值提供了端口性能的概要视图。如果这些值显示等待处理的请求百分比较高、或者显示端口处于繁忙状态的时间百分比较大、则您可能需要进一步调查端口的状态。
+
++
+[listing]
+----
+
+vgv3070f51::*> storage array port show
+
+Array Name: HP2
+WWNN: 50014380025d1500
+WWPN: 50014380025d1508
+Connection Type: fabric
+Switch Port: vgbr300s70:9
+Link Speed: 4   GB/s
+Max Queue Depth: -
+                              LUN                                 Link
+Node       Initiator  Count   IOPS    KB/s    %busy    %waiting   Errs
+---------  ---------  -----  ------  ------  -------  ----------  ----
+vgv51-02       0a     21       2      53        0           0     0
+vgv51-01       0a     21       2      48        1           0     0
+----
+. 您可以通过将命令与、、、或字段结合使用来获取有关端口的更多详细信息 `storage array port show -fields` `average-latency-per-iop` `average-pending` `average-waiting` `max-pending` `max-waiting` 。
+

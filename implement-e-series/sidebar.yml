@@ -1,0 +1,36 @@
+---
+section: implement-e-series
+title: 实施E-Series存储
+url: "/implement-e-series/index.html"
+entries:
+- title: 从何处查找有关使用存储阵列的配置的信息
+  url: "/implement-e-series/concept_where_to_find_information_for_configurations_with_storage_arrays.html"
+  entries:
+  - title: 从何处查找有关ONTAP对存储阵列的支持的信息
+    url: "/implement-e-series/concept_where_to_find_information_about_support_for_storage_arrays.html"
+- title: 可以在存储阵列上使用阵列LUN的ONTAP系统
+  url: "/implement-e-series/concept_systems_that_can_use_array_luns_on_storage_arrays.html"
+- title: 配置E-Series存储阵列的要求
+  url: "/implement-e-series/reference_requirements_for_configuring_e_series_storage_arrays.html"
+  entries:
+  - title: E-Series存储阵列所需的主机类型
+    url: "/implement-e-series/reference_required_host_type_for_e_series_storage_arrays_reference.html"
+- title: E-Series存储阵列支持的光纤连接配置
+  url: "/implement-e-series/reference_supported_fabric_attached_configurations_for_storage_arrays.html"
+  entries:
+  - title: 独立的基本配置
+    url: "/implement-e-series/concept_stand_alone_basic_configuration.html"
+  - title: 具有两个双端口阵列LUN组的独立系统
+    url: "/implement-e-series/concept_stand_alone_system_with_two_2_port_array_lun_groups.html"
+  - title: 单个4端口阵列LUN组配置
+    url: "/implement-e-series/concept_single_4_port_array_lun_group_configuration.html"
+  - title: 两个4端口阵列LUN组配置
+    url: "/implement-e-series/concept_two_4_port_array_lun_group_configuration.html"
+  - title: 八端口阵列LUN组配置
+    url: "/implement-e-series/concept_eight_port_array_lun_group_configuration.html"
+  - title: 将FC启动程序端口连接到多个目标端口
+    url: "/implement-e-series/concept_attaching_fc_initiator_port_to_multiple_targets_ports.html"
+  - title: 与两个FC启动程序端口共享一个目标端口
+    url: "/implement-e-series/concept_sharing_a_target_port_with_two_fc_initiator_ports.html"
+- title: 支持使用E-Series存储阵列的直连配置
+  url: "/implement-e-series/reference_supported_direct_attached_configurations_for_e_series_storage_arrays.html"
